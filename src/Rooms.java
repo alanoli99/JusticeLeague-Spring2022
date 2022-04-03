@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 public class Rooms {
     /**
      * @author: Raven Gardner
@@ -15,6 +19,7 @@ public class Rooms {
     private String west;
     private String south;
     private boolean visit;
+
 
     public Rooms(String roomName, String roomID, String description, String itemID, String monsterID, String puzzleID,
                  String north, String east, String west, String south, boolean visit) {
@@ -117,6 +122,22 @@ public class Rooms {
 
     public void setVisit(boolean visit) {
         this.visit = visit;
+    }
+
+    /**
+     * @author: Raven Gardner
+     * created: April 3, 2022
+     * Method Name: exploreRoom
+     * purpose: to receive the rooom name and room description
+     */
+    public void exploreRoom() {
+        ArrayList<Rooms> roomInfo = new ArrayList<>();
+        Text.readRoomFile(roomInfo);
+
+        for(Rooms rooms : roomInfo) {
+            // will change to compare room id in file to current room of the player
+            System.out.println(rooms.getRoomName() + "\n" + rooms.getDescription() + "\n");
+        }
     }
 
     @Override
