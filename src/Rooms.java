@@ -19,7 +19,7 @@ public class Rooms {
     private int west;
     private int south;
     private boolean visit;
-
+    private static int initialRoom = 1;
 
     public Rooms(String roomName, int roomID, String description, int itemID, int monsterID, int puzzleID, int north, int east, int west, int south, boolean visit) {
         this.roomName = roomName;
@@ -137,6 +137,76 @@ public class Rooms {
             // will change to compare room id in file to current room of the player
             System.out.println(rooms.getRoomName() + "\n" + rooms.getDescription() + "\n");
         }
+    }
+    public void moveAround(String verb) {
+        ArrayList<Rooms> roomList = new ArrayList<>();
+        Text.readRoomFile(roomList);
+        Rooms room;
+        room = getRoomObject(initialRoom,roomList);
+
+        if(verb.equalsIgnoreCase("n")){
+            if (room.getNorth() > 0){
+                initialRoom = room.getNorth();
+                System.out.println(initialRoom);
+                room = getRoomObject(initialRoom, roomList);
+                System.out.println("You're in the" + room.getRoomName());
+
+            }
+            else {
+                System.out.println("There's no path there!");
+            }
+            return;
+        }
+
+        if(verb.equalsIgnoreCase("s")){
+            if(room.getSouth() > 0) {
+                initialRoom = room.getSouth();
+                System.out.println(initialRoom);
+                room = getRoomObject(initialRoom, roomList);
+                System.out.println("You're in the " + room.getRoomName());
+            }
+            else {
+                System.out.println("There's no path there!");
+            }
+            return;
+        }
+
+        if(verb.equalsIgnoreCase("e")){
+            if(room.getEast()> 0){
+                initialRoom = room.getEast();
+                System.out.println(initialRoom);
+                room = getRoomObject(initialRoom,roomList);
+                System.out.println("You're in the " + room.getRoomName());
+            }
+            else {
+                System.out.println("There's no path there!");
+            }
+            return;
+        }
+
+        if(verb.equalsIgnoreCase("w")){
+            if(room.getWest() > 0){
+                initialRoom = room.getWest();
+                System.out.println(initialRoom);
+                room = getRoomObject(initialRoom,roomList);
+                System.out.println("You're in the " + room.getRoomName());
+            }
+            else {
+                System.out.println("There's no path there!");
+            }
+            return;
+        }
+        System.out.println("There's no path there");
+    }
+
+    private Rooms getRoomObject(int currentRoom, ArrayList<Rooms> roomList) {
+
+        for (Rooms a : roomList) {
+            if (a.getRoomID() == currentRoom ) {
+                return a;
+            }
+        }
+        return null;
     }
 
     @Override

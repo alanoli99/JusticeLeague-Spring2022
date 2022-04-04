@@ -1,8 +1,6 @@
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * Author name: Raven Garder
@@ -38,7 +36,9 @@ public class Game {
     private void explore() {
         rooms.exploreRoom();
     }
-
+    private void moveAround(String verb) {
+        rooms.moveAround(verb);
+    }
    
     // @author: Raven Gardner; created to process commands from user
     public String processVerb(List<String> wordlist) {
@@ -50,6 +50,7 @@ public class Game {
         if (commands.contains(verb)) {
             switch (verb) {
                 case "explore room" -> explore();
+                case "n", "s", "e", "w" -> moveAround(verb);
                 default -> msg = verb + " (not a valid command)";
             }
         } else {
@@ -58,6 +59,8 @@ public class Game {
         return msg;
     }
 
+
+
     // @author: Raven Gardner; created to show the intro after starting game
     public void showIntro(){
         String s;
@@ -65,8 +68,6 @@ public class Game {
 
         System.out.println(s);
     }
-<<<<<<< HEAD
-
 
     public String parseCommand(List<String> wordlist) {
         String msg;
@@ -134,6 +135,4 @@ public class Game {
     }
 
      */
-=======
->>>>>>> b1ec2b73dd4ef11bc7ea8329e2eb124229faac1c
 }
