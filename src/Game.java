@@ -106,33 +106,4 @@ public class Game {
         }
         return s;
     }
-
-    /*
-    IGNORE METHOD
-
-    // @author: Raven Gardner; created to play game
-
-    // notes for team members: y'all can use this to run the game in the main
-    // I created it to make sure the room file was read and the explore room
-    // feature worked; created the exit command (marked by this: ****), so then I could end the game;
-    // Alan you can ignore it in order to implement the exit command feature
-
-    public String playGame(String inputstr) {
-        List<String> wordlist;
-        String s = "--------------------------------------------\n" +
-                "You are exiting Necromancing Dreams. Goodbye now!\n" +
-                "--------------------------------------------";
-        String lowstr = inputstr.trim().toLowerCase();
-        if (!lowstr.equals("exit")) { **************************************************
-            if (lowstr.equals("")) {
-                s = "You must enter a command";
-            } else {
-                wordlist = wordList(lowstr);
-                s = parseCommand(wordlist);
-            }
-        }
-        return s;
-    }
-
-     */
 }
