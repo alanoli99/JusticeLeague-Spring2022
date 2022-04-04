@@ -12,6 +12,7 @@ public class Main {
         String gameStart;
         Scanner begin = new Scanner(System.in);
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        // start game feature; Raven
         System.out.println("--------------------------");
         System.out.println("Type 'start' to start game");
         System.out.println("--------------------------");
