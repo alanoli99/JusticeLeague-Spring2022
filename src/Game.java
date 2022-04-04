@@ -20,37 +20,38 @@ import java.util.List;
 public class Game {
     private Rooms rooms;
 
-    // Raven: used to parse commands from user
-    List<String> commands = new ArrayList<>(Arrays.asList("n","s","e","w",
-            "explore room"));
+    // Raven: used to parse command(s) from user
+    List<String> commands = new ArrayList<>(Arrays.asList("n","s","e","w", "north",
+            "south", "east", "west", "explore"));
+    List<String> objects = new ArrayList<>(Arrays.asList(
+            "room"
+    ));
 
-
-    // Raven: I used this in the main method (needed it to check that the explore room feature was working)
-    // ** created my own main method before Joe's main method was pushed to GitHub
+    // Raven: created constructor
     public Game() {
         ArrayList<Rooms> roomInfo = new ArrayList<>();
         rooms = Text.readRoomFile(roomInfo).get(0);
     }
 
     // Raven: used to retrieve room name and description
-    private void explore() {
-        rooms.exploreRoom();
+    private String explore(String name) {
+        return rooms.exploreRoom();
     }
+
+    //Joe: created to navigate rooms
     private void moveAround(String verb) {
         rooms.moveAround(verb);
     }
    
-    // @author: Raven Gardner; created to process commands from user
+    // @author: Raven Gardner; created to process commands from user when it is one command
     public String processVerb(List<String> wordlist) {
         String verb;
         String msg = "";
 
         verb = wordlist.get(0);
-        // @author: Raven Gardner; created if- else if -else structure; added explore room
         if (commands.contains(verb)) {
             switch (verb) {
-                case "explore room" -> explore();
-                case "n", "s", "e", "w" -> moveAround(verb);
+                case "n", "north", "w", "west", "s", "south", "e", "east" -> moveAround(verb);
                 default -> msg = verb + " (not a valid command)";
             }
         } else {
@@ -59,26 +60,57 @@ public class Game {
         return msg;
     }
 
+    // @author: Raven Gardner; same as processVerb; created because a few commands from SRS repeat
+    public String processTwoWords(List<String> wordlist) {
+        String verb;
+        String noun;
+        String msg = "";
+        boolean error = false;
+        verb = wordlist.get(0);
+        noun = wordlist.get(1);
+
+        if (!commands.contains(verb)) {
+            msg = verb + " is not a known verb! ";
+        }
+        if (!objects.contains(noun)) {
+            msg += (noun + " is not a known noun!");
+        }
+        if (!error && noun.equalsIgnoreCase("room")) {
+            switch (verb) {
+                case "explore" -> msg = explore(noun);
+            }
+        } else if (!error){
+            switch (verb) {
+                default -> msg += " (not yet implemented)";
+            }
+        }
+        return msg;
+    }
 
 
     // @author: Raven Gardner; created to show the intro after starting game
     public void showIntro(){
         String s;
-        s = "----------------------------------\n" + "\tWelcome to Necromancing Dreams!\n" + "----------------------------------\n";
+        s = "----------------------------------\n" + "Welcome to Necromancing Dreams!\n" + "----------------------------------\n\n\n\n" +
+                "You are starting off in Room " + rooms.getRoomID() + ". \n";
 
         System.out.println(s);
     }
 
+    // @author: Raven Gardner; created to parse commands
     public String parseCommand(List<String> wordlist) {
         String msg;
-        if (wordlist.size() >= 1) {
+        if (wordlist.size() == 1) {
             msg = processVerb(wordlist);
+        } else if (wordlist.size() == 2){
+            msg = processTwoWords(wordlist);
         } else {
-            msg = "Only 2 word commands allowed!";
+            msg = "only 2 word commands allowed";
         }
         return msg;
     }
 
+    // @author: Raven Gardner; created to store word list
     public static List<String> wordList(String input) {
         String delims = "[ \t,.:;?!\"']+";
         List<String> strlist = new ArrayList<>();
@@ -89,21 +121,20 @@ public class Game {
         }
         return strlist;
     }
+
     // This method is used to run the input the user entered - Joe N
     public String playGame(String inputstr) {
         List<String> wordlist;
-        String s = "--------------------------------------------\n" +
-                "You are exiting Necromancing Dreams. Goodbye now!\n" +
-                "--------------------------------------------";
+        String s = "";
         String lowstr = inputstr.trim().toLowerCase();
-        if (!lowstr.equals("exit")) {
-            if (lowstr.equals("")) {
+
+        if (lowstr.equals("")) {
                 s = "You must enter a command";
-            } else {
-                wordlist = wordList(lowstr);
-                s = parseCommand(wordlist);
-            }
+        } else {
+            wordlist = wordList(lowstr);
+            s = parseCommand(wordlist);
         }
+
         return s;
     }
 }
