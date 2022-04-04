@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,7 +23,7 @@ public class Game {
     private Rooms rooms;
 
     // Raven: used to parse commands from user
-    List<String> commands = new ArrayList<>(Arrays.asList(
+    List<String> commands = new ArrayList<>(Arrays.asList("n","s","e","w",
             "explore room"));
 
 
@@ -91,6 +92,45 @@ public class Game {
         s = "----------------------------------\n" + "\tWelcome to Necromancing Dreams!\n" + "----------------------------------\n";
 
         System.out.println(s);
+    }
+
+
+    public String parseCommand(List<String> wordlist) {
+        String msg;
+        if (wordlist.size() >= 1) {
+            msg = processVerb(wordlist);
+        } else {
+            msg = "Only 2 word commands allowed!";
+        }
+        return msg;
+    }
+
+    public static List<String> wordList(String input) {
+        String delims = "[ \t,.:;?!\"']+";
+        List<String> strlist = new ArrayList<>();
+        String[] words = input.split(delims);
+
+        for (String word : words) {
+            strlist.add(word);
+        }
+        return strlist;
+    }
+    // This method is used to run the input the user entered - Joe N
+    public String playGame(String inputstr) {
+        List<String> wordlist;
+        String s = "--------------------------------------------\n" +
+                "You are exiting Necromancing Dreams. Goodbye now!\n" +
+                "--------------------------------------------";
+        String lowstr = inputstr.trim().toLowerCase();
+        if (!lowstr.equals("exit")) {
+            if (lowstr.equals("")) {
+                s = "You must enter a command";
+            } else {
+                wordlist = wordList(lowstr);
+                s = parseCommand(wordlist);
+            }
+        }
+        return s;
     }
 
     /*
