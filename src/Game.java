@@ -39,34 +39,7 @@ public class Game {
         rooms.exploreRoom();
     }
 
-    /*
-    IGNORE METHOD
-
-    // @author: Raven Gardner; to process the word list and parse info to the main/view
-
-    public static List<String> wordList(String input) {
-        String delims = "[ \t,.:;?!\"']+";
-        List<String> strlist = new ArrayList<>();
-        String[] words = input.split(delims);
-
-        for (String word : words) {
-            strlist.add(word);
-        }
-        return strlist;
-    }
-
-    public String parseCommand(List<String> wordlist) {
-        String msg;
-        if (wordlist.size() >= 1) {
-            msg = processVerb(wordlist);
-        } else {
-            msg = "Only 2 word commands allowed!";
-        }
-        return msg;
-    }
-
-
- */
+   
     // @author: Raven Gardner; created to process commands from user
     public String processVerb(List<String> wordlist) {
         String verb;
@@ -74,10 +47,9 @@ public class Game {
 
         verb = wordlist.get(0);
         // @author: Raven Gardner; created if- else if -else structure; added explore room
-        if(commands.contains("explore room")){
-            explore();
-        } else if (commands.contains(verb)) {
+        if (commands.contains(verb)) {
             switch (verb) {
+                case "explore room" -> explore();
                 default -> msg = verb + " (not a valid command)";
             }
         } else {
@@ -93,6 +65,7 @@ public class Game {
 
         System.out.println(s);
     }
+<<<<<<< HEAD
 
 
     public String parseCommand(List<String> wordlist) {
@@ -161,4 +134,6 @@ public class Game {
     }
 
      */
+=======
+>>>>>>> b1ec2b73dd4ef11bc7ea8329e2eb124229faac1c
 }

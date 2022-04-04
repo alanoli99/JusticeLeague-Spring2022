@@ -9,20 +9,19 @@ public class Rooms {
      * Note: I created the attributes, constructor, and basic getter/setter methods
      */
     private String roomName;
-    private String roomID;
+    private int roomID;
     private String description;
-    private String itemID;
-    private String monsterID;
-    private String puzzleID;
-    private String north;
-    private String east;
-    private String west;
-    private String south;
+    private int itemID;
+    private int monsterID;
+    private int puzzleID;
+    private int north;
+    private int east;
+    private int west;
+    private int south;
     private boolean visit;
 
 
-    public Rooms(String roomName, String roomID, String description, String itemID, String monsterID, String puzzleID,
-                 String north, String east, String west, String south, boolean visit) {
+    public Rooms(String roomName, int roomID, String description, int itemID, int monsterID, int puzzleID, int north, int east, int west, int south, boolean visit) {
         this.roomName = roomName;
         this.roomID = roomID;
         this.description = description;
@@ -44,11 +43,11 @@ public class Rooms {
         this.roomName = roomName;
     }
 
-    public String getRoomID() {
+    public int getRoomID() {
         return roomID;
     }
 
-    public void setRoomID(String roomID) {
+    public void setRoomID(int roomID) {
         this.roomID = roomID;
     }
 
@@ -60,59 +59,59 @@ public class Rooms {
         this.description = description;
     }
 
-    public String getItemID() {
+    public int getItemID() {
         return itemID;
     }
 
-    public void setItemID(String itemID) {
+    public void setItemID(int itemID) {
         this.itemID = itemID;
     }
 
-    public String getMonsterID() {
+    public int getMonsterID() {
         return monsterID;
     }
 
-    public void setMonsterID(String monsterID) {
+    public void setMonsterID(int monsterID) {
         this.monsterID = monsterID;
     }
 
-    public String getPuzzleID() {
+    public int getPuzzleID() {
         return puzzleID;
     }
 
-    public void setPuzzleID(String puzzleID) {
+    public void setPuzzleID(int puzzleID) {
         this.puzzleID = puzzleID;
     }
 
-    public String getNorth() {
+    public int getNorth() {
         return north;
     }
 
-    public void setNorth(String north) {
+    public void setNorth(int north) {
         this.north = north;
     }
 
-    public String getEast() {
+    public int getEast() {
         return east;
     }
 
-    public void setEast(String east) {
+    public void setEast(int east) {
         this.east = east;
     }
 
-    public String getWest() {
+    public int getWest() {
         return west;
     }
 
-    public void setWest(String west) {
+    public void setWest(int west) {
         this.west = west;
     }
 
-    public String getSouth() {
+    public int getSouth() {
         return south;
     }
 
-    public void setSouth(String south) {
+    public void setSouth(int south) {
         this.south = south;
     }
 
