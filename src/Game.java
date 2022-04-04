@@ -38,34 +38,7 @@ public class Game {
         rooms.exploreRoom();
     }
 
-    /*
-    IGNORE METHOD
-
-    // @author: Raven Gardner; to process the word list and parse info to the main/view
-
-    public static List<String> wordList(String input) {
-        String delims = "[ \t,.:;?!\"']+";
-        List<String> strlist = new ArrayList<>();
-        String[] words = input.split(delims);
-
-        for (String word : words) {
-            strlist.add(word);
-        }
-        return strlist;
-    }
-
-    public String parseCommand(List<String> wordlist) {
-        String msg;
-        if (wordlist.size() >= 1) {
-            msg = processVerb(wordlist);
-        } else {
-            msg = "Only 2 word commands allowed!";
-        }
-        return msg;
-    }
-
-
- */
+   
     // @author: Raven Gardner; created to process commands from user
     public String processVerb(List<String> wordlist) {
         String verb;
@@ -73,10 +46,9 @@ public class Game {
 
         verb = wordlist.get(0);
         // @author: Raven Gardner; created if- else if -else structure; added explore room
-        if(commands.contains("explore room")){
-            explore();
-        } else if (commands.contains(verb)) {
+        if (commands.contains(verb)) {
             switch (verb) {
+                case "explore room" -> explore();
                 default -> msg = verb + " (not a valid command)";
             }
         } else {
@@ -92,33 +64,4 @@ public class Game {
 
         System.out.println(s);
     }
-
-    /*
-    IGNORE METHOD
-
-    // @author: Raven Gardner; created to play game
-
-    // notes for team members: y'all can use this to run the game in the main
-    // I created it to make sure the room file was read and the explore room
-    // feature worked; created the exit command (marked by this: ****), so then I could end the game;
-    // Alan you can ignore it in order to implement the exit command feature
-
-    public String playGame(String inputstr) {
-        List<String> wordlist;
-        String s = "--------------------------------------------\n" +
-                "You are exiting Necromancing Dreams. Goodbye now!\n" +
-                "--------------------------------------------";
-        String lowstr = inputstr.trim().toLowerCase();
-        if (!lowstr.equals("exit")) { **************************************************
-            if (lowstr.equals("")) {
-                s = "You must enter a command";
-            } else {
-                wordlist = wordList(lowstr);
-                s = parseCommand(wordlist);
-            }
-        }
-        return s;
-    }
-
-     */
 }
