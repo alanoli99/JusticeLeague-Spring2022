@@ -3,18 +3,20 @@
  */
 
 public class Monsters {
-    private String name;
+    private String id;
     private String description;
-    private int id;
-    private int health;
-    private int damage;
+    private int difficulty;
+    private int riddle;
+    private int hint;
+    private int answer;
+    private int choices;
 
-    public String getName() {
-        return name;
+    public String getId() {
+        return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getDescription() {
@@ -25,36 +27,54 @@ public class Monsters {
         this.description = description;
     }
 
-    public int getId() {
-        return id;
+    public int getDifficulty() {
+        return difficulty;
     }
 
-    public void setId(int id) {
+    public void setDifficulty(int difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    public int getRiddle() {
+        return riddle;
+    }
+
+    public void setRiddle(int riddle) {
+        this.riddle = riddle;
+    }
+
+    public int getHint() {
+        return hint;
+    }
+
+    public void setHint(int hint) {
+        this.hint = hint;
+    }
+
+    public int getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(int answer) {
+        this.answer = answer;
+    }
+
+    public int getChoices() {
+        return choices;
+    }
+
+    public void setChoices(int choices) {
+        this.choices = choices;
+    }
+
+    public Monsters(String id, String description, int difficulty, int riddle, int hint, int answer, int choices) {
         this.id = id;
-    }
-
-    public int getHealth() {
-        return health;
-    }
-
-    public void setHealth(int health) {
-        this.health = health;
-    }
-
-    public int getDamage() {
-        return damage;
-    }
-
-    public void setDamage(int damage) {
-        this.damage = damage;
-    }
-
-    public Monsters(String name, String description, int id, int health, int damage) {
-        this.name = name;
         this.description = description;
-        this.id = id;
-        this.health = health;
-        this.damage = damage;
+        this.difficulty = difficulty;
+        this.riddle = riddle;
+        this.hint = hint;
+        this.answer = answer;
+        this.choices = choices;
     }
 }
 
