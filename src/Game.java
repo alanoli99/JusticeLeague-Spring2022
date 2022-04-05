@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * Author name: Raven Garder
- * Worked on: Explore room feature,
+ * Worked on: Explore room feature, process/parse commands
  *
  * Author name:
  * Worked on:
@@ -22,9 +22,9 @@ public class Game {
 
     // Raven: used to parse command(s) from user
     List<String> commands = new ArrayList<>(Arrays.asList("n","s","e","w", "north",
-            "south", "east", "west", "explore"));
+            "south", "east", "west", "explore", "try")); // try is for the test case -- will be deleted before final deliverable - Raven
     List<String> objects = new ArrayList<>(Arrays.asList(
-            "room"
+            "room", "test case for game", "test case" // testing multiple commands in one -- will be deleted - Raven
     ));
 
     // Raven: created constructor
@@ -41,6 +41,12 @@ public class Game {
     //Joe: created to navigate rooms
     private void moveAround(String verb) {
         rooms.moveAround(verb);
+    }
+
+    // Raven: EXAMPLE FOR MULTIPlE OBJECTS IN ONE COMMAND; similar structure can be used for item features
+    private String test(String name) {
+
+        return name + " will be implemented";
     }
    
     // @author: Raven Gardner; created to process commands from user when it is one command
@@ -87,6 +93,69 @@ public class Game {
         return msg;
     }
 
+    // @author: Raven; created because on SRS we have to use more than two commands sometimes
+    // example: picking up item 'Moldy Bread': can use the verb 'pickup' followed by 'moldy bread'
+    public String processMulipleNouns(List<String> wordlist) {
+        String verb;
+        String extra;
+        String nounCommand = "";
+        String inObjects = "";
+        String objMsg = "";
+        String msg = "";
+        boolean error = true;
+        boolean notNouns = false;
+        verb = wordlist.get(0); // just gets one word for commands - Raven
+
+        if (!commands.contains(verb)) {
+            msg = verb + " is not a known verb! ";
+        }
+
+        // iterates between input from user until full command is done
+        // ex. 'room feature'; returns 'room' first then it returns 'room feature' - Raven
+        for (int i = 1; i < wordlist.size(); i++) {
+            nounCommand = wordlist.get(i);
+            msg = msg + " " + nounCommand;
+            //System.out.println("msg:" + msg + ":"); // uncomment to see example
+        }
+
+        // iterates over object list declared at the top of the class
+        for (int k = 0; k < objects.size(); k++){
+            inObjects = objects.get(k);
+            objMsg = " " + inObjects;
+            //System.out.println("msg:" + msg + ":");
+            //System.out.println("objMsg:" + objMsg + ":");
+
+            if ((msg.equalsIgnoreCase(objMsg))) { // add verb cases here - Raven
+                //System.out.println("entered if");
+                switch (verb) {
+                    case "try" -> {
+                        //System.out.println("entered switch");
+                        msg = test(msg);
+                        break;
+                    }
+                    //default -> msg = "";
+                }
+                error = false;
+            }
+        }
+
+        // if it didn't enter if statement in the for loop then the noun isn't in object list - Raven
+        if (error) {
+            notNouns = true;
+
+        }
+        if (notNouns) {
+            extra = " are not known nouns!";
+        } else {
+            extra = "";
+        }
+        if (notNouns) {
+            msg += extra + " (not yet implemented)";
+        }
+
+        return msg;
+    }
+
 
     // @author: Raven Gardner; created to show the intro after starting game
     public void showIntro(){
@@ -105,7 +174,7 @@ public class Game {
         } else if (wordlist.size() == 2){
             msg = processTwoWords(wordlist);
         } else {
-            msg = "only 2 word commands allowed";
+            msg = processMulipleNouns(wordlist);
         }
         return msg;
     }
