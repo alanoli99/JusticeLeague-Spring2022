@@ -218,7 +218,7 @@ public class Game {
                 commands = "You must enter a command";
             } else {
                 wordlist = wordList(lowstr);
-                commands = processVerb(wordlist);
+                commands = parseCommand(wordlist); // changed processVerb to parseCommand -- Raven
             }
         }
         return commands;
