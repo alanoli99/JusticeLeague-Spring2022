@@ -1,5 +1,7 @@
-//Alan
-
+/**
+ * @author: Alan Oliver
+ * Note: I created the attributes, constructor, and basic getter/setter methods
+ */
 public class Artifacts {
 
     private int artiID;
