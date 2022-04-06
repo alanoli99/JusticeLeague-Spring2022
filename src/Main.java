@@ -27,6 +27,7 @@ public class Main {
                 break;
             }
              else if(input.equalsIgnoreCase("exit")){
+                System.out.println("Thanks for playing!");
                 System.exit(0);
             }
             else {
