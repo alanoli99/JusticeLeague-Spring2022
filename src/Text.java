@@ -87,4 +87,52 @@ public class Text {
         return puzzleList;
 
     }
+
+    /**
+     * @author: Alan Oliver
+     * Note: created the method to read the artifacts file
+     */
+
+    public static ArrayList<Artifacts> artiList(ArrayList<Artifacts> ArtiArrayList) {
+
+        String fileName1 = "Artifacts";
+        Scanner scan = null;
+        File artifacts = null;
+
+        try {
+            artifacts = new File(fileName1);
+            scan = new Scanner(artifacts);
+        } catch (FileNotFoundException e) {
+            System.out.println("Can not read this file!");
+            return ArtiArrayList;
+        }
+
+        try {
+            while (scan.hasNextLine()) {
+                int aID = Integer.parseInt(scan.nextLine());
+                String aName = scan.nextLine();
+                String aDescription = scan.nextLine();
+                String aType = scan.nextLine();
+                String aUsage = scan.nextLine();
+                String aStrength = scan.nextLine();
+
+
+
+
+                Artifacts b = new Artifacts(aID,aName,aDescription,aType,aUsage,aStrength);
+                ArtiArrayList.add(b);
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("error while reading this file!");
+        } finally {
+            scan.close();
+        }
+        return ArtiArrayList;
+
+    }
+
+
+
 }

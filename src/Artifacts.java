@@ -1,4 +1,5 @@
 //Alan
+
 public class Artifacts {
 
     private int artiID;
