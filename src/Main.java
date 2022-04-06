@@ -9,35 +9,43 @@ public class Main {
         Game game = new Game();
         String input;
         String output;
-        String gameStart;
+        //Input could be used for gameStart
+        //String gameStart;
         Scanner begin = new Scanner(System.in);
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-        // start game feature; Raven
+        // start game feature; Raven and Alan
         System.out.println("--------------------------");
         System.out.println("Type 'start' to start game");
         System.out.println("--------------------------");
-        gameStart = begin.next();
+       input = begin.next();
 
+        //@author:Raven Gardner & Alan Oliver;
+        // modified to allow the user to exit out of
+        // the program while they are in the start menu
         while (begin.hasNextLine()) {
-            if (gameStart.equalsIgnoreCase("start")) {
+            if (input.equalsIgnoreCase("start")) {
                 break;
-            } else {
+            }
+             else if(input.equalsIgnoreCase("exit")){
+                System.exit(0);
+            }
+            else {
                 System.out.println("invalid command\n");
                 System.out.println("--------------------------");
                 System.out.println("Type 'start' to start game");
                 System.out.println("--------------------------");
-                gameStart = begin.next();
+                input = begin.next();
             }
         }
         game.showIntro();
+
         do {
-            System.out.println("->");
+
+            System.out.print("> ");
             input = in.readLine();
-            output = game.playGame(input);
-
+            output = game.runCommand(input);
             System.out.println(output);
-
-        } while (!input.equalsIgnoreCase("exit"));
+        } while (!"exit".equals(input));
 
     }
 

@@ -206,4 +206,21 @@ public class Game {
 
         return s;
     }
+
+    //@author: Alan Oliver; Allows the user to quit playing
+    // the game passed the start menu
+    public String runCommand(String inputstr) {
+        List<String> wordlist;
+        String commands = "Thanks for playing!";
+        String lowstr = inputstr.trim().toLowerCase();
+        if (!lowstr.equalsIgnoreCase("Exit")) {
+            if (lowstr.equals("")) {
+                commands = "You must enter a command";
+            } else {
+                wordlist = wordList(lowstr);
+                commands = processVerb(wordlist);
+            }
+        }
+        return commands;
+    }
 }
