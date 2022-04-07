@@ -19,24 +19,55 @@ import java.util.List;
 
 public class Game {
 
-    private Rooms rooms;
+    private static Rooms rooms;
+    private Player player;
 
     // Raven: used to parse command(s) from user
     List<String> commands = new ArrayList<>(Arrays.asList("n","s","e","w", "north",
-            "south", "east", "west", "explore", "try")); // try is for the test case -- will be deleted before final deliverable - Raven
+            "south", "east", "west", "explore", "consume" , "eat" , "info", "try")); // try is for the test case -- will be deleted before final deliverable - Raven
     List<String> objects = new ArrayList<>(Arrays.asList(
-            "room", "test case for game", "test case" // testing multiple commands in one -- will be deleted - Raven
+            "room","old bread", "blood jar", "dagger", "bone head", "kite shield",
+            "crystal ring", "midnight sword", "stone hammer", "metal armor", "berries",
+            "diamond key", "test case for game", "test case" // testing multiple commands in one -- will be deleted - Raven
     ));
+
+    // Raven: used to keep track of rooms for the item features
+    public static Rooms getRooms() {
+        return rooms;
+    }
+
+    public static void setRooms(Rooms rooms) {
+        Game.rooms = rooms;
+    }
 
     // Raven: created constructor
     public Game() {
         ArrayList<Rooms> roomInfo = new ArrayList<>();
         rooms = Text.readRoomFile(roomInfo).get(0);
+        player = new Player(getRooms().getRoomName(), getRooms().getRoomID(), getRooms().getDescription(),
+                getRooms().getItemID(), getRooms().getMonsterID(), getRooms().getPuzzleID(),
+                getRooms().getNorth(), getRooms().getEast(), getRooms().getWest(), getRooms().getSouth(),
+                getRooms().isVisit(), getRooms());
+    }
+
+    // Raven: used to keep track of player
+    public Player getPlayer() {
+        return player;
+    }
+
+    // Raven: method can be removed because they didn't ask for it on their SRS, but helps see if player's health and location actually changed
+    private void info() {
+        System.out.println(getPlayer().toString());
     }
 
     // Raven: used to retrieve room name and description
     private String explore(String name) {
         return rooms.exploreRoom();
+    }
+
+    // Raven: used to consume item
+    private String consumeItem(String name) {
+        return Player.consume(name);
     }
 
     //Joe: created to navigate rooms
@@ -59,6 +90,7 @@ public class Game {
         if (commands.contains(verb)) {
             switch (verb) {
                 case "n", "north", "w", "west", "s", "south", "e", "east", "explroe" -> moveAround(verb);
+                case "info" -> info();
                 default -> msg = verb + " (not a valid command)";
             }
         } else {
@@ -88,6 +120,7 @@ public class Game {
             }
         } else if (!error){
             switch (verb) {
+                case "consume", "eat" -> msg = consumeItem(noun);
                 default -> msg += " (not yet implemented)";
             }
         }
@@ -132,6 +165,10 @@ public class Game {
                     case "try" -> {
                         //System.out.println("entered switch");
                         msg = test(msg);
+                        break;
+                    }
+                    case "consume", "eat" -> {
+                        msg = consumeItem(msg);
                         break;
                     }
                     //default -> msg = "";
