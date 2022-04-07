@@ -195,8 +195,10 @@ public class Rooms {
                 System.out.println("You're in the Room " + room.getRoomID());
                 setRoomID(room.getRoomID()); // added for explore room; Raven
 
-            } else if (room.getNorth() == -2) { // instead of locked door variable if navigation = -2, the door is locked; -- Raven
-                // -2 also represents the locked door roomID. -- Raven
+                Game.setRooms(room); // added to keep track of rooms in Game class; for item features; Raven
+                Player.setLocation(room); // same ^^ also updates player info; Raven
+
+            } else if (room.getNorth() == -2) { // instead of locked door variable if navigation = -2; the door is locked; -2 also represents the locked door roomID.
                 initialRoom = room.getRoomID();
                 room = getRoomObject(initialRoom, roomList);
                 System.out.println("You need a key!");
@@ -215,6 +217,9 @@ public class Rooms {
                 room = getRoomObject(initialRoom, roomList);
                 System.out.println("You're in the Room " + room.getRoomID());
                 setRoomID(room.getRoomID());
+
+                Game.setRooms(room);
+                Player.setLocation(room); // same ^^ also updates player info; Raven
 
             } else if (room.getSouth() == -2) {
                 initialRoom = room.getRoomID();
@@ -235,6 +240,8 @@ public class Rooms {
                 System.out.println("You're in the Room " + room.getRoomID());
                 setRoomID(room.getRoomID());
 
+                Game.setRooms(room);
+                Player.setLocation(room); // same ^^ also updates player info; Raven
 
             } else if (room.getEast() == -2) {
                 initialRoom = room.getRoomID();
@@ -255,6 +262,9 @@ public class Rooms {
                 room = getRoomObject(initialRoom, roomList);
                 System.out.println("You're in the Room " + room.getRoomID());
                 setRoomID(room.getRoomID());
+
+                Game.setRooms(room);
+                Player.setLocation(room); // same ^^ also updates player info; Raven
 
             } else if (room.getWest() == -2) {
                 initialRoom = room.getRoomID();
