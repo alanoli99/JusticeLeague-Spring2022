@@ -1,6 +1,9 @@
 /**
  * @author: Alan Oliver
  * Note: I created the attributes, constructor, and basic getter/setter methods
+ *
+ * @author: Raven Gardner
+ * Note: split strength into consumeHealth and equipHealth
  */
 public class Artifacts {
 
@@ -9,15 +12,19 @@ public class Artifacts {
     private String artiDescription;
     private String artiType;
     private String artiUsage;
-    private String artiStrength;
+    private int consumeHealth;
+    private int equipHealth;
 
-    public Artifacts(int artiID, String artiName, String artiDescription, String artiType, String artiUsage, String artiStrength) {
+    //private static HashMap<Artifacts, String> artifactsMap = Text.getHashMapForArti(); // putting static maintains the hashmap between methods.
+
+    public Artifacts(int artiID, String artiName, String artiDescription, String artiType, String artiUsage, int consumeHealth, int equipHealth) {
         this.artiID = artiID;
         this.artiName = artiName;
         this.artiDescription = artiDescription;
         this.artiType = artiType;
         this.artiUsage = artiUsage;
-        this.artiStrength = artiStrength;
+        this.consumeHealth = consumeHealth;
+        this.equipHealth = equipHealth;
     }
 
     public int getArtiID() {
@@ -60,12 +67,20 @@ public class Artifacts {
         this.artiUsage = artiUsage;
     }
 
-    public String getArtiStrength() {
-        return artiStrength;
+    public int getConsumeHealth() {
+        return consumeHealth;
     }
 
-    public void setArtiStrength(String artiStrength) {
-        this.artiStrength = artiStrength;
+    public void setConsumeHealth(int consumeHealth) {
+        this.consumeHealth = consumeHealth;
+    }
+
+    public int getEquipHealth() {
+        return equipHealth;
+    }
+
+    public void setEquipHealth(int equipHealth) {
+        this.equipHealth = equipHealth;
     }
 
     @Override
