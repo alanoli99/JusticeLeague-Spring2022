@@ -7,7 +7,12 @@ public class Rooms {
      * @author: Raven Gardner
      * Created: April 3, 2022
      * Note: I created the attributes, constructor, and basic getter/setter methods
-     */
+     *
+     *   @author: Alan Oliver
+     *   Note: I modified the original room file and created
+     *   the variable "lockedDoor" to implement if a door
+     *   needs a key
+     *   */
     private String roomName;
     private int roomID;
     private String description;
@@ -18,10 +23,12 @@ public class Rooms {
     private int east;
     private int west;
     private int south;
+    private int lockedDoor;
     private boolean visit;
     private static int initialRoom = 1;
 
-    public Rooms(String roomName, int roomID, String description, int itemID, int monsterID, int puzzleID, int north, int east, int west, int south, boolean visit) {
+    public Rooms(String roomName, int roomID, String description, int itemID, int monsterID,
+                 int puzzleID, int north, int east, int west, int south, int lockedDoor, boolean visit ) {
         this.roomName = roomName;
         this.roomID = roomID;
         this.description = description;
@@ -32,6 +39,7 @@ public class Rooms {
         this.east = east;
         this.west = west;
         this.south = south;
+        this.lockedDoor = lockedDoor;
         this.visit = visit;
     }
 
@@ -115,6 +123,14 @@ public class Rooms {
         this.south = south;
     }
 
+    public int getLockedDoor() {
+        return lockedDoor;
+    }
+
+    public void setLockedDoor(int lockedDoor) {
+        this.lockedDoor = lockedDoor;
+    }
+
     public boolean isVisit() {
         return visit;
     }
@@ -122,6 +138,8 @@ public class Rooms {
     public void setVisit(boolean visit) {
         this.visit = visit;
     }
+
+
 
     /**
      * @author: Raven Gardner
@@ -150,6 +168,13 @@ public class Rooms {
      * @author: Joe Nsengiyumva
      * Method Name: moveAround
      * purpose: to navigate between rooms
+     *
+     * * @author: Alan Oliver
+     *      * What was added: if statement to check
+     *      if the doors are locked
+     *      * purpose: if the door is locked
+     *      the player needs a key
+     *      to open the door
      */
     public void moveAround(String verb) {
         ArrayList<Rooms> roomList = new ArrayList<>();
@@ -158,14 +183,23 @@ public class Rooms {
         room = getRoomObject(initialRoom, roomList);
 
         if (verb.equalsIgnoreCase("n") || verb.equalsIgnoreCase("north")) {
-            if (room.getNorth() > 0) {
-                initialRoom = room.getNorth();
-                //System.out.println(initialRoom);
-                room = getRoomObject(initialRoom, roomList);
-                System.out.println("You're in the Room " + room.getRoomID());
-                setRoomID(room.getRoomID()); // added for explore room; Raven
-
-            } else {
+            if (room.getNorth() > 0 ) {
+                //Alan
+                if(room.getLockedDoor() == 0){
+                    initialRoom = room.getNorth();
+                    //System.out.println(initialRoom);
+                    room = getRoomObject(initialRoom, roomList);
+                    System.out.println("You're in the Room " + room.getRoomID());
+                    setRoomID(room.getRoomID()); // added for explore room; Raven
+                }
+                else if(room.getLockedDoor() == -2){
+                    initialRoom = room.getRoomID();
+                    room = getRoomObject(initialRoom, roomList);
+                    System.out.println("You need a key!");
+                    System.out.println("You're in the Room " + room.getRoomID());
+                }
+            }
+            else {
                 System.out.println("There’s no exit in this direction");
             }
             return;
@@ -173,11 +207,20 @@ public class Rooms {
 
         if (verb.equalsIgnoreCase("s") || verb.equalsIgnoreCase("south")) {
             if (room.getSouth() > 0) {
-                initialRoom = room.getSouth();
-                //System.out.println(initialRoom);
-                room = getRoomObject(initialRoom, roomList);
-                System.out.println("You're in the Room " + room.getRoomID());
-                setRoomID(room.getRoomID());
+                //Alan
+                if(room.getLockedDoor() == 0) {
+                    initialRoom = room.getSouth();
+                    //System.out.println(initialRoom);
+                    room = getRoomObject(initialRoom, roomList);
+                    System.out.println("You're in the Room " + room.getRoomID());
+                    setRoomID(room.getRoomID());
+                }
+                else if(room.getLockedDoor() == -2){
+                    initialRoom = room.getRoomID();
+                    room = getRoomObject(initialRoom, roomList);
+                    System.out.println("You need a key!");
+                    System.out.println("You're in the Room " + room.getRoomID());
+                }
 
             } else {
                 System.out.println("There’s no exit in this direction");
@@ -187,11 +230,19 @@ public class Rooms {
 
         if (verb.equalsIgnoreCase("e") || verb.equalsIgnoreCase("east")) {
             if (room.getEast() > 0) {
-                initialRoom = room.getEast();
-                //System.out.println(initialRoom);
-                room = getRoomObject(initialRoom, roomList);
-                System.out.println("You're in the Room " + room.getRoomID());
-                setRoomID(room.getRoomID());
+                if(room.getLockedDoor() == 0) {
+                    initialRoom = room.getEast();
+                    //System.out.println(initialRoom);
+                    room = getRoomObject(initialRoom, roomList);
+                    System.out.println("You're in the Room " + room.getRoomID());
+                    setRoomID(room.getRoomID());
+                }
+                else if(room.getLockedDoor() == -2){
+                    initialRoom = room.getRoomID();
+                    room = getRoomObject(initialRoom, roomList);
+                    System.out.println("You need a key!");
+                    System.out.println("You're in the Room " + room.getRoomID());
+                }
 
             } else {
                 System.out.println("There’s no exit in this direction");
@@ -201,12 +252,20 @@ public class Rooms {
 
         if (verb.equalsIgnoreCase("w") || verb.equalsIgnoreCase("west")) {
             if (room.getWest() > 0) {
-                initialRoom = room.getWest();
-                //System.out.println(initialRoom);
-                room = getRoomObject(initialRoom, roomList);
-                System.out.println("You're in the Room " + room.getRoomID());
-                setRoomID(room.getRoomID());
 
+                if(room.getLockedDoor() == 0) {
+                    initialRoom = room.getWest();
+                    //System.out.println(initialRoom);
+                    room = getRoomObject(initialRoom, roomList);
+                    System.out.println("You're in the Room " + room.getRoomID());
+                    setRoomID(room.getRoomID());
+                }
+                else if(room.getLockedDoor() == -2){
+                    initialRoom = room.getRoomID();
+                    room = getRoomObject(initialRoom, roomList);
+                    System.out.println("You need a key!");
+                    System.out.println("You're in the Room " + room.getRoomID());
+                }
             } else {
                 System.out.println("There’s no exit in this direction");
             }

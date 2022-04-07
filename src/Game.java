@@ -18,6 +18,7 @@ import java.util.List;
  */
 
 public class Game {
+
     private Rooms rooms;
 
     // Raven: used to parse command(s) from user
@@ -57,7 +58,7 @@ public class Game {
         verb = wordlist.get(0);
         if (commands.contains(verb)) {
             switch (verb) {
-                case "n", "north", "w", "west", "s", "south", "e", "east" -> moveAround(verb);
+                case "n", "north", "w", "west", "s", "south", "e", "east", "explroe" -> moveAround(verb);
                 default -> msg = verb + " (not a valid command)";
             }
         } else {

@@ -8,6 +8,11 @@ public class Text {
      * @author: Raven Gardner
      * Created: April 3, 2022
      * Note: created the method to read room file
+     *
+     *  @author: Alan Oliver
+     *  Note: added the conversion from string to int
+     *  for the new lockedDoor variable
+     *
      */
     public static ArrayList<Rooms> readRoomFile(ArrayList<Rooms> roomList) {
         String fileName = "Rooms.txt"; // hard coding file name
@@ -29,6 +34,7 @@ public class Text {
              */
             while (scan.hasNextLine()) { // loop until the scanner reaches the end of the file
                 String roomName = scan.nextLine();
+
 
                 String roomIDString = scan.nextLine();
                 int roomID = Integer.parseInt(roomIDString);
@@ -56,10 +62,13 @@ public class Text {
                 String toSouthString = scan.nextLine();
                 int toSouth = Integer.parseInt(toSouthString);
 
+                String doorLockedString = scan.nextLine();
+                int doorLocked = Integer.parseInt(doorLockedString);
+
 
                 // Room object to store the variables read from the file
                 Rooms currentRoom = new Rooms(roomName, roomID, description, itemID, monsterID, puzzleID,
-                        toNorth, toEast, toWest, toSouth,false);
+                        toNorth, toEast, toWest, toSouth, doorLocked, false);
                 roomList.add(currentRoom); // add the room object to the array list
             }
 
