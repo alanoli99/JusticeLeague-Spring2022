@@ -8,7 +8,6 @@ A once beautiful courtyard with trimmed hedges and raised flower beds. Now nothi
 0
 2
 3
-0
 Shed
 2
 A damp and worn shed with tools laid out in disarray. Maybe there’s a diamond in the rough that can help you on your journey? The east side door takes you back to the courtyard.
@@ -17,7 +16,6 @@ A damp and worn shed with tools laid out in disarray. Maybe there’s a diamond 
 0
 0
 1
-0
 0
 0
 Great Hall
@@ -30,7 +28,6 @@ The great hall walls are decorated with drab colored walls and framed portraits 
 10
 4
 7
-0
 Kitchen
 4
 Pots and pans are scattered all over the counters. Spilt sauce drips onto the tile floor beneath you. A swing door is located southbound while a regular wooden door is located eastbound.
@@ -41,7 +38,6 @@ Pots and pans are scattered all over the counters. Spilt sauce drips onto the ti
 3
 0
 5
-0
 Dining Hall
 5
 Plates and silverware are perfectly arranged and placed on multiple tables throughout the room. Some serving ware has food on top. The chairs are handcrafted with a dark oak and a plush seat. A swing door is located northbound, and a regular wooden door is located southbound of the room.
@@ -52,7 +48,6 @@ Plates and silverware are perfectly arranged and placed on multiple tables throu
 0
 0
 6
-0
 Sitting Area
 6
 Several chairs are scattered around this room. Books lay on top of the side tables. There are doors located northbound, eastbound, and westbound.
@@ -62,7 +57,6 @@ Several chairs are scattered around this room. Books lay on top of the side tabl
 5
 7
 8
-0
 0
 Front Foyer
 7
@@ -74,7 +68,6 @@ You have reached the front entrance of the house. Coat hangers and decorative me
 9
 6
 0
-0
 Sun Room
 8
 Sun pours into this room from the skylight windows on the ceiling. A tea table can be seen near one wall of the room. A staircase that leads to the second floor is located westbound while a door is located eastbound.
@@ -83,7 +76,6 @@ Sun pours into this room from the skylight windows on the ceiling. A tea table c
 0
 24
 6
-0
 0
 0
 Den
@@ -96,7 +88,6 @@ Seats for lounging are seen against the walls in this room. Tables are laid out 
 25
 7
 0
-0
 Trophy Room
 10
 Helmets and armor pieces are displayed in cases and on shelves. War shields are hung from the ceiling. What the necromancer won’t tell you is that these pieces of protection are from victims that he has slain over his lifetime. Two doors are located westbound and southbound. The eastbound stairs lead down into the dungeon below. 
@@ -107,7 +98,6 @@ Helmets and armor pieces are displayed in cases and on shelves. War shields are 
 11
 3
 9
-0
 The Cellar
 11
 This massive cellar holds the finest wines and liquors known across the globe. Aged Oak barrels are lined and stacked in an orderly fashion. Through the liquid maze of iron and wood, you find four doors. One northbound, one eastbound, one westbound, and one southbound.
@@ -118,7 +108,6 @@ This massive cellar holds the finest wines and liquors known across the globe. A
 10
 16
 18
-0
 East Servants Quarters
 12
 Cots and Beds with no padding are lined up against the stone wall. Bones are scattered on and around the metal bed frames. Some of the skeletons are chained up against the bed. With a pit in your stomach, you look for the exits. Iron doors with bars are located both westbound and southbound.
@@ -129,7 +118,6 @@ Cots and Beds with no padding are lined up against the stone wall. Bones are sca
 0
 13
 11
-0
 Middle Servants Quarters
 13
 Old worn books are stacked and scattered throughout these servants' quarters. More skeletons lay flat on the bed. One bed has a large pile of books on top with a corpse trapped underneath. Observing through the rubbish and books, you find a rusty door northbound, and iron doors westbound and eastbound.
@@ -139,7 +127,6 @@ Old worn books are stacked and scattered throughout these servants' quarters. Mo
 17
 12
 14
-0
 0
 West Servants Quarters
 14
@@ -151,7 +138,6 @@ Bunk beds filled with skeletons are lined up against the north wall. Some skelet
 13
 15
 0
-0
 Storage Closet
 15
 Bins and boxes are stacked in an orderly fashion against the walls of this closet. Iron doors are located both eastbound and southbound.
@@ -162,7 +148,6 @@ Bins and boxes are stacked in an orderly fashion against the walls of this close
 14
 0
 16
-0
 Knife Room
 16
 This room is dedicated to hold all the knives in the castle. Do the chefs have to come all the way down here for cutlery? The thought puzzles you, so you try to distract yourself by searching for exits. There are two doors, one northbound and one eastbound. 
@@ -171,7 +156,6 @@ This room is dedicated to hold all the knives in the castle. Do the chefs have t
 0
 15
 11
-0
 0
 0
 Broom Closet
@@ -184,7 +168,6 @@ This dark and damp closet is cramped full of cleaning supplies. Brooms, mops, an
 0
 0
 13
-0
 Torture Chamber
 18
 Torture devices of all kinds are spread out throughout this damp and dark room. Some are kept in pristine condition as trophies, others currently in use. Avoiding eye contact with the poor souls strapped onto these devices, you find three doors: one northbound, one westbound, and one southbound.
@@ -195,7 +178,6 @@ Torture devices of all kinds are spread out throughout this damp and dark room. 
 0
 19
 20
-0
 Boiler Room
 19
 The soot painted stone walls of this room shine a warm red glow near the massive steel furnace that burns the darkest charcoal known in the nine circles of hell. The iron door you entered through is left open east of you.
@@ -204,7 +186,6 @@ The soot painted stone walls of this room shine a warm red glow near the massive
 0
 0
 18
-0
 0
 0
 Dungeon Fork
@@ -217,7 +198,6 @@ A simple room with stone walls. Some stones wet, others mossy. A torch on a wall
 22
 21
 0
-0
 Bathroom
 21
 Toilets and showers are reserved in their own stalls throughout this long room. Water trickles from leaky sink faucets nearby. The mirrors that accompany the sink are chipped and stained. Iron doors are located both eastbound and westbound. 
@@ -227,7 +207,6 @@ Toilets and showers are reserved in their own stalls throughout this long room. 
 0
 20
 23
-0
 0
 A Peculiar Prison Cell
 22
@@ -239,7 +218,6 @@ The captured princess once slept in this cell. Compared to all the other rooms i
 0
 20
 0
-0
 The Sewers
 23
 Sewage water rushes out of ancient rusty pipes into the dark abyss below. The stench reeks throughout the chambers of this hall. The east door you crossed through is your only exit out. 
@@ -248,7 +226,6 @@ Sewage water rushes out of ancient rusty pipes into the dark abyss below. The st
 0
 0
 21
-0
 0
 0
 West Half of Destroyed Ball Room
@@ -261,7 +238,6 @@ This once was part of a huge ballroom where parties were held. Tables and chairs
 0
 0
 8
-0
 East Half of Destroyed Ball Room
 25
 This once was part of a huge ballroom where parties were held. A shattered disco ball lays on the marble tile. The stage where the band plays has caved in with the damaged instruments on top. The structure of this room has been damaged to the point where you can see part of the adjacent rooms. You can see the west half of the Ball room, but you cannot traverse there, due to all the damage and the wide gap between the two halves. A broken door is located northbound. Stairs eastbound lead to the first floor of the castle.
@@ -270,7 +246,6 @@ This once was part of a huge ballroom where parties were held. A shattered disco
 0
 27
 9
-0
 0
 0
 Second Floor Bathroom
@@ -283,7 +258,6 @@ Gold plated faucets, mirror frames, toilet flushers, and stall door handles read
 28
 0
 24
-0
 The Lair of the Necromancer
 27
 This room was once the Necromancer’s lair but is now destroyed. Bits and pieces of the bed and the dresser can be found amongst the rubble. The crystal chandelier that once hung on the ceiling is now reduced to dust on the floor. Parts of the wall are missing, revealing the adjacent rooms.
@@ -294,7 +268,6 @@ This room was once the Necromancer’s lair but is now destroyed. Bits and piece
 0
 29
 25
-0
 West Half of the Destroyed Rec Room
 28
 This once was a recreational room that held games of all kinds. Unfortunately, the room has been destroyed, leaving bits and pieces of a well-constructed billiards table. The structure of the room has been so damaged that you can see adjacent rooms nearby. You can even see the east half of the recreational room, but you cannot traverse there from where you stand due to the large gap in between. Damaged wooden doors are located both northbound and westbound.
@@ -305,7 +278,6 @@ This once was a recreational room that held games of all kinds. Unfortunately, t
 0
 26
 0
-0
 East Half of the Destroyed Rec Room
 29
 This once was a recreational room that held games of all kinds. Unfortunately, the room has been destroyed, leaving bits and pieces of a well-constructed roulette table. The structure of the room has been so damaged that you can see adjacent rooms nearby. You can even see the west half of the recreational room, but you cannot traverse there from where you stand due to the large gap in between. Damaged wooden doors are located both northbound and eastbound.
@@ -314,7 +286,6 @@ This once was a recreational room that held games of all kinds. Unfortunately, t
 0
 31
 27
-0
 0
 0
 West half of a room?
@@ -327,7 +298,6 @@ It is difficult to piece together what this room could have been due to all the 
 0
 0
 28
-0
 East half of a room
 31
 It is impossible to figure out what this room could have been due to all the rubble and destruction. Parts of the structure that kept this room together are hanging from the ceiling. You can peer through parts of the wall to see the adjacent rooms. You can even see the west half of this room, but you cannot traverse there from where you stand due to the large gap in the middle. Thankfully the stairs northbound are still in one piece. They look like they lead to the top floor. A broken door is located southbound.
@@ -338,7 +308,6 @@ It is impossible to figure out what this room could have been due to all the rub
 0
 0
 29
-0
 West Library
 32
 Bookshelves stretch from end to end of each wall with additional bookshelves aisles in the middle. All the books are in near mint condition and seem to be all organized by the author. You manage to figure out that one of the bookshelves eastbound is a door. The stairs northbound lead downstairs onto the second floor.
@@ -347,7 +316,6 @@ Bookshelves stretch from end to end of each wall with additional bookshelves ais
 4
 30
 34
-0
 0
 0
 East Library
@@ -360,7 +328,6 @@ Books fill the shelves all along the walls and down the aisles in the middle. Th
 0
 34
 0
-0
 Central Library
 34
 Bookshelves surround a study area in the middle of the room. The desk is well kept, and the study chair is of the highest quality leather. Three doors can be found. One is located eastbound. One is located westbound. One is located southbound.
@@ -371,7 +338,6 @@ Bookshelves surround a study area in the middle of the room. The desk is well ke
 33
 32
 35
-0
 The void
 35
 This room is dark, with a single lantern hanging up high, barely providing any light. As you peer around the dark room, you notice each crystalized wall casts your reflection. Maybe this room is for pondering. You were lucky to find the outline of both doors located southbound and northbound. The difficult part is figuring out which is which.
@@ -381,16 +347,14 @@ This room is dark, with a single lantern hanging up high, barely providing any l
 34
 0
 0
-36
 -2
 The Final Balcony
-36
+-2
 The balcony is so high up you feel like you can almost touch the whirling clouds in the night sky. The princess is chained up against the carefully crafted metal railing, begging for your rescue. Thunder and lightning flash along the horizon, giving only a temporary amount of light to see your surroundings. Fire and smoke erupt from far below, giving a reddish hue to anything you can see.
 0
 8
 0
 35
-0
 0
 0
 0
