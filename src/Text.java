@@ -62,13 +62,13 @@ public class Text {
                 String toSouthString = scan.nextLine();
                 int toSouth = Integer.parseInt(toSouthString);
 
-                String doorLockedString = scan.nextLine();
-                int doorLocked = Integer.parseInt(doorLockedString);
+               // String doorLockedString = scan.nextLine();
+                //int doorLocked = Integer.parseInt(doorLockedString);
 
 
                 // Room object to store the variables read from the file
                 Rooms currentRoom = new Rooms(roomName, roomID, description, itemID, monsterID, puzzleID,
-                        toNorth, toEast, toWest, toSouth, doorLocked, false);
+                        toNorth, toEast, toWest, toSouth, /*doorLocked,*/ false);
                 roomList.add(currentRoom); // add the room object to the array list
             }
 
