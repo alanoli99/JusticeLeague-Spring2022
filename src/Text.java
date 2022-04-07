@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Text {
@@ -104,7 +105,7 @@ public class Text {
 
     public static ArrayList<Artifacts> artiList(ArrayList<Artifacts> ArtiArrayList) {
 
-        String fileName1 = "Artifacts";
+        String fileName1 = "Artifacts.txt";
         Scanner scan = null;
         File artifacts = null;
 
@@ -112,6 +113,7 @@ public class Text {
             artifacts = new File(fileName1);
             scan = new Scanner(artifacts);
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
             System.out.println("Can not read this file!");
             return ArtiArrayList;
         }
@@ -123,12 +125,12 @@ public class Text {
                 String aDescription = scan.nextLine();
                 String aType = scan.nextLine();
                 String aUsage = scan.nextLine();
-                String aStrength = scan.nextLine();
+                String consumeString = scan.nextLine();
+                int consumeHealth = Integer.parseInt(consumeString);
+                String equipString = scan.nextLine();
+                int equipHealth = Integer.parseInt(equipString);
 
-
-
-
-                Artifacts b = new Artifacts(aID,aName,aDescription,aType,aUsage,aStrength);
+                Artifacts b = new Artifacts(aID,aName,aDescription,aType,aUsage,consumeHealth,equipHealth);
                 ArtiArrayList.add(b);
             }
         }
@@ -142,6 +144,20 @@ public class Text {
 
     }
 
+    /**
+     * @author: Raven Gardner
+     * creates hashmap for everything in arifacts text file
+     */
+    public static HashMap<Artifacts, String> getHashMapForArti() {
+        ArrayList<Artifacts> itemsInFile = new ArrayList<>();
+        artiList(itemsInFile);
 
+        HashMap<Artifacts, String> mapContents = new HashMap<>();
+
+        for (Artifacts item : itemsInFile) {
+            mapContents.put(item, item.getArtiName());
+        }
+        return mapContents;
+    }
 
 }
