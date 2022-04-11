@@ -23,7 +23,7 @@ public class Game {
     private Player player;
 
     // Raven: used to parse command(s) from user
-    List<String> commands = new ArrayList<>(Arrays.asList("n","s","e","w", "north",
+    List<String> commands = new ArrayList<>(Arrays.asList("help","n","s","e","w", "north",
             "south", "east", "west", "explore", "consume" , "eat" , "info", "try")); // try is for the test case -- will be deleted before final deliverable - Raven
     List<String> objects = new ArrayList<>(Arrays.asList(
             "room","old bread", "blood jar", "dagger", "bone head", "kite shield",
@@ -91,7 +91,7 @@ public class Game {
             switch (verb) {
                 case "n", "north", "w", "west", "s", "south", "e", "east", "explroe" -> moveAround(verb);
                 case "info" -> info();
-                default -> msg = verb + " (not a valid command)";
+                default -> msg = verb + " (not implemented yet)";
             }
         } else {
             msg = verb + " is not a known verb! ";
@@ -203,6 +203,7 @@ public class Game {
                 "You are a knight who must save the princess from the final boss (the necromancer), and leave the castle from where you started!\n" +
                 "Throughout the game you will collect items that will help fight different level monsters and use some brain power\n" +
                 "to solve puzzles that are mapped out throughout the game... \n\n\n\n" +
+                "type 'help' to get control details\n\n\n\n" +
                 "You are starting off in Room " + rooms.getRoomID() + ". \n";
 
         System.out.println(s);
