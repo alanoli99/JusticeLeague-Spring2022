@@ -198,7 +198,11 @@ public class Game {
     // @author: Raven Gardner; created to show the intro after starting game
     public void showIntro(){
         String s;
-        s = "----------------------------------\n" + "Welcome to Necromancing Dreams!\n" + "----------------------------------\n\n\n\n" +
+        s = "----------------------------------\n" + "Welcome to Necromancing Dreams!\n" + "----------------------------------\n" +
+                "DIRECTIONS: \n\n" +
+                "You are a knight who must save the princess from the final boss (the necromancer), and leave the castle from where you started!\n" +
+                "Throughout the game you will collect items that will help fight different level monsters and use some brain power\n" +
+                "to solve puzzles that are mapped out throughout the game... \n\n\n\n" +
                 "You are starting off in Room " + rooms.getRoomID() + ". \n";
 
         System.out.println(s);
