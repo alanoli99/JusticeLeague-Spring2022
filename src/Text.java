@@ -84,18 +84,39 @@ public class Text {
 
     public static ArrayList<Puzzle> readPuzzleFile(ArrayList<Puzzle> puzzleList) throws FileNotFoundException {
 
-        File file = new File("src/items.txt");
+        File file = new File("Puzzle.txt");
         Scanner input = new Scanner(file);
         while (input.hasNextLine()) {
             String name = input.nextLine();
+            int puzzleID = Integer.parseInt(name);
             String type = input.nextLine();
             String description = input.nextLine();
             String solution = input.nextLine();
-            Puzzle p = new Puzzle(name, type, description, solution);
+            Puzzle p = new Puzzle(puzzleID, type, description, solution);
             puzzleList.add(p);
         }
         return puzzleList;
 
+    }
+
+    /**
+     * @author: Raven Gardner
+     * creates hashmap for everything in arifacts text file
+     */
+    public static HashMap<Puzzle, String> getPuzzleMap() {
+        ArrayList<Puzzle> puzzlesInFile = new ArrayList<>();
+        try {
+            readPuzzleFile(puzzlesInFile);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        HashMap<Puzzle, String> mapContents = new HashMap<>();
+
+        for (Puzzle puzzle : puzzlesInFile) {
+            mapContents.put(puzzle, puzzle.getPuzzleType());
+        }
+        return mapContents;
     }
 
     /**
