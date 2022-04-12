@@ -3,8 +3,9 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Author name: Raven Garder
- * Worked on: Explore room feature, process/parse commands
+ * Author name: Raven Gardner
+ * Worked on: Explore room feature, process/parse commands, consume/eat,
+ * observe puzzle, solve puzzle
  *
  * Author name:
  * Worked on:
@@ -18,17 +19,19 @@ import java.util.List;
  */
 
 public class Game {
-
     private static Rooms rooms;
     private Player player;
+    private Puzzle puzzle = new Puzzle();
+
 
     // Raven: used to parse command(s) from user
     List<String> commands = new ArrayList<>(Arrays.asList("help","n","s","e","w", "north",
-            "south", "east", "west", "explore", "consume" , "eat" , "info", "try")); // try is for the test case -- will be deleted before final deliverable - Raven
+            "south", "east", "west", "explore", "consume" , "eat" , "info", "try",
+            "observe", "solve")); // try is for the test case -- will be deleted before final deliverable - Raven
     List<String> objects = new ArrayList<>(Arrays.asList(
             "room","old bread", "blood jar", "dagger", "bone head", "kite shield",
             "crystal ring", "midnight sword", "stone hammer", "metal armor", "berries",
-            "diamond key", "test case for game", "test case" // testing multiple commands in one -- will be deleted - Raven
+            "diamond key", "puzzle", "test case for game", "test case" // testing multiple commands in one -- will be deleted - Raven
     ));
 
     // Raven: used to keep track of rooms for the item features
@@ -61,13 +64,23 @@ public class Game {
     }
 
     // Raven: used to retrieve room name and description
-    private String explore(String name) {
+    private String exploreRoom(String name) {
         return rooms.exploreRoom();
     }
 
     // Raven: used to consume item
     private String consumeItem(String name) {
         return Player.consume(name);
+    }
+
+    // Raven: used to observe puzzle
+    private String observePuzzle(String name) {
+        return puzzle.observePuzzle();
+    }
+
+    // Raven: used to solve puzzle
+    private String solvePuzzle(String name) {
+        return puzzle.solvePuzzle();
     }
 
     //Joe: created to navigate rooms
@@ -80,7 +93,7 @@ public class Game {
 
         return name + " will be implemented";
     }
-   
+
     // @author: Raven Gardner; created to process commands from user when it is one command
     public String processVerb(List<String> wordlist) {
         String verb;
@@ -89,7 +102,7 @@ public class Game {
         verb = wordlist.get(0);
         if (commands.contains(verb)) {
             switch (verb) {
-                case "n", "north", "w", "west", "s", "south", "e", "east", "explroe" -> moveAround(verb);
+                case "n", "north", "w", "west", "s", "south", "e", "east" -> moveAround(verb);
                 case "info" -> info();
                 default -> msg = verb + " (not implemented yet)";
             }
@@ -116,7 +129,12 @@ public class Game {
         }
         if (!error && noun.equalsIgnoreCase("room")) {
             switch (verb) {
-                case "explore" -> msg = explore(noun);
+                case "explore" -> msg = exploreRoom(noun);
+            }
+        } else if (!error && noun.equalsIgnoreCase("puzzle")){
+            switch (verb) {
+                case "observe" -> msg = observePuzzle(noun);
+                case "solve" -> msg = solvePuzzle(noun);
             }
         } else if (!error){
             switch (verb) {
@@ -241,7 +259,7 @@ public class Game {
         String lowstr = inputstr.trim().toLowerCase();
 
         if (lowstr.equals("")) {
-                s = "You must enter a command";
+            s = "You must enter a command";
         } else {
             wordlist = wordList(lowstr);
             s = parseCommand(wordlist);
