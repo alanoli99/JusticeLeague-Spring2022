@@ -1,0 +1,77 @@
+001
+Old Bread
+A loaf of wheat bread surrounded with greenish spots
+Food
+Damage health if consumed
+-5
+0
+002
+Blood Jar
+Red liquid inside a small mason jar
+Food/Weapon
+Brings health up if consumed or Can blind monster if thrown
+10
+5
+003
+Dagger
+A shiny silver knife with a sharp point and blood slightly on the handle
+Weapon
+Helps in battle against monsters
+0
+15
+004
+Bone Head
+An old, cracked skull with spider webs in the crack
+Weapon
+Helps in battle against monsters
+0
+10
+005
+Kite Shield
+A golden shield with brown rust on the side
+Equipment
+Protects against monster attacks
+0
+5
+006
+Crystal ring
+A shiny multicolor stone crystal ring
+Equipment
+Can give items to monsters so they will leave them alone
+0
+5
+007
+Midnight Sword
+A long sword made of dark stone stabbed into a stone
+Weapon
+Use to fight monsters
+0
+30
+008
+Stone Hammer
+A hammer made of a big stone and a thick wooden mahogany stick
+Weapon
+Use to fight against monsters
+0
+20
+009
+Metal Armor
+A rusty golden full arm armor
+Equipment
+Use to protect against monster attacks
+0
+10
+010
+Berries
+A mixture of fresh red and green berries in a brown wooden basket
+Food
+Use to bring health up
+15
+0
+011
+Diamond key
+A sparkly diamond encrusted key hugging around the hip of Hades
+Equipment
+Use to unlock a door
+0
+30

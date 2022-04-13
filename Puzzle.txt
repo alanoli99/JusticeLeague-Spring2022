@@ -1,28 +1,28 @@
-P_001
+1
 Riddle
 I don’t have eyes, but once I did see. I once had thoughts, now white and empty.
 Skull
-P_002
+2
 Word Scramble
 satlce
 Castle
-P_003
+3
 Riddle
 Towns without houses, forests without trees, mountains without boulders and waterless seas.
 Map
-P_004
+4
 Word Scramble
 gdnaer
 Danger
-P_005
+5
 Riddle
 It is something so magical, it comes to you every night. It takes you places without moving you. To see it, you need to close your eyes. What is it
 Dream
-P_006
+6
 Word Scramble
 naysfta
 Fantasy
-P_007
+7
 Riddle
 What is not alive but grows and does not breathe but needs air
 Fire

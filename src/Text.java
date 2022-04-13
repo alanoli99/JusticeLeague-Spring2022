@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Text {
@@ -8,6 +9,11 @@ public class Text {
      * @author: Raven Gardner
      * Created: April 3, 2022
      * Note: created the method to read room file
+     *
+     *  @author: Alan Oliver
+     *  Note: added the conversion from string to int
+     *  for the new lockedDoor variable
+     *
      */
     public static ArrayList<Rooms> readRoomFile(ArrayList<Rooms> roomList) {
         String fileName = "Rooms.txt"; // hard coding file name
@@ -29,6 +35,7 @@ public class Text {
              */
             while (scan.hasNextLine()) { // loop until the scanner reaches the end of the file
                 String roomName = scan.nextLine();
+
 
                 String roomIDString = scan.nextLine();
                 int roomID = Integer.parseInt(roomIDString);
@@ -56,10 +63,13 @@ public class Text {
                 String toSouthString = scan.nextLine();
                 int toSouth = Integer.parseInt(toSouthString);
 
+               // String doorLockedString = scan.nextLine();
+                //int doorLocked = Integer.parseInt(doorLockedString);
+
 
                 // Room object to store the variables read from the file
                 Rooms currentRoom = new Rooms(roomName, roomID, description, itemID, monsterID, puzzleID,
-                        toNorth, toEast, toWest, toSouth,false);
+                        toNorth, toEast, toWest, toSouth, /*doorLocked,*/ false);
                 roomList.add(currentRoom); // add the room object to the array list
             }
 
@@ -74,17 +84,101 @@ public class Text {
 
     public static ArrayList<Puzzle> readPuzzleFile(ArrayList<Puzzle> puzzleList) throws FileNotFoundException {
 
-        File file = new File("src/items.txt");
+        File file = new File("Puzzle.txt");
         Scanner input = new Scanner(file);
         while (input.hasNextLine()) {
             String name = input.nextLine();
+            int puzzleID = Integer.parseInt(name);
             String type = input.nextLine();
             String description = input.nextLine();
             String solution = input.nextLine();
-            Puzzle p = new Puzzle(name, type, description, solution);
+            Puzzle p = new Puzzle(puzzleID, type, description, solution);
             puzzleList.add(p);
         }
         return puzzleList;
 
     }
+
+    /**
+     * @author: Raven Gardner
+     * creates hashmap for everything in arifacts text file
+     */
+    public static HashMap<Puzzle, String> getPuzzleMap() {
+        ArrayList<Puzzle> puzzlesInFile = new ArrayList<>();
+        try {
+            readPuzzleFile(puzzlesInFile);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        HashMap<Puzzle, String> mapContents = new HashMap<>();
+
+        for (Puzzle puzzle : puzzlesInFile) {
+            mapContents.put(puzzle, puzzle.getPuzzleType());
+        }
+        return mapContents;
+    }
+
+    /**
+     * @author: Alan Oliver
+     * Note: created the method to read the artifacts file
+     */
+
+    public static ArrayList<Artifacts> artiList(ArrayList<Artifacts> ArtiArrayList) {
+
+        String fileName1 = "Artifacts.txt";
+        Scanner scan = null;
+        File artifacts = null;
+
+        try {
+            artifacts = new File(fileName1);
+            scan = new Scanner(artifacts);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("Can not read this file!");
+            return ArtiArrayList;
+        }
+
+        try {
+            while (scan.hasNextLine()) {
+                int aID = Integer.parseInt(scan.nextLine());
+                String aName = scan.nextLine();
+                String aDescription = scan.nextLine();
+                String aType = scan.nextLine();
+                String aUsage = scan.nextLine();
+                String consumeString = scan.nextLine();
+                int consumeHealth = Integer.parseInt(consumeString);
+                String equipString = scan.nextLine();
+                int equipHealth = Integer.parseInt(equipString);
+
+                Artifacts b = new Artifacts(aID,aName,aDescription,aType,aUsage,consumeHealth,equipHealth);
+                ArtiArrayList.add(b);
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("error while reading this file!");
+        } finally {
+            scan.close();
+        }
+        return ArtiArrayList;
+
+    }
+
+    /**
+     * @author: Raven Gardner
+     * creates hashmap for everything in arifacts text file
+     */
+    public static HashMap<Artifacts, String> getHashMapForArti() {
+        ArrayList<Artifacts> itemsInFile = new ArrayList<>();
+        artiList(itemsInFile);
+
+        HashMap<Artifacts, String> mapContents = new HashMap<>();
+
+        for (Artifacts item : itemsInFile) {
+            mapContents.put(item, item.getArtiName());
+        }
+        return mapContents;
+    }
+
 }
