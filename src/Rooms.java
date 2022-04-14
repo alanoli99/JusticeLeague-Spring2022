@@ -198,7 +198,10 @@ public class Rooms {
                 Game.setRooms(room); // added to keep track of rooms in Game class; for item features; Raven
                 Player.setLocation(room); // same ^^ also updates player info; Raven
 
-            } else if (room.getNorth() == -2) { // instead of locked door variable if navigation = -2; the door is locked; -2 also represents the locked door roomID.
+            }
+
+
+            else if (room.getNorth() == -2) { // instead of locked door variable if navigation = -2; the door is locked; -2 also represents the locked door roomID.
                 initialRoom = room.getRoomID();
                 room = getRoomObject(initialRoom, roomList);
                 System.out.println("You need a key!");
@@ -283,7 +286,7 @@ public class Rooms {
      * @author: Joe Nsengiyumva
      */
     private Rooms getRoomObject(int currentRoom, ArrayList<Rooms> roomList) {
-
+    //current room of the player
         for (Rooms a : roomList) {
             if (a.getRoomID() == currentRoom) {
                 return a;

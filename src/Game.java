@@ -23,6 +23,8 @@ public class Game {
     private Player player;
     private Puzzle puzzle = new Puzzle();
 
+    private Monsters monster = new Monsters();
+
 
     // Raven: used to parse command(s) from user
     List<String> commands = new ArrayList<>(Arrays.asList("help","n","s","e","w", "north",
@@ -66,6 +68,10 @@ public class Game {
     // Raven: used to retrieve room name and description
     private String exploreRoom(String name) {
         return rooms.exploreRoom();
+    }
+
+    private String exploreMons(String name) {
+        return monster.exploreMons();
     }
 
     // Raven: used to consume item
@@ -127,16 +133,24 @@ public class Game {
         if (!objects.contains(noun)) {
             msg += (noun + " is not a known noun!");
         }
-        if (!error && noun.equalsIgnoreCase("room")) {
+        if (noun.equalsIgnoreCase("room")) {
             switch (verb) {
                 case "explore" -> msg = exploreRoom(noun);
             }
-        } else if (!error && noun.equalsIgnoreCase("puzzle")){
+        }
+        else if (!error && noun.equalsIgnoreCase("puzzle")){
             switch (verb) {
                 case "observe" -> msg = observePuzzle(noun);
                 case "solve" -> msg = solvePuzzle(noun);
             }
-        } else if (!error){
+        }
+        else if (!error && noun.equalsIgnoreCase("monster")){
+            switch (verb) {
+                case "observe" -> msg = exploreMons(noun);
+
+            }
+        }
+        else if (!error){
             switch (verb) {
                 case "consume", "eat" -> msg = consumeItem(noun);
                 default -> msg += " (not yet implemented)";

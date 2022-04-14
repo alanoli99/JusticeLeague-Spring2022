@@ -181,4 +181,48 @@ public class Text {
         return mapContents;
     }
 
+//@Alan Oliver - creating method to read monster list
+public static ArrayList<Monsters> monsReader(ArrayList<Monsters> monsArrayList) {
+
+    String fileName1 = "Monsters.txt";
+    Scanner scan = null;
+    File monster = null;
+
+    try {
+        monster = new File(fileName1);
+        scan = new Scanner(monster);
+    } catch (FileNotFoundException e) {
+        System.out.println("Can not read this file!");
+        return monsArrayList;
+    }
+
+    try {
+        while (scan.hasNextLine()) {
+            int aID = Integer.parseInt(scan.nextLine());
+            String aDescription = scan.nextLine();
+            String itemsHeld = scan.nextLine();
+            String aDifficulty = scan.nextLine();
+            String aRiddle = scan.nextLine();
+            String aHint = scan.nextLine();
+            String aAnswer = scan.nextLine();
+            String choices = scan.nextLine();
+            int monsHealth = Integer.parseInt(scan.nextLine());
+            int monsAttack = Integer.parseInt(scan.nextLine());
+
+            Monsters m = new Monsters(aID, aDescription,itemsHeld, aDifficulty,aRiddle,aHint,
+                    aAnswer,choices, monsHealth,monsAttack);
+            monsArrayList.add(m);
+        }
+    }
+    catch (Exception e) {
+        e.printStackTrace();
+        System.out.println("error while reading this file!");
+    } finally {
+        scan.close();
+    }
+    return monsArrayList;
+
+}
+
+
 }
