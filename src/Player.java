@@ -15,7 +15,7 @@ public class Player extends Rooms {
     protected static Rooms location;
     protected static int playerHealth;
     private static HashMap<Artifacts, String> equippedItems = Text.getHashMapForArti(); // will change later to new HashMap<>() -- Raven
-    private static HashMap<Artifacts, String> inventory = Text.getHashMapForArti(); // will change later to new HashMap<>() -- Raven
+    private static HashMap<Artifacts, String> inventoryMap = Text.getHashMapForArti(); // will change later to new HashMap<>() -- Raven
     private static HashMap<Artifacts, Integer> playerInfo = new HashMap<>(); // key = Artifacts info, value = health -- Raven
 
     public Player(String roomName, int roomID, String description, int itemID,
@@ -40,8 +40,8 @@ public class Player extends Rooms {
         Player.playerHealth += health;
     }
 
-    public static HashMap<Artifacts, String> getPlayerInventory() {
-        return inventory;
+    public static HashMap<Artifacts, String> getPlayerInventoryMap() {
+        return inventoryMap;
     }
 
     public static HashMap<Artifacts, String> getEquippedItems() {
@@ -73,7 +73,7 @@ public class Player extends Rooms {
 
         obname = obname.trim().replaceAll("\\s{2,}", " "); // gets rid of the space in the beginning of the item name -- Raven
 
-        for (Map.Entry<Artifacts, String> collected : getPlayerInventory().entrySet()) {
+        for (Map.Entry<Artifacts, String> collected : getPlayerInventoryMap().entrySet()) {
 
             inInventory = collected.getKey();
 
@@ -83,6 +83,8 @@ public class Player extends Rooms {
             if (inInventory.getArtiName().equalsIgnoreCase(obname)) {
                 if (inInventory.getConsumeHealth() == 0) {
                     beenEquipped = "\n" + obname + " cannot be consumed!";
+                } else if(getPlayerHealth() >= 10 && inInventory.getConsumeHealth() >= 0){
+                    beenEquipped = "\n" + "Your health is full this cannot be consumed";
                 } else {
                     // right here get the attack damage from the item hashmap after I fix the item file, item class, and room class with hashmap
                     healthPoints = inInventory.getConsumeHealth();
