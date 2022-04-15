@@ -5,8 +5,9 @@ import java.util.Map;
 public class Rooms {
     /**
      * @author: Raven Gardner
-     * Created: April 3, 2022
-     * Note: I created the attributes, constructor, and basic getter/setter methods
+     * Note: I created the attributes, constructor, basic getter/setter methods,
+     * fixed bug for locked door feature, and implemented explore room feature
+     *
      * @author: Alan Oliver
      * Note: I modified the original room file and created
      * the variable "lockedDoor" to implement if a door
@@ -145,7 +146,7 @@ public class Rooms {
     /**
      * @author: Raven Gardner
      * Method Name: exploreRoom
-     * purpose: to receive the rooom name and room description
+     * purpose: to receive the room name and room description and output both to the player
      */
     public String exploreRoom() {
         ArrayList<Rooms> roomInfo = new ArrayList<>();
@@ -200,7 +201,7 @@ public class Rooms {
 
             }
 
-            else if (room.getNorth() == -2) { // instead of locked door variable if navigation = -2; the door is locked; -2 also represents the locked door roomID.
+            else if (room.getNorth() == -2) { // instead of locked door variable if navigation = -2; the door is locked; -2 also represents the locked door roomID. -- Raven
                 initialRoom = room.getRoomID();
                 room = getRoomObject(initialRoom, roomList);
                 System.out.println("You need a key!");
@@ -221,7 +222,7 @@ public class Rooms {
                 setRoomID(room.getRoomID());
 
                 Game.setRooms(room);
-                Player.setLocation(room); // same ^^ also updates player info; Raven
+                Player.setLocation(room);
 
             } else if (room.getSouth() == -2) {
                 initialRoom = room.getRoomID();
@@ -243,7 +244,7 @@ public class Rooms {
                 setRoomID(room.getRoomID());
 
                 Game.setRooms(room);
-                Player.setLocation(room); // same ^^ also updates player info; Raven
+                Player.setLocation(room);
 
             } else if (room.getEast() == -2) {
                 initialRoom = room.getRoomID();
@@ -266,7 +267,7 @@ public class Rooms {
                 setRoomID(room.getRoomID());
 
                 Game.setRooms(room);
-                Player.setLocation(room); // same ^^ also updates player info; Raven
+                Player.setLocation(room);
 
             } else if (room.getWest() == -2) {
                 initialRoom = room.getRoomID();
