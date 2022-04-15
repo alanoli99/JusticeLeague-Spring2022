@@ -29,7 +29,7 @@ public class Game {
     // Raven: used to parse command(s) from user
     List<String> commands = new ArrayList<>(Arrays.asList("help","n","s","e","w", "north",
             "south", "east", "west", "explore", "consume" , "eat" , "info", "try",
-            "observe", "solve")); // try is for the test case -- will be deleted before final deliverable - Raven
+            "observe", "solve","help")); // try is for the test case -- will be deleted before final deliverable - Raven
     List<String> objects = new ArrayList<>(Arrays.asList(
             "room","old bread", "blood jar", "dagger", "bone head", "kite shield",
             "crystal ring", "midnight sword", "stone hammer", "metal armor", "berries",
@@ -93,6 +93,12 @@ public class Game {
     private void moveAround(String verb) {
         rooms.moveAround(verb);
     }
+    //Joe: used to get controls of the game
+    private void controls() {
+        String c = "";
+        Text.showControls(c);
+        System.out.println(c);
+    }
 
     // Raven: EXAMPLE FOR MULTIPlE OBJECTS IN ONE COMMAND; similar structure can be used for item features
     private String test(String name) {
@@ -109,6 +115,7 @@ public class Game {
         if (commands.contains(verb)) {
             switch (verb) {
                 case "n", "north", "w", "west", "s", "south", "e", "east" -> moveAround(verb);
+                case "help" -> controls();
                 case "info" -> info();
                 default -> msg = verb + " (not implemented yet)";
             }
@@ -117,6 +124,8 @@ public class Game {
         }
         return msg;
     }
+
+
 
     // @author: Raven Gardner; same as processVerb; created because a few commands from SRS repeat
     public String processTwoWords(List<String> wordlist) {
@@ -175,7 +184,6 @@ public class Game {
         if (!commands.contains(verb)) {
             msg = verb + " is not a known verb! ";
         }
-
         // iterates between input from user until full command is done
         // ex. 'room feature'; returns 'room' first then it returns 'room feature' - Raven
         for (int i = 1; i < wordlist.size(); i++) {

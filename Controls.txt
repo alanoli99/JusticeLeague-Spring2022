@@ -1,0 +1,27 @@
+Necromancing Dream Controls:
+
+To start a game type "Start" or "start"
+To End the game type "Quit or "q"
+_____________________Navigation Controls________________________
+Type “East” or “e” to move player to a room east of current Room
+Type “West” or “w” to move player to a room west of current Room
+Type “North” or “n” to move player to a room North of current Room
+Type "south" or "s" to move player to a room south of current Room
+_____________________Room Controls______________________________
+To get more info of a room type "explore room"
+To get more info on a monster or to check if there's a puzzle in the a room type "observe" followed by the name of what you want to get more info on
+_____________________Items Controls_____________________________
+To pick up items in a room type “pickup”, “Pickup”, “take” followed by what item you want to pickup
+To drop items in a room type “Drop”, “drop” followed by what item you want to drop
+To equip items in a room type “Equip”, “equip”, “wear” followed by what item you want to equip
+To unequip items in a room type “Unequip”, “unequip” followed by what item you want to unequip
+To consume items in a room type "Consume" or "consume" followed by what item you want to consume
+To check items in a Player's inventory type "Inventory" or "inventory"
+_____________________Monsters Controls______________________________
+To attack a monster type "attack"
+To stop attacking or interacting with a monster type "Run" or "run"
+To check a player or monster's health type "Health" or "health"
+To check if a Monster has info on future encounters in the game type "Riddle" or "riddle" to receive a puzzle to answer and receive info
+To get a hint on a puzzle or riddle type "Hint" or "hint"
+
+

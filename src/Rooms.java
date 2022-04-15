@@ -200,7 +200,6 @@ public class Rooms {
 
             }
 
-
             else if (room.getNorth() == -2) { // instead of locked door variable if navigation = -2; the door is locked; -2 also represents the locked door roomID.
                 initialRoom = room.getRoomID();
                 room = getRoomObject(initialRoom, roomList);

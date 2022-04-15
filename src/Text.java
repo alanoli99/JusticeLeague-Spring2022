@@ -86,6 +86,7 @@ public class Text {
 
         File file = new File("Puzzle.txt");
         Scanner input = new Scanner(file);
+
         while (input.hasNextLine()) {
             String name = input.nextLine();
             int puzzleID = Integer.parseInt(name);
@@ -138,7 +139,6 @@ public class Text {
             System.out.println("Can not read this file!");
             return ArtiArrayList;
         }
-
         try {
             while (scan.hasNextLine()) {
                 int aID = Integer.parseInt(scan.nextLine());
@@ -223,6 +223,24 @@ public static ArrayList<Monsters> monsReader(ArrayList<Monsters> monsArrayList) 
     return monsArrayList;
 
 }
+
+//@Joe F Nsengiyumva - Method that reads controls for the game
+    public static String showControls(String help)  {
+        File file =  new File("Controls.txt");
+        Scanner input;
+        try {
+            input = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to read file");
+            return help;
+        }
+
+        while (input.hasNext()){
+            help = input.nextLine();
+            System.out.println(help);
+        }
+        return help;
+    }
 
 
 }
