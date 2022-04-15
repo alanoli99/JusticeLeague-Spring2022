@@ -67,6 +67,9 @@ public class Puzzle {
      */
     public String observePuzzle(){
         String s = "";
+        String response = "";
+        Scanner input = new Scanner(System.in);
+
         for(Map.Entry<Puzzle, String> allPuzzles : getPuzzleInfo().entrySet()) {
             if (Player.getLocation().getPuzzleID() == allPuzzles.getKey().getPuzzleID()) {
                 if(allPuzzles.getKey().getPuzzleType().equalsIgnoreCase("Word Scramble")){
@@ -75,7 +78,18 @@ public class Puzzle {
                     s = "Type 'solve puzzle' to answer the riddle: \n\n";
                 }
                 s = s + allPuzzles.getKey().getPuzzleDescription() + "\n\n";
-                //allPuzzles.getKey().solvePuzzle();
+                System.out.println(s);
+                response = input.nextLine();
+                while(!response.isEmpty()){
+                    if(response.equalsIgnoreCase("solve puzzle")){
+                        solvePuzzle();
+                        break;
+                    } else {
+                        System.out.println("Invalid command. Try again");
+                        response = input.nextLine();
+                    }
+                }
+                s = "";
                 break;
             }
             if(s.isEmpty()){
