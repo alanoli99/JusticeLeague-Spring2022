@@ -174,9 +174,8 @@ public class Text {
         artiList(itemsInFile);
 
         HashMap<Artifacts, String> mapContents = new HashMap<>();
-
         for (Artifacts item : itemsInFile) {
-            mapContents.put(item, item.getArtiName());
+            mapContents.put(item , item.getArtiName());
         }
         return mapContents;
     }

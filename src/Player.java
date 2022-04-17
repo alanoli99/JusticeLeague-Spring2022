@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,8 +16,17 @@ public class Player extends Rooms {
     protected static Rooms location;
     protected static int playerHealth;
     private static HashMap<Artifacts, String> equippedItems = Text.getHashMapForArti(); // will change later to new HashMap<>() -- Raven
-    private static HashMap<Artifacts, String> inventory = Text.getHashMapForArti(); // will change later to new HashMap<>() -- Raven
+    private static HashMap<Artifacts, String> inventoryMap = Text.getHashMapForArti(); // will change later to new HashMap<>() -- Raven
     private static HashMap<Artifacts, Integer> playerInfo = new HashMap<>(); // key = Artifacts info, value = health -- Raven
+    public static ArrayList<Artifacts> inventory = new ArrayList<>();
+
+    public static ArrayList<Artifacts> getInventory() {
+        return inventory;
+    }
+
+    public static void setInventory(ArrayList<Artifacts> inventory) {
+        Player.inventory = inventory;
+    }
 
     public Player(String roomName, int roomID, String description, int itemID,
                   int monsterID, int puzzleID, int north, int east, int west, int south, boolean visit, Rooms location) {
@@ -40,8 +50,8 @@ public class Player extends Rooms {
         Player.playerHealth += health;
     }
 
-    public static HashMap<Artifacts, String> getPlayerInventory() {
-        return inventory;
+    public static HashMap<Artifacts, String> getPlayerInventoryMap() {
+        return inventoryMap;
     }
 
     public static HashMap<Artifacts, String> getEquippedItems() {
@@ -73,7 +83,7 @@ public class Player extends Rooms {
 
         obname = obname.trim().replaceAll("\\s{2,}", " "); // gets rid of the space in the beginning of the item name -- Raven
 
-        for (Map.Entry<Artifacts, String> collected : getPlayerInventory().entrySet()) {
+        for (Map.Entry<Artifacts, String> collected : getPlayerInventoryMap().entrySet()) {
 
             inInventory = collected.getKey();
 
@@ -102,11 +112,23 @@ public class Player extends Rooms {
         return beenEquipped;
     }
 
-
+//    public static void addToInventory() {
+//        ArrayList<Artifacts> artifactsList = new ArrayList<>();
+//        Text.artiList(artifactsList);
+//        Artifacts artifacts;
+//        artifacts = Artifacts.getItemObject(Game.getRooms().getItemID(), artifactsList,"jerry");
+//        if (artifacts != null){
+//            inventory.add(artifacts);
+//        }
+//        else{
+//            System.out.println("There's no item to add");
+//        }
+//
+//    }// used to test check inventory -Joe N
     @Override
     public String toString() {
         return "\nPlayer info\n\n" +
                 "Current Room: " + location.getRoomName() +
-                "\nYour Health: " + playerHealth ;
+                "\nYour Health: " + playerHealth + "\n Inventory: " + inventory;
     }
 }

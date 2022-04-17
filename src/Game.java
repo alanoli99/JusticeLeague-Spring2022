@@ -22,14 +22,13 @@ public class Game {
     private static Rooms rooms;
     private Player player;
     private Puzzle puzzle = new Puzzle();
-
     private Monsters monster = new Monsters();
 
 
     // Raven: used to parse command(s) from user
     List<String> commands = new ArrayList<>(Arrays.asList("help","n","s","e","w", "north",
             "south", "east", "west", "explore", "consume" , "eat" , "info", "try",
-            "observe", "solve","help")); // try is for the test case -- will be deleted before final deliverable - Raven
+            "observe", "solve","help","inventory")); // try is for the test case -- will be deleted before final deliverable - Raven
     List<String> objects = new ArrayList<>(Arrays.asList(
             "room","old bread", "blood jar", "dagger", "bone head", "kite shield",
             "crystal ring", "midnight sword", "stone hammer", "metal armor", "berries",
@@ -97,7 +96,16 @@ public class Game {
     private void controls() {
         String c = "";
         Text.showControls(c);
-        System.out.println(c);
+    }
+    private void checkInventory() {
+//        Player.addToInventory(); //- used to test items inside inventory
+        System.out.println(Player.getInventory());
+    }
+    //Joe N: Method to explore items in the room
+    private String exploreItem(String noun) {
+        Artifacts.exploreArtifacts(noun);
+        //System.out.println("I'm in the method");
+        return noun;
     }
 
     // Raven: EXAMPLE FOR MULTIPlE OBJECTS IN ONE COMMAND; similar structure can be used for item features
@@ -117,6 +125,7 @@ public class Game {
                 case "n", "north", "w", "west", "s", "south", "e", "east" -> moveAround(verb);
                 case "help" -> controls();
                 case "info" -> info();
+                case "inventory" -> checkInventory();
                 default -> msg = verb + " (not implemented yet)";
             }
         } else {
@@ -124,8 +133,6 @@ public class Game {
         }
         return msg;
     }
-
-
 
     // @author: Raven Gardner; same as processVerb; created because a few commands from SRS repeat
     public String processTwoWords(List<String> wordlist) {
@@ -162,11 +169,13 @@ public class Game {
         else if (!error){
             switch (verb) {
                 case "consume", "eat" -> msg = consumeItem(noun);
+                case "explore" -> exploreItem(noun);
                 default -> msg += " (not yet implemented)";
             }
         }
         return msg;
     }
+
 
     // @author: Raven; created because on SRS we have to use more than two commands sometimes
     // example: picking up item 'Moldy Bread': can use the verb 'pickup' followed by 'moldy bread'
@@ -180,7 +189,6 @@ public class Game {
         boolean error = true;
         boolean notNouns = false;
         verb = wordlist.get(0); // just gets one word for commands - Raven
-
         if (!commands.contains(verb)) {
             msg = verb + " is not a known verb! ";
         }
@@ -189,15 +197,15 @@ public class Game {
         for (int i = 1; i < wordlist.size(); i++) {
             nounCommand = wordlist.get(i);
             msg = msg + " " + nounCommand;
-            //System.out.println("msg:" + msg + ":"); // uncomment to see example
+//            System.out.println("msg:" + msg + ":"); // uncomment to see example
         }
 
         // iterates over object list declared at the top of the class
         for (int k = 0; k < objects.size(); k++){
             inObjects = objects.get(k);
             objMsg = " " + inObjects;
-            //System.out.println("msg:" + msg + ":");
-            //System.out.println("objMsg:" + objMsg + ":");
+//            System.out.println("msg:" + msg + ":");
+//            System.out.println("objMsg:" + objMsg + ":");
 
             if ((msg.equalsIgnoreCase(objMsg))) { // add verb cases here - Raven
                 //System.out.println("entered if");
@@ -211,7 +219,11 @@ public class Game {
                         msg = consumeItem(msg);
                         break;
                     }
-                    //default -> msg = "";
+                    case "Explore" -> {
+                        msg = exploreItem(msg);
+                        break;
+                    }
+//                    default -> msg = "not implemented yet!";
                 }
                 error = false;
             }
@@ -272,22 +284,6 @@ public class Game {
             strlist.add(word);
         }
         return strlist;
-    }
-
-    // This method is used to run the input the user entered - Joe N
-    public String playGame(String inputstr) {
-        List<String> wordlist;
-        String s = "";
-        String lowstr = inputstr.trim().toLowerCase();
-
-        if (lowstr.equals("")) {
-            s = "You must enter a command";
-        } else {
-            wordlist = wordList(lowstr);
-            s = parseCommand(wordlist);
-        }
-
-        return s;
     }
 
     //@author: Alan Oliver; Allows the user to quit playing

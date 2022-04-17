@@ -148,6 +148,7 @@ public class Rooms {
      * purpose: to receive the rooom name and room description
      */
     public String exploreRoom() {
+
         ArrayList<Rooms> roomInfo = new ArrayList<>();
         Text.readRoomFile(roomInfo);
         String s = "";
