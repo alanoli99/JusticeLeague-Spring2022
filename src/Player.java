@@ -83,7 +83,7 @@ public class Player extends Rooms {
             if (inInventory.getArtiName().equalsIgnoreCase(obname)) {
                 if (inInventory.getConsumeHealth() == 0) {
                     beenEquipped = "\n" + obname + " cannot be consumed!";
-                } else if(getPlayerHealth() >= 10 && inInventory.getConsumeHealth() >= 0){
+                } else if(getPlayerHealth() >= 50 && inInventory.getConsumeHealth() >= 0){
                     beenEquipped = "\n" + "Your health is full this cannot be consumed";
                 } else {
                     // right here get the attack damage from the item hashmap after I fix the item file, item class, and room class with hashmap
