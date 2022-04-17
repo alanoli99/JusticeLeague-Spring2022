@@ -132,17 +132,16 @@ public class Monsters {
         String m = "";
 
         //System.out.println("current room id: " + getRoomID());
-        for (Rooms rooms : roomInfo) {
+
             // will change to compare room id in file to current room of the player
-            if (rooms.getRoomID() == rooms.getRoomID()) {
+
                 for(Monsters mons : monsInfo){
-                    if(mons.getId() == rooms.getMonsterID()){
-                        m = "\n" + mons.getDescription() + " is in the room! "+ " HP:" + mons.getMonsHealth() +
-                                " | Attack Damage: -" + mons.getMonsAttack() + ".";
-                    }
+                    if(mons.getId() == Player.getLocation().getMonsterID()){
+                        m = "\n" + mons.getDescription() + " is in the room! " +
+                                " Attack Damage: -" + mons.getMonsAttack() + ".";
                 }
                // s = "\n" + rooms.getRoomName() + "\n" + rooms.getDescription() + "\n\n";
-            }
+
         }
         if (m.isEmpty()) {
             m = "No monsters in here";
