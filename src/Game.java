@@ -128,6 +128,7 @@ public class Game {
 
 
     // @author: Raven Gardner; same as processVerb; created because a few commands from SRS repeat
+    // one verb, one noun
     public String processTwoWords(List<String> wordlist) {
         String verb;
         String noun;
@@ -170,6 +171,7 @@ public class Game {
 
     // @author: Raven; created because on SRS we have to use more than two commands sometimes
     // example: picking up item 'Moldy Bread': can use the verb 'pickup' followed by 'moldy bread'
+    // one verb, two or more nouns
     public String processMulipleNouns(List<String> wordlist) {
         String verb;
         String extra;
