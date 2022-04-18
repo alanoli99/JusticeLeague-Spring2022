@@ -104,6 +104,7 @@ public class Artifacts {
         ArrayList<Artifacts> artifactsList = new ArrayList<>();
         Text.artiList(artifactsList);
         Artifacts artifacts;
+        noun = noun.trim().replaceAll("\\s{2,}", " ");
         artifacts = getItemObject(Game.getRooms().getItemID(), artifactsList,noun);
 
         if (artifacts.getArtiName().equalsIgnoreCase(noun)){
@@ -112,6 +113,7 @@ public class Artifacts {
         else{
             System.out.println("There's no such item in this room");
         }
+        //return noun;
     }
 
 }

@@ -102,10 +102,10 @@ public class Game {
         System.out.println(Player.getInventory());
     }
     //Joe N: Method to explore items in the room
-    private String exploreItem(String noun) {
+    private void exploreItem(String noun) {
         Artifacts.exploreArtifacts(noun);
         //System.out.println("I'm in the method");
-        return noun;
+//        return noun;
     }
 
     // Raven: EXAMPLE FOR MULTIPlE OBJECTS IN ONE COMMAND; similar structure can be used for item features
@@ -221,8 +221,9 @@ public class Game {
                         msg = consumeItem(msg);
                         break;
                     }
-                    case "Explore" -> {
-                        msg = exploreItem(msg);
+                    case "explore" -> {
+                        exploreItem(msg);
+                        msg = "";
                         break;
                     }
 //                    default -> msg = "not implemented yet!";
