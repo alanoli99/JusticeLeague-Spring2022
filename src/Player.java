@@ -122,19 +122,33 @@ public class Player extends Rooms {
         return beenEquipped;
     }
 
-    //    public static void addToInventory() {
-//        ArrayList<Artifacts> artifactsList = new ArrayList<>();
-//        Text.artiList(artifactsList);
-//        Artifacts artifacts;
-//        artifacts = Artifacts.getItemObject(Game.getRooms().getItemID(), artifactsList,"jerry");
-//        if (artifacts != null){
-//            inventory.add(artifacts);
-//        }
-//        else{
-//            System.out.println("There's no item to add");
-//        }
-//
-//    }// used to test check inventory -Joe N
+        public static void addToInventory(String noun) {
+        ArrayList<Artifacts> artifactsList = new ArrayList<>();
+        Text.artiList(artifactsList);
+        Artifacts artifacts;
+        noun = noun.trim().replaceAll("\\s{2,}", " ");
+        artifacts = Artifacts.getItemObject(Game.getRooms().getItemID(), artifactsList);
+        if (artifacts != null && artifacts.getArtiName().equalsIgnoreCase(noun)){
+            if (inventory.size() >= 5){
+                System.out.println("Inventory is full! drop item.");
+                return;
+            }
+            inventory.add(artifacts);
+            System.out.println(noun + " has been added to inventory");
+            System.out.println(inventory.size());
+        }
+        else if(artifacts != null && !artifacts.getArtiName().equalsIgnoreCase(noun) ){
+            if (inventory.size() > 5){
+                System.out.println("Inventory is full! drop item.");
+                return;
+            }
+            System.out.println(noun + " is not in this room");
+        }
+        else{
+            System.out.println("There's no item in this room");
+        }
+
+    }// used to test check inventory -Joe N
     @Override
     public String toString() {
         return "\nPlayer info\n\n" +

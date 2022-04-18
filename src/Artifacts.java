@@ -90,7 +90,7 @@ public class Artifacts {
         return getArtiName();
     }
 
-    public static Artifacts getItemObject(int artifactId, ArrayList<Artifacts> list, String noun) {
+    public static Artifacts getItemObject(int artifactId, ArrayList<Artifacts> list) {
 
         for (Artifacts item : list) {
             if (item.getArtiID() == artifactId) {
@@ -105,7 +105,7 @@ public class Artifacts {
         Text.artiList(artifactsList);
         Artifacts artifacts;
         noun = noun.trim().replaceAll("\\s{2,}", " ");
-        artifacts = getItemObject(Game.getRooms().getItemID(), artifactsList,noun);
+        artifacts = getItemObject(Game.getRooms().getItemID(), artifactsList);
 
         if (artifacts.getArtiName().equalsIgnoreCase(noun)){
             System.out.println(artifacts.getArtiDescription());

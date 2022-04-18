@@ -28,7 +28,7 @@ public class Game {
     // Raven: used to parse command(s) from user
     List<String> commands = new ArrayList<>(Arrays.asList("help","n","s","e","w", "north",
             "south", "east", "west", "explore", "consume" , "eat" , "info", "try",
-            "observe", "solve","help","check")); // try is for the test case -- will be deleted before final deliverable - Raven
+            "observe", "solve","help","check", "pickup")); // try is for the test case -- will be deleted before final deliverable - Raven
     List<String> objects = new ArrayList<>(Arrays.asList(
             "room","old bread", "blood jar", "dagger", "bone head", "kite shield",
             "crystal ring", "midnight sword", "stone hammer", "metal armor", "berries",
@@ -97,15 +97,17 @@ public class Game {
         String c = "";
         Text.showControls(c);
     }
+    // Joe N: Method is used to check user inventory
     private void checkInventory() {
-//        Player.addToInventory(); //- used to test items inside inventory
         System.out.println(Player.getInventory());
     }
     //Joe N: Method to explore items in the room
     private void exploreItem(String noun) {
         Artifacts.exploreArtifacts(noun);
-        //System.out.println("I'm in the method");
-//        return noun;
+    }
+    //Joe N: Method to pickup items
+    private void pickupItem(String noun) {
+        Player.addToInventory(noun);
     }
 
     // Raven: EXAMPLE FOR MULTIPlE OBJECTS IN ONE COMMAND; similar structure can be used for item features
@@ -171,13 +173,12 @@ public class Game {
                 case "consume", "eat" -> msg = consumeItem(noun);
                 case "explore" -> exploreItem(noun);
                 case "check" -> checkInventory();
+                case "pickup" -> pickupItem(noun);
                 default -> msg += " (not yet implemented)";
             }
         }
         return msg;
     }
-
-
     // @author: Raven; created because on SRS we have to use more than two commands sometimes
     // example: picking up item 'Moldy Bread': can use the verb 'pickup' followed by 'moldy bread'
     // one verb, two or more nouns
@@ -224,6 +225,11 @@ public class Game {
                     }
                     case "explore" -> {
                         exploreItem(msg);
+                        msg = "";
+                        break;
+                    }
+                    case "pickup" -> {
+                        pickupItem(msg);
                         msg = "";
                         break;
                     }
