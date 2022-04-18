@@ -149,6 +149,7 @@ public class Rooms {
      * purpose: to receive the room name and room description and output both to the player
      */
     public String exploreRoom() {
+
         ArrayList<Rooms> roomInfo = new ArrayList<>();
         Text.readRoomFile(roomInfo);
         String s = "";
