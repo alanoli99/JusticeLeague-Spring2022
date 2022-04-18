@@ -16,7 +16,7 @@ public class Player extends Rooms {
     protected static Rooms location;
     protected static int playerHealth = 50;
     private static HashMap<Artifacts, String> equippedItems = Text.getHashMapForArti(); // will change later to new HashMap<>() -- Raven
-    private static HashMap<Artifacts, String> inventoryMap = Text.getHashMapForArti(); // will change later to new HashMap<>() -- Raven
+    private static HashMap<Artifacts, String> inventoryMap = new HashMap<>();
     private static HashMap<Artifacts, Integer> playerInfo = new HashMap<>(); // key = Artifacts info, value = health -- Raven
     public static ArrayList<Artifacts> inventory = new ArrayList<>();
 
@@ -74,18 +74,22 @@ public class Player extends Rooms {
     /**
      * @author: Raven Gardner
      * ID: IF7; players can consume certain items
-     * note to team: will update once the rest of the item features are done
      */
     public static String consume(String obname) {
         String beenEquipped = "";
         Artifacts inInventory;
         int healthPoints;
 
+        for(Artifacts artifacts : getInventory()){
+            getPlayerInventoryMap().put(artifacts, artifacts.getArtiName());
+        }
+
         obname = obname.trim().replaceAll("\\s{2,}", " "); // gets rid of the space in the beginning of the item name -- Raven
 
         for (Map.Entry<Artifacts, String> collected : getPlayerInventoryMap().entrySet()) {
 
             inInventory = collected.getKey();
+            //System.out.println("in inventory: " + inInventory);
 
             //System.out.println("entered for loop");
             //System.out.println("in inventory:" + inInventory.getArtiName());
@@ -103,18 +107,22 @@ public class Player extends Rooms {
                     beenEquipped = "\n" + obname + " has been consumed! " + obname + " has changed your health by " + healthPoints + " points!\n" +
                             "You now have " + getPlayerHealth() + " health points.";
                     //will drop item out of inventory into room
+                    //System.out.println("inventory before: " + getInventory());
+                    getInventory().remove(collected.getKey());
+                    getPlayerInventoryMap().remove(inInventory);
+                    //System.out.println("inventory after: " + getInventory());
                 }
                 playerInfo.put(inInventory, getPlayerHealth());
                 break;
             }
         }
         if (beenEquipped.isEmpty()) {
-            beenEquipped = "\nThere is no " + obname + " in inventory \n";
+            beenEquipped = "\nThere are/is no " + obname + " in inventory \n";
         }
         return beenEquipped;
     }
 
-//    public static void addToInventory() {
+    //    public static void addToInventory() {
 //        ArrayList<Artifacts> artifactsList = new ArrayList<>();
 //        Text.artiList(artifactsList);
 //        Artifacts artifacts;
@@ -131,6 +139,6 @@ public class Player extends Rooms {
     public String toString() {
         return "\nPlayer info\n\n" +
                 "Current Room: " + location.getRoomName() +
-                "\nYour Health: " + playerHealth + "\n Inventory: " + inventory;
+                "\nYour Health: " + playerHealth + "\nInventory: " + inventory;
     }
 }
