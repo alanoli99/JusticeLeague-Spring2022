@@ -132,11 +132,11 @@ public class Puzzle {
                         getPuzzleInfo().remove(allPuzzles.getKey());
                         break;
                     }
-                    else if (answer.equalsIgnoreCase("hint") && attempt >= 0) {
+                    else if (answer.equalsIgnoreCase("hint") && attempt >= 0 && !answer.equalsIgnoreCase(allPuzzles.getKey().getPuzzleSolution())) {
 
                         System.out.println(allPuzzles.getKey().getPuzzleHint());
+                        answer = input.next();
 
-                        break;
                     }
                     else if (!answer.equalsIgnoreCase(allPuzzles.getKey().getPuzzleSolution()) && attempt > 0) {
                         attempt -= 1;

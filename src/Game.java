@@ -28,7 +28,7 @@ public class Game {
     // Raven: used to parse command(s) from user
     List<String> commands = new ArrayList<>(Arrays.asList("help","n","s","e","w", "north",
             "south", "east", "west", "explore", "consume" , "eat" , "info", "try",
-            "observe", "solve","help","check", "pickup")); // try is for the test case -- will be deleted before final deliverable - Raven
+            "observe", "solve","help","check", "pickup","hint")); // try is for the test case -- will be deleted before final deliverable - Raven
     List<String> objects = new ArrayList<>(Arrays.asList(
             "room","old bread", "blood jar", "dagger", "bone head", "kite shield",
             "crystal ring", "midnight sword", "stone hammer", "metal armor", "berries",
