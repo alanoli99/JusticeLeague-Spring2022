@@ -28,11 +28,11 @@ public class Game {
     // Raven: used to parse command(s) from user
     List<String> commands = new ArrayList<>(Arrays.asList("help","n","s","e","w", "north",
             "south", "east", "west", "explore", "consume" , "eat" , "info", "try",
-            "observe", "solve","help","inventory")); // try is for the test case -- will be deleted before final deliverable - Raven
+            "observe", "solve","help","check")); // try is for the test case -- will be deleted before final deliverable - Raven
     List<String> objects = new ArrayList<>(Arrays.asList(
             "room","old bread", "blood jar", "dagger", "bone head", "kite shield",
             "crystal ring", "midnight sword", "stone hammer", "metal armor", "berries",
-            "diamond key", "puzzle", "test case for game", "test case" // testing multiple commands in one -- will be deleted - Raven
+            "diamond key", "puzzle","inventory", "test case for game", "test case" // testing multiple commands in one -- will be deleted - Raven
     ));
 
     // Raven: used to keep track of rooms for the item features
@@ -125,7 +125,6 @@ public class Game {
                 case "n", "north", "w", "west", "s", "south", "e", "east" -> moveAround(verb);
                 case "help" -> controls();
                 case "info" -> info();
-                case "inventory" -> checkInventory();
                 default -> msg = verb + " (not implemented yet)";
             }
         } else {
@@ -171,6 +170,7 @@ public class Game {
             switch (verb) {
                 case "consume", "eat" -> msg = consumeItem(noun);
                 case "explore" -> exploreItem(noun);
+                case "check" -> checkInventory();
                 default -> msg += " (not yet implemented)";
             }
         }
