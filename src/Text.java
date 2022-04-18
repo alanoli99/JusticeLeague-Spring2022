@@ -90,10 +90,13 @@ public class Text {
         while (input.hasNextLine()) {
             String name = input.nextLine();
             int puzzleID = Integer.parseInt(name);
+
             String type = input.nextLine();
             String description = input.nextLine();
             String solution = input.nextLine();
-            Puzzle p = new Puzzle(puzzleID, type, description, solution);
+            String hint = input.nextLine();
+
+            Puzzle p = new Puzzle(puzzleID, type, description, solution, hint);
             puzzleList.add(p);
         }
         return puzzleList;

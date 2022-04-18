@@ -8,17 +8,20 @@ public class Puzzle {
     private String puzzleType;
     private String puzzleDescription;
     private String puzzleSolution;
+    private String puzzleHint;
     private static HashMap<Puzzle,String> puzzleInfo = Text.getPuzzleMap(); // this hashmap helps track the puzzle information -- Raven
 
     // added an empty constructor for the Game class -- Raven
     public Puzzle() {
     }
 
-    public Puzzle(int puzzleID, String puzzleType, String puzzleDescription, String puzzleSolution) {
+    public Puzzle(int puzzleID, String puzzleType, String puzzleDescription, String puzzleSolution,
+                  String puzzleHint) {
         this.puzzleID = puzzleID;
         this.puzzleType = puzzleType;
         this.puzzleDescription = puzzleDescription;
         this.puzzleSolution = puzzleSolution;
+        this.puzzleHint = puzzleHint;
     }
 
     public int getPuzzleID() {
@@ -51,6 +54,14 @@ public class Puzzle {
 
     public void setPuzzleSolution(String puzzleSolution) {
         this.puzzleSolution = puzzleSolution;
+    }
+
+    public String getPuzzleHint() {
+        return puzzleHint;
+    }
+
+    public void setPuzzleHint(String puzzleHint) {
+        this.puzzleHint = puzzleHint;
     }
 
     public static HashMap<Puzzle, String> getPuzzleInfo() {
@@ -102,6 +113,8 @@ public class Puzzle {
     /**
      * @author: Raven
      * Note: used to solve puzzle
+     * @author: Alan
+     * Note: added the hint feature for the puzzle
      */
     public String solvePuzzle() {
         String s = "";
@@ -118,7 +131,14 @@ public class Puzzle {
                         System.out.println("Correct!\n\n");
                         getPuzzleInfo().remove(allPuzzles.getKey());
                         break;
-                    } else if (!answer.equalsIgnoreCase(allPuzzles.getKey().getPuzzleSolution()) && attempt > 0) {
+                    }
+                    else if (answer.equalsIgnoreCase("hint") && attempt >= 0) {
+
+                        System.out.println(allPuzzles.getKey().getPuzzleHint());
+
+                        break;
+                    }
+                    else if (!answer.equalsIgnoreCase(allPuzzles.getKey().getPuzzleSolution()) && attempt > 0) {
                         attempt -= 1;
                         System.out.println("Incorrect you have " + attempt + " attempt left!");
                         attempt -= 1;

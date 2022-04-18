@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class Player extends Rooms {
     protected static Rooms location;
-    protected static int playerHealth;
+    protected static int playerHealth = 50;
     private static HashMap<Artifacts, String> equippedItems = Text.getHashMapForArti(); // will change later to new HashMap<>() -- Raven
     private static HashMap<Artifacts, String> inventoryMap = Text.getHashMapForArti(); // will change later to new HashMap<>() -- Raven
     private static HashMap<Artifacts, Integer> playerInfo = new HashMap<>(); // key = Artifacts info, value = health -- Raven
