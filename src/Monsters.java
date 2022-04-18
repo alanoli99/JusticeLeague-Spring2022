@@ -182,9 +182,6 @@ public class Monsters {
                     else if (response.equalsIgnoreCase("riddle")) {
                         System.out.println("riddle feature\n");
                         break;
-                    } else if (response.equalsIgnoreCase("attack")) {
-                        System.out.println("attack feature\n");
-                        break;
                     } else {
                         System.out.println("Invalid command. Try again");
                         response = input.nextLine();
