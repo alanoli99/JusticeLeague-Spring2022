@@ -26,7 +26,7 @@ public class Main {
             if (input.equalsIgnoreCase("start")) {
                 break;
             }
-             else if(input.equalsIgnoreCase("exit")){
+             else if(input.equalsIgnoreCase("quit")){
                 System.out.println("Thanks for playing!");
                 System.exit(0);
             }
@@ -46,7 +46,7 @@ public class Main {
             input = in.readLine();
             output = game.runCommand(input);
             System.out.println(output);
-        } while (!"exit".equals(input));
+        } while (!"quit".equals(input));
 
     }
 
