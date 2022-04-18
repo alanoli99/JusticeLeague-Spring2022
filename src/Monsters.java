@@ -1,12 +1,13 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * @dkilbert
- *
  * @AlanOliver - added the monsters health and damage points.
  * updated the textfile to match this class. changed id to int, and
  * desc,diff,riddle,hint,answer,choices to string. In the text file i changed it to
  * int instead of doubles. added items held to the class
+ * @author: Raven - implemented run feature.
  */
 
 public class Monsters {
@@ -107,7 +108,7 @@ public class Monsters {
         this.monsAttack = monsAttack;
     }
 
-    public Monsters(int id, String description,String itemsHeld, String difficulty, String riddle, String hint, String answer, String choices,
+    public Monsters(int id, String description, String itemsHeld, String difficulty, String riddle, String hint, String answer, String choices,
                     int monsHealth, int monsAttack) {
         this.id = id;
         this.description = description;
@@ -122,7 +123,11 @@ public class Monsters {
     }
 
     //@Alan - use to get the monsters name,health, and attack damage
+    //@author: Raven; added run feature
     public String exploreMons() {
+        Scanner input = new Scanner(System.in);
+        String response = "";
+
         ArrayList<Rooms> roomInfo = new ArrayList<>();
         Text.readRoomFile(roomInfo);
         String s = "";
@@ -132,20 +137,40 @@ public class Monsters {
         String m = "";
 
         //System.out.println("current room id: " + getRoomID());
-        for (Rooms rooms : roomInfo) {
-            // will change to compare room id in file to current room of the player
-            if (rooms.getRoomID() == rooms.getRoomID()) {
-                for(Monsters mons : monsInfo){
-                    if(mons.getId() == rooms.getMonsterID()){
-                        m = "\n" + mons.getDescription() + " is in the room! "+ " HP:" + mons.getMonsHealth() +
-                                " | Attack Damage: -" + mons.getMonsAttack() + ".";
+
+        // will change to compare room id in file to current room of the player
+
+        for (Monsters mons : monsInfo) {
+            if (mons.getId() == Player.getLocation().getMonsterID()) {
+                m = "\n" + mons.getDescription() + " is in the room! " +
+                        " Attack Damage: -" + mons.getMonsAttack() + ".";
+                m = m + "\n\n" + "What would you like to do?" + "\nType 'run' to run away" +
+                        "\nType 'riddle' to answer the riddle" + "\nType 'attack' to attack monster";
+
+                System.out.println(m);
+                response = input.nextLine();
+                while (!response.isEmpty()) {
+                    if (response.equalsIgnoreCase("run")) {
+                        System.out.println("\n\n------------------------ ᕕ( ◎_◎)ᕗ\n\n" +
+                                "You have survived this encounter... don't waste it\n");
+                        break;
+                    } else if (response.equalsIgnoreCase("riddle")) {
+                        System.out.println("riddle feature\n");
+                        break;
+                    } else if (response.equalsIgnoreCase("attack")) {
+                        System.out.println("attack feature\n");
+                        break;
+                    } else {
+                        System.out.println("Invalid command. Try again");
+                        response = input.nextLine();
                     }
                 }
-               // s = "\n" + rooms.getRoomName() + "\n" + rooms.getDescription() + "\n\n";
+                m = "";
+                break;
             }
-        }
-        if (m.isEmpty()) {
-            m = "No monsters in here";
+            if (m.isEmpty()) {
+                m = "No monsters in here";
+            }
         }
         return m;
     }
