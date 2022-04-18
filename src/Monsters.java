@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -135,6 +136,8 @@ public class Monsters {
         ArrayList<Monsters> monsInfo = new ArrayList<>();
         Text.monsReader(monsInfo);
         String m = "";
+        Random obj = new Random();
+        int playerHealth = Player.getPlayerHealth();
 
         //System.out.println("current room id: " + getRoomID());
 
@@ -154,7 +157,29 @@ public class Monsters {
                         System.out.println("\n\n------------------------ ᕕ( ◎_◎)ᕗ\n\n" +
                                 "You have survived this encounter... don't waste it\n");
                         break;
-                    } else if (response.equalsIgnoreCase("riddle")) {
+                    }
+                    else if (response.equalsIgnoreCase("Attack")) {
+                       // int damageCaused = obj.nextInt(playerAttackDamage);
+                        int damagetaken = mons.getMonsAttack();
+
+                        int currentMonsHealth = mons.getMonsHealth();
+                       // currentMonsHealth -= damageCaused;
+                         playerHealth -= damagetaken;
+
+
+//                        System.out.println("\t> You attacked the " + mons.getDescription() + "for "
+//                                + damageCaused + " damage.");
+                        System.out.println("\t>You recieved " + damagetaken + " point damage in return!");
+                        System.out.println("\t>Your Health " + playerHealth);
+//                        if (playerHealth < 1) {
+//                            System.out.println("\t>Too much damage! The monster took advantage of your state and ate you");
+//                            break;
+//                        }
+
+                        break;
+                    }
+
+                    else if (response.equalsIgnoreCase("riddle")) {
                         System.out.println("riddle feature\n");
                         break;
                     } else if (response.equalsIgnoreCase("attack")) {
