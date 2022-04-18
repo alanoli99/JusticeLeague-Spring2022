@@ -107,7 +107,7 @@ public class Artifacts {
         noun = noun.trim().replaceAll("\\s{2,}", " ");
         artifacts = getItemObject(Game.getRooms().getItemID(), artifactsList);
 
-        if (artifacts.getArtiName().equalsIgnoreCase(noun)){
+        if (artifacts != null && artifacts.getArtiName().equalsIgnoreCase(noun)){
             System.out.println(artifacts.getArtiDescription());
         }
         else{

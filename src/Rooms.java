@@ -197,9 +197,7 @@ public class Rooms {
         if (verb.equalsIgnoreCase("n") || verb.equalsIgnoreCase("north")) {
             if (room.getNorth() > 0) {
                 //Alan
-                System.out.println(currentRoom);
                 currentRoom = room.getNorth();
-                //System.out.println(initialRoom);
                 room = getRoomObject(currentRoom, roomList);
                 if (beenHere1.get(currentRoom)){
                     System.out.println("You have been here before!");
@@ -226,9 +224,7 @@ public class Rooms {
         if (verb.equalsIgnoreCase("s") || verb.equalsIgnoreCase("south")) {
             if (room.getSouth() > 0) {
                 //Alan
-                System.out.println(currentRoom);
                 currentRoom = room.getSouth();
-                //System.out.println(initialRoom);
                 room = getRoomObject(currentRoom, roomList);
                 if (beenHere1.get(currentRoom)){
                     System.out.println("You have been here before!");
@@ -253,7 +249,6 @@ public class Rooms {
         if (verb.equalsIgnoreCase("e") || verb.equalsIgnoreCase("east")) {
             if (room.getEast() > 0) {
                 currentRoom = room.getEast();
-                //System.out.println(initialRoom);
                 room = getRoomObject(currentRoom, roomList);
                 if (beenHere1.get(currentRoom)){
                     System.out.println("You have been here before!");
@@ -278,7 +273,6 @@ public class Rooms {
         if (verb.equalsIgnoreCase("w") || verb.equalsIgnoreCase("west")) {
             if (room.getWest() > 0) {
                 currentRoom = room.getWest();
-                //System.out.println(initialRoom);
                 room = getRoomObject(currentRoom, roomList);
                 if (beenHere1.get(currentRoom)){
                     System.out.println("You have been here before!");
