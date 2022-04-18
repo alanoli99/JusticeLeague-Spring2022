@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * @author: Alan Oliver
  * Note: I created the attributes, constructor, and basic getter/setter methods
@@ -85,6 +87,33 @@ public class Artifacts {
 
     @Override
     public String toString() {
-        return super.toString();
+        return getArtiName();
     }
+
+    public static Artifacts getItemObject(int artifactId, ArrayList<Artifacts> list, String noun) {
+
+        for (Artifacts item : list) {
+            if (item.getArtiID() == artifactId) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    public static void exploreArtifacts(String noun) {
+        ArrayList<Artifacts> artifactsList = new ArrayList<>();
+        Text.artiList(artifactsList);
+        Artifacts artifacts;
+        noun = noun.trim().replaceAll("\\s{2,}", " ");
+        artifacts = getItemObject(Game.getRooms().getItemID(), artifactsList,noun);
+
+        if (artifacts.getArtiName().equalsIgnoreCase(noun)){
+            System.out.println(artifacts.getArtiDescription());
+        }
+        else{
+            System.out.println("There's no such item in this room");
+        }
+        //return noun;
+    }
+
 }
