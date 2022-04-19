@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * Author name: Raven Gardner
@@ -54,6 +52,93 @@ public class Game {
                 getRooms().isVisit(), getRooms());
     }
 
+
+    //@Alan - use to get the monsters name,health, and attack damage
+    //@author: Raven; added run feature
+    public String exploreMons() {
+        Scanner input = new Scanner(System.in);
+        String response = "";
+
+        ArrayList<Rooms> roomInfo = new ArrayList<>();
+        Text.readRoomFile(roomInfo);
+        String s = "";
+
+        ArrayList<Monsters> monsInfo = new ArrayList<>();
+        Text.monsReader(monsInfo);
+        String m = "";
+        Random obj = new Random();
+        int playerHealth = Player.getPlayerHealth();
+        boolean playing = true;
+
+        //System.out.println("current room id: " + getRoomID());
+
+        // will change to compare room id in file to current room of the player
+
+        while (playing) {
+            for (Monsters mons : monsInfo) {
+
+                m = "\n" + mons.getDescription() + " is in the room! " +
+                        " Attack Damage: -" + mons.getMonsAttack() + ".";
+
+                if (mons.getId() == Player.getLocation().getMonsterID()) {
+
+                    m = m + "\n\n" + "What would you like to do?" + "\nType 'run' to run away" +
+                            "\nType 'riddle' to answer the riddle" + "\nType 'attack' to attack monster";
+
+                    System.out.println(m);
+                    response = input.nextLine();
+                    while (!response.isEmpty()) {
+
+                        if (response.equalsIgnoreCase("run")) {
+                            System.out.println("\n\n------------------------ ᕕ( ◎_◎)ᕗ\n\n" +
+                                    "You have survived this encounter... don't waste it\n");
+
+                            playing = false;
+                            break;
+                        }
+
+
+
+                        else if (response.equalsIgnoreCase("Attack")) {
+                            // int damageCaused = obj.nextInt(playerAttackDamage);
+                            int damagetaken = mons.getMonsAttack();
+
+                            int currentMonsHealth = mons.getMonsHealth();
+                            // currentMonsHealth -= damageCaused;
+                            playerHealth -= damagetaken;
+                            int updatedHealth = playerHealth;
+                            Player.setPlayerHealth(updatedHealth - 50);
+
+
+//                        System.out.println("\t> You attacked the " + mons.getDescription() + "for "
+//                                + damageCaused + " damage.");
+                            System.out.println("\t>You recieved " + damagetaken + " point damage in return!");
+                            System.out.println("\t>Your Health " + playerHealth);
+//                        if (playerHealth < 1) {
+//                            System.out.println("\t>Too much damage! The monster took advantage of your state and ate you");
+//                            break;
+//                        }
+
+                            break;
+                        } else if (response.equalsIgnoreCase("riddle")) {
+                            System.out.println("riddle feature\n");
+                            break;
+                        } else {
+                            System.out.println("Invalid command. Try again");
+                            response = input.nextLine();
+                        }
+                    }
+                    m = "";
+                    break;
+                }
+                if (m.isEmpty()) {
+                    m = "No monsters in here";
+                }
+            }
+        }
+        return m;
+    }
+
     // Raven: used to keep track of player
     public Player getPlayer() {
         return player;
@@ -70,7 +155,7 @@ public class Game {
     }
 
     private String exploreMons(String name) {
-        return monster.exploreMons();
+        return exploreMons();
     }
 
     // Raven: used to consume item
