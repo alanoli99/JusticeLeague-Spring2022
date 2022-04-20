@@ -14,6 +14,7 @@ public class Player extends Rooms {
     protected static Rooms location;
     protected static int playerHealth;
     protected static int playerAttkDamage;
+    private static HashMap<Artifacts, String> equippedItems = new HashMap<>();
     private static HashMap<Artifacts, String> inventoryMap = new HashMap<>();
     private static HashMap<Artifacts, Integer> playerInfo = new HashMap<>(); // key = Artifacts info, value = health -- Raven
     public static ArrayList<Artifacts> inventory = new ArrayList<>();
@@ -59,6 +60,10 @@ public class Player extends Rooms {
 
     public static HashMap<Artifacts, String> getPlayerInventoryMap() {
         return inventoryMap;
+    }
+
+    public static HashMap<Artifacts, String> getEquippedItems() {
+        return equippedItems;
     }
 
     public static HashMap<Artifacts, Integer> getPlayerInfo() {
@@ -161,6 +166,45 @@ public class Player extends Rooms {
         }
         if (beenEquipped.isEmpty()) {
             beenEquipped = "\nThere is/are no " + obname + " in inventory \n";
+        }
+        return beenEquipped;
+    }
+
+    /**
+     * @author: Raven Gardner
+     * players can unequip items
+     */
+    public static String unequip(String obname) {
+        String beenEquipped = "";
+        Artifacts inEquipMap;
+        int healthPoints;
+
+        //for (Artifacts artifacts : getInventory()) {
+        //getPlayerInventoryMap().put(artifacts, artifacts.getArtiName());
+        //}
+
+        obname = obname.trim().replaceAll("\\s{2,}", " "); // gets rid of the space in the beginning of the item name -- Raven
+
+        for (Map.Entry<Artifacts, String> equipped : getEquippedItems().entrySet()) {
+
+            inEquipMap = equipped.getKey();
+            //System.out.println("in inventory: " + inInventory);
+
+            //System.out.println("in inventory:" + inInventory.getArtiName());
+            // System.out.println("obj name:"+obname);
+            if (inEquipMap.getArtiName().equalsIgnoreCase(obname)) {
+                healthPoints = inEquipMap.getEquipHealth();
+                setPlayerHealth(-healthPoints);
+                playerInfo.clear();
+                beenEquipped = "\n" + obname + " has been unequipped!" +
+                        "\nYou now have " + getPlayerHealth() + " health points.";
+
+                playerInfo.put(inEquipMap, getPlayerHealth());
+                break;
+            }
+        }
+        if (beenEquipped.isEmpty()) {
+            beenEquipped = "\n" + obname + " has not been equipped yet\n";
         }
         return beenEquipped;
     }
