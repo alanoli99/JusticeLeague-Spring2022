@@ -26,7 +26,8 @@ public class Game {
     // Raven: used to parse command(s) from user
     List<String> commands = new ArrayList<>(Arrays.asList("help","n","s","e","w", "north",
             "south", "east", "west", "explore", "consume" , "eat" , "info", "try",
-            "observe", "solve","help","check", "pickup","hint","drop", "equipped", "wear")); // try is for the test case -- will be deleted before final deliverable - Raven
+            "observe", "solve","help","check", "pickup","hint","drop", "equipped", "wear",
+            "unequipped", "put away", "take off")); // try is for the test case -- will be deleted before final deliverable - Raven
     List<String> objects = new ArrayList<>(Arrays.asList(
             "room","old bread", "blood jar", "dagger", "bone head", "kite shield",
             "crystal ring", "midnight sword", "stone hammer", "metal armor", "berries",
@@ -179,6 +180,11 @@ public class Game {
         return Player.equip(name);
     }
 
+    // Raven: used to unequip item
+    private String unequipItem(String name) {
+        return Player.unequip(name);
+    }
+
     // Raven: used to observe puzzle
     private String observePuzzle(String name) {
         return puzzle.observePuzzle();
@@ -282,6 +288,7 @@ public class Game {
                 case "pickup" -> pickupItem(noun);
                 case "drop" -> dropItem(noun);
                 case "equipped", "wear" -> msg = equipItem(noun);
+                case "unequipped" -> msg = unequipItem(noun);
                 default -> msg += "--not yet implemented";
             }
         }
@@ -350,6 +357,10 @@ public class Game {
                         msg = equipItem(msg);
                         break;
                     }
+                    case "unequipped" -> {
+                        msg = unequipItem(msg);
+                        break;
+                    }
 //                    default -> msg = "not implemented yet!";
                 }
                 error = false;
@@ -373,6 +384,116 @@ public class Game {
         return msg;
     }
 
+    // Raven -- For unequip item feature, some commands are multiple verbs and multiple nouns
+    public String processMultipleVerbsAndNouns(List<String> wordlist) {
+        String verb = "";
+        String extra;
+        String nounCommand = "";
+        String inObjects = "";
+        String objMsg = "";
+        String msg = "";
+        boolean error = true;
+        boolean notNouns = false;
+
+        int verbCount = 0;
+        for (int i = 0; i < 2; i++) {
+            verb = verb + " " + wordlist.get(i);
+            verb = verb.trim().replaceAll("\\s{2,}", " ");
+            verbCount += 1;
+            if(commands.contains(verb.toLowerCase())){
+                break;
+            }
+        }
+        for(int n = verbCount; n < wordlist.size(); n++){
+            nounCommand = nounCommand + " " + wordlist.get(n);
+            msg = nounCommand;
+            //nounCommand = nounCommand.trim().replaceAll("\\s{2,}", " ");
+        }
+
+        if (!commands.contains(verb)) {
+            msg = verb + " is an invalid input ";
+        }
+
+        // iterates over object list declared at the top of the class
+        for (int k = 0; k < objects.size(); k++){
+            inObjects = objects.get(k);
+            objMsg = " " + inObjects;
+//            System.out.println("msg:" + msg + ":");
+//            System.out.println("objMsg:" + objMsg + ":\n");
+
+
+            if ((msg.equalsIgnoreCase(objMsg))) {
+                //System.out.println("entered if");
+                switch (verb) {
+                    case "put away", "take off" -> {
+                        msg = unequipItem(msg);
+                        break;
+                    }
+//                    default -> msg = "not implemented yet!";
+                }
+                error = false;
+            }
+        }
+
+        // if it didn't enter if statement in the for loop then the noun isn't in object list - Raven
+        if (error) {
+            notNouns = true;
+
+        }
+        if (notNouns) {
+            extra = " are not valid inputs";
+        } else {
+            extra = "";
+        }
+        if (notNouns) {
+            msg += extra;
+        }
+
+        return msg;
+    }
+
+    // Raven -- For unequip item feature, some commands are multiple verbs and one noun
+    public String processMultipleVerbs(List<String> wordlist) {
+        String verb = "";
+        String extra;
+        String noun = "";
+        String inObjects = "";
+        String objMsg = "";
+        String msg = "";
+        boolean error = false;
+
+        int verbCount = 0;
+        for (int i = 0; i < 2; i++) {
+            verb = verb + " " + wordlist.get(i);
+            verbCount += 1;
+        }
+        noun = wordlist.get(verbCount);
+        msg = noun;
+
+        //System.out.println("noun in processMultipleVerbs:"+noun);
+
+        verb = verb.trim().replaceAll("\\s{2,}", " ");
+        if (!commands.contains(verb)) {
+            msg = verb + " is an invalid input ";
+        }
+        if (!objects.contains(noun)) {
+            msg += (noun + " is not a valid input ");
+        } else if (!error) {
+            //System.out.println("entered if");
+            switch (verb) {
+                case "put away", "take off" -> {
+                    // System.out.println("entered test case");
+                    msg = unequipItem(msg);
+                    break;
+                }
+//                    default -> msg = "not implemented yet!";
+            }
+            //error = false;
+        }
+
+        return msg;
+    }
+
 
     // @author: Raven Gardner; created to show the intro after starting game
     public void showIntro(){
@@ -390,13 +511,41 @@ public class Game {
 
     // @author: Raven Gardner; created to parse commands
     public String parseCommand(List<String> wordlist) {
-        String msg;
+        String msg = "";
+        String verb = "";
+        String noun = "";
         if (wordlist.size() == 1) {
             msg = processVerb(wordlist);
         } else if (wordlist.size() == 2){
             msg = processTwoWords(wordlist);
         } else {
-            msg = processMulipleNouns(wordlist);
+
+            int verbCount = 0;
+            int nounCount = 0;
+            for (int i = 0; i < 2; i++) {
+                verb = verb + " " + wordlist.get(i);
+                verb = verb.trim().replaceAll("\\s{2,}", " ");
+                verbCount += 1;
+                if(commands.contains(verb.toLowerCase())){
+                    break;
+                }
+            }
+            for(int n = verbCount; n < wordlist.size(); n++){
+                noun = noun + " " + wordlist.get(n);
+                noun = noun.trim().replaceAll("\\s{2,}", " ");
+                nounCount += 1;
+            }
+//            System.out.println("verb:"+verb);
+//            System.out.println("noun:"+noun);
+
+            if(verbCount == 1 && nounCount > 1) {
+                msg = processMulipleNouns(wordlist);
+            } else if(verbCount > 1 && nounCount == 1){
+                msg = processMultipleVerbs(wordlist);
+            } else {
+                msg = processMultipleVerbsAndNouns(wordlist);
+            }
+
         }
         return msg;
     }
