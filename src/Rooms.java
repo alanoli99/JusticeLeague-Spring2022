@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -148,18 +149,52 @@ public class Rooms {
      * @author: Raven Gardner
      * Method Name: exploreRoom
      * purpose: to receive the room name and room description and output both to the player
+     * also prints if monster is nearby, puzzle is in room, and what items are in the room
      */
     public String exploreRoom() {
 
         ArrayList<Rooms> roomInfo = new ArrayList<>();
         Text.readRoomFile(roomInfo);
+        ArrayList<Artifacts> itemInfo = new ArrayList<>();
+        Text.artiList(itemInfo);
+        ArrayList<Puzzle> puzzleInfo = new ArrayList<>();
+        try {
+            Text.readPuzzleFile(puzzleInfo);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         String s = "";
+        String m = "";
+        String i = "";
+        String p = "";
 
         //System.out.println("current room id: " + getRoomID());
         for (Rooms rooms : roomInfo) {
             // will change to compare room id in file to current room of the player
             if (getRoomID() == rooms.getRoomID()) {
                 s = "\n" + rooms.getRoomName() + "\n" + rooms.getDescription() + "\n\n";
+                if(rooms.getMonsterID() > 0){
+                    m = "\nThere's a monster nearby...";
+                }
+                if(rooms.getItemID() > 0){
+                    for(Artifacts item : itemInfo){
+                        if(rooms.getItemID() == item.getArtiID()){
+                            // Player.getPlayerInventoryMap().containsValue(item.getArtiName().toLowerCase()) -- may need if multi items in room
+                            i = "Artifacts here! " + i + "\n" + item.getArtiName();
+                        }
+                    }
+                } if(rooms.getPuzzleID() > 0){
+                    for(Puzzle puzzle : puzzleInfo){
+                        if(rooms.getPuzzleID() == puzzle.getPuzzleID()){
+                            p = "\nThere is a puzzle here!";
+                            break;
+                        }
+                    }
+                }
+
+                if (!(m.isEmpty()) || !(i.isEmpty()) || !(p.isEmpty())){
+                    s = s + i  + p + m;
+                }
             }
         }
         if (s.isEmpty()) {
