@@ -3,7 +3,7 @@ import java.util.*;
 /**
  * Author name: Raven Gardner
  * Worked on: Explore room feature, process/parse commands, consume/eat,
- * observe puzzle, solve puzzle
+ * observe puzzle, solve puzzle, equip item
  *
  * Author name:
  * Worked on:
@@ -26,7 +26,7 @@ public class Game {
     // Raven: used to parse command(s) from user
     List<String> commands = new ArrayList<>(Arrays.asList("help","n","s","e","w", "north",
             "south", "east", "west", "explore", "consume" , "eat" , "info", "try",
-            "observe", "solve","help","check", "pickup","hint","drop")); // try is for the test case -- will be deleted before final deliverable - Raven
+            "observe", "solve","help","check", "pickup","hint","drop", "equipped", "wear")); // try is for the test case -- will be deleted before final deliverable - Raven
     List<String> objects = new ArrayList<>(Arrays.asList(
             "room","old bread", "blood jar", "dagger", "bone head", "kite shield",
             "crystal ring", "midnight sword", "stone hammer", "metal armor", "berries",
@@ -174,6 +174,11 @@ public class Game {
         return Player.consume(name);
     }
 
+    // Raven: used to equip item
+    private String equipItem(String name) {
+        return Player.equip(name);
+    }
+
     // Raven: used to observe puzzle
     private String observePuzzle(String name) {
         return puzzle.observePuzzle();
@@ -228,10 +233,10 @@ public class Game {
                 case "n", "north", "w", "west", "s", "south", "e", "east" -> moveAround(verb);
                 case "help" -> controls();
                 case "info" -> info();
-                default -> msg = verb + " (not implemented yet)";
+                default -> msg = verb + "--not implemented yet";
             }
         } else {
-            msg = verb + " is not a known verb! ";
+            msg = verb + " is not a valid input ";
         }
         return msg;
     }
@@ -247,10 +252,10 @@ public class Game {
         noun = wordlist.get(1);
 
         if (!commands.contains(verb)) {
-            msg = verb + " is not a known verb! ";
+            msg = verb + " is not a valid input ";
         }
         if (!objects.contains(noun)) {
-            msg += (noun + " is not a known noun!");
+            msg += (noun + " is not a valid input ");
         }
         if (noun.equalsIgnoreCase("room")) {
             switch (verb) {
@@ -276,7 +281,8 @@ public class Game {
                 case "check" -> checkInventory();
                 case "pickup" -> pickupItem(noun);
                 case "drop" -> dropItem(noun);
-                default -> msg += " (not yet implemented)";
+                case "equipped", "wear" -> msg = equipItem(noun);
+                default -> msg += "--not yet implemented";
             }
         }
         return msg;
@@ -295,7 +301,7 @@ public class Game {
         boolean notNouns = false;
         verb = wordlist.get(0); // just gets one word for commands - Raven
         if (!commands.contains(verb)) {
-            msg = verb + " is not a known verb! ";
+            msg = verb + " is an invalid input ";
         }
         // iterates between input from user until full command is done
         // ex. 'room feature'; returns 'room' first then it returns 'room feature' - Raven
@@ -340,6 +346,10 @@ public class Game {
                         msg = "";
                         break;
                     }
+                    case "equipped", "wear" -> {
+                        msg = equipItem(msg);
+                        break;
+                    }
 //                    default -> msg = "not implemented yet!";
                 }
                 error = false;
@@ -352,12 +362,12 @@ public class Game {
 
         }
         if (notNouns) {
-            extra = " are not known nouns!";
+            extra = " are not valid inputs";
         } else {
             extra = "";
         }
         if (notNouns) {
-            msg += extra + " (not yet implemented)";
+            msg += extra;
         }
 
         return msg;
