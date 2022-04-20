@@ -114,7 +114,7 @@ public class Game {
 
                             playerHealth -= damagetaken;
                             int updatedPlayerHealth = playerHealth;
-                            Player.setPlayerHealth(updatedPlayerHealth - 50);
+                            Player.setPlayerHealth(-damagetaken); // previously would update random wrong numbers -- Raven
 
 
                         System.out.println("\t> You attacked " + mons.getDescription() + "for "
