@@ -26,7 +26,7 @@ public class Game {
     // Raven: used to parse command(s) from user
     List<String> commands = new ArrayList<>(Arrays.asList("help","n","s","e","w", "north",
             "south", "east", "west", "explore", "consume" , "eat" , "info", "try",
-            "observe", "solve","help","check", "pickup","hint")); // try is for the test case -- will be deleted before final deliverable - Raven
+            "observe", "solve","help","check", "pickup","hint","drop")); // try is for the test case -- will be deleted before final deliverable - Raven
     List<String> objects = new ArrayList<>(Arrays.asList(
             "room","old bread", "blood jar", "dagger", "bone head", "kite shield",
             "crystal ring", "midnight sword", "stone hammer", "metal armor", "berries",
@@ -206,6 +206,11 @@ public class Game {
         Player.addToInventory(noun);
     }
 
+    //Alan o: method to drop items
+    private void dropItem(String noun) {
+        Player.removeFromInventory(noun);
+    }
+
     // Raven: EXAMPLE FOR MULTIPlE OBJECTS IN ONE COMMAND; similar structure can be used for item features
     private String test(String name) {
 
@@ -270,6 +275,7 @@ public class Game {
                 case "explore" -> exploreItem(noun);
                 case "check" -> checkInventory();
                 case "pickup" -> pickupItem(noun);
+                case "drop" -> dropItem(noun);
                 default -> msg += " (not yet implemented)";
             }
         }
@@ -326,6 +332,11 @@ public class Game {
                     }
                     case "pickup" -> {
                         pickupItem(msg);
+                        msg = "";
+                        break;
+                    }
+                    case "drop" -> {
+                        dropItem(msg);
                         msg = "";
                         break;
                     }

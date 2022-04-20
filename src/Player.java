@@ -17,8 +17,11 @@ public class Player extends Rooms {
     protected static int playerHealth;
     protected static int playerAttkDamage;
     private static HashMap<Artifacts, String> equippedItems = Text.getHashMapForArti(); // will change later to new HashMap<>() -- Raven
+
     private static HashMap<Artifacts, String> inventoryMap = new HashMap<>();
+
     private static HashMap<Artifacts, Integer> playerInfo = new HashMap<>(); // key = Artifacts info, value = health -- Raven
+
     public static ArrayList<Artifacts> inventory = new ArrayList<>();
 
     public static ArrayList<Artifacts> getInventory() {
@@ -159,6 +162,30 @@ public class Player extends Rooms {
         }
 
     }// used to test check inventory -Joe N
+
+    //@Alan
+    public static void removeFromInventory(String noun) {
+        ArrayList<Artifacts> artifactsList = new ArrayList<>();
+        Text.artiList(artifactsList);
+        Artifacts artifacts;
+
+        noun = noun.trim().replaceAll("\\s{2,}", " ");
+        artifacts = Artifacts.getItemObject(Player.getLocation().getItemID(), artifactsList);
+
+        if (artifacts != null && artifacts.getArtiName().equalsIgnoreCase(noun)){
+            if (inventory.size() == 0){
+                System.out.println("Inventory is empty! no item to drop!");
+                return;
+            }
+            inventory.remove(artifacts);
+            System.out.println(noun + " has been dropped from inventory");
+            System.out.println(inventory.size());
+        }
+        else{
+            System.out.println("There's no item in your inventory!");
+        }
+
+    }
     @Override
     public String toString() {
         return "\nPlayer info\n\n" +
