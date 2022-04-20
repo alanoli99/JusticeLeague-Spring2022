@@ -67,20 +67,25 @@ public class Game {
         Text.monsReader(monsInfo);
         String m = "";
         Random obj = new Random();
+
         int playerHealth = Player.getPlayerHealth();
         boolean playing = true;
+
+        int playerAttack = Player.getPlayerAttkDamage();
 
         //System.out.println("current room id: " + getRoomID());
 
         // will change to compare room id in file to current room of the player
 
-        while (playing) {
+       // while (playing) {
             for (Monsters mons : monsInfo) {
 
-                m = "\n" + mons.getDescription() + " is in the room! " +
-                        " Attack Damage: -" + mons.getMonsAttack() + ".";
+
 
                 if (mons.getId() == Player.getLocation().getMonsterID()) {
+
+                    m = "\n" + mons.getDescription() + " is in the room! " +
+                            " Attack Damage: -" + mons.getMonsAttack() + ".";
 
                     m = m + "\n\n" + "What would you like to do?" + "\nType 'run' to run away" +
                             "\nType 'riddle' to answer the riddle" + "\nType 'attack' to attack monster";
@@ -100,29 +105,34 @@ public class Game {
 
 
                         else if (response.equalsIgnoreCase("Attack")) {
-                            // int damageCaused = obj.nextInt(playerAttackDamage);
+
+                             int damageCaused = playerAttack;
                             int damagetaken = mons.getMonsAttack();
 
                             int currentMonsHealth = mons.getMonsHealth();
-                            // currentMonsHealth -= damageCaused;
+                              currentMonsHealth -= damageCaused;
+
                             playerHealth -= damagetaken;
-                            int updatedHealth = playerHealth;
-                            Player.setPlayerHealth(updatedHealth - 50);
+                            int updatedPlayerHealth = playerHealth;
+                            Player.setPlayerHealth(updatedPlayerHealth - 50);
 
 
-//                        System.out.println("\t> You attacked the " + mons.getDescription() + "for "
-//                                + damageCaused + " damage.");
-                            System.out.println("\t>You recieved " + damagetaken + " point damage in return!");
-                            System.out.println("\t>Your Health " + playerHealth);
+                        System.out.println("\t> You attacked " + mons.getDescription() + "for "
+                                + damageCaused + " damage.");
+                        System.out.println("\t>Monster Health " + currentMonsHealth);
+                        System.out.println(" ");
+
+                        System.out.println("\t>You recieved " + damagetaken + " point damage in return!");
+                        System.out.println("\t>Your Health " + playerHealth);
 //                        if (playerHealth < 1) {
 //                            System.out.println("\t>Too much damage! The monster took advantage of your state and ate you");
 //                            break;
 //                        }
 
-                            break;
+                            response = input.nextLine();
                         } else if (response.equalsIgnoreCase("riddle")) {
                             System.out.println("riddle feature\n");
-                            break;
+                            response = input.nextLine();
                         } else {
                             System.out.println("Invalid command. Try again");
                             response = input.nextLine();
@@ -134,8 +144,9 @@ public class Game {
                 if (m.isEmpty()) {
                     m = "No monsters in here";
                 }
+
             }
-        }
+
         return m;
     }
 

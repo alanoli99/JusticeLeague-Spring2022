@@ -17,7 +17,10 @@ public class Main {
         System.out.println("--------------------------");
         System.out.println("Type 'start' to start game");
         System.out.println("--------------------------");
+
         Player.setPlayerHealth(50);
+        Player.setPlayerAttkDamage(1);
+
        input = begin.next();
 
         //@author:Raven Gardner & Alan Oliver;

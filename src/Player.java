@@ -52,6 +52,14 @@ public class Player extends Rooms {
         return health;
     }
 
+    public static int getPlayerAttkDamage() {
+        return playerAttkDamage;
+    }
+
+    public static void setPlayerAttkDamage(int playerAttkDamage) {
+        Player.playerAttkDamage = playerAttkDamage;
+    }
+
     public static HashMap<Artifacts, String> getPlayerInventoryMap() {
         return inventoryMap;
     }
