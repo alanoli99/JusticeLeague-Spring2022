@@ -164,6 +164,8 @@ public class Player extends Rooms {
                     //System.out.println("inventory before: " + getInventory());
                     getInventory().remove(collected.getKey());
                     getPlayerInventoryMap().remove(inInventory);
+                    equippedItems.put(inInventory,inInventory.getArtiName());
+
                     //System.out.println("inventory after: " + getInventory());
                 }
                 playerInfo.put(inInventory, getPlayerHealth());
@@ -205,6 +207,9 @@ public class Player extends Rooms {
                 beenEquipped = "\n" + obname + " has been unequipped!" +
                         "\nYou now have " + getPlayerHealth() + " health points.";
 
+                getEquippedItems().remove(equipped.getKey());
+                //System.out.println("in equip map: " + getEquippedItems());
+
                 playerInfo.put(inEquipMap, getPlayerHealth());
                 break;
             }
@@ -228,7 +233,7 @@ public class Player extends Rooms {
             }
             inventory.add(artifacts);
             System.out.println(noun + " has been added to inventory");
-            System.out.println(inventory.size());
+            //System.out.println(inventory.size());
             getPlayerInventoryMap().put(artifacts,noun); //Raven -- created to update map for inventory
         }
         else if(artifacts != null && !artifacts.getArtiName().equalsIgnoreCase(noun) ){
@@ -260,7 +265,8 @@ public class Player extends Rooms {
             }
             inventory.remove(artifacts);
             System.out.println(noun + " has been dropped from inventory");
-            System.out.println(inventory.size());
+            // System.out.println(inventory.size());
+            getPlayerInventoryMap().remove(artifacts,noun); //Raven -- created to update map for inventory
         }
         else{
             System.out.println("There's no item in your inventory!");
