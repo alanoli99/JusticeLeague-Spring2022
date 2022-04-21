@@ -229,6 +229,7 @@ public class Player extends Rooms {
             inventory.add(artifacts);
             System.out.println(noun + " has been added to inventory");
             System.out.println(inventory.size());
+            getPlayerInventoryMap().put(artifacts,noun); //Raven -- created to update map for inventory
         }
         else if(artifacts != null && !artifacts.getArtiName().equalsIgnoreCase(noun) ){
             if (inventory.size() > 5){
