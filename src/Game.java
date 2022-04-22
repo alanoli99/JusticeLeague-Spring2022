@@ -54,102 +54,7 @@ public class Game {
     }
 
 
-    //@Alan - use to get the monsters name,health, and attack damage
-    //@author: Raven; added run feature
-    public String exploreMons() {
-        Scanner input = new Scanner(System.in);
-        String response = "";
 
-        ArrayList<Rooms> roomInfo = new ArrayList<>();
-        Text.readRoomFile(roomInfo);
-        String s = "";
-
-        ArrayList<Monsters> monsInfo = new ArrayList<>();
-        Text.monsReader(monsInfo);
-        String m = "";
-        Random obj = new Random();
-
-        int playerHealth = Player.getPlayerHealth();
-        boolean playing = true;
-
-        int playerAttack = Player.getPlayerAttkDamage();
-
-        //System.out.println("current room id: " + getRoomID());
-
-        // will change to compare room id in file to current room of the player
-
-       // while (playing) {
-            for (Monsters mons : monsInfo) {
-
-
-
-                if (mons.getId() == Player.getLocation().getMonsterID()) {
-
-                    m = "\n" + mons.getDescription() + " is in the room! " +
-                            " Attack Damage: -" + mons.getMonsAttack() + ".";
-
-                    m = m + "\n\n" + "What would you like to do?" + "\nType 'run' to run away" +
-                            "\nType 'riddle' to answer the riddle" + "\nType 'attack' to attack monster";
-
-                    System.out.println(m);
-                    response = input.nextLine();
-                    while (!response.isEmpty()) {
-
-                        if (response.equalsIgnoreCase("run")) {
-                            System.out.println("\n\n------------------------ ᕕ( ◎_◎)ᕗ\n\n" +
-                                    "You have survived this encounter... don't waste it\n");
-
-                            playing = false;
-                            break;
-                        }
-
-
-
-                        else if (response.equalsIgnoreCase("Attack")) {
-
-                             int damageCaused = playerAttack;
-                            int damagetaken = mons.getMonsAttack();
-
-                            int currentMonsHealth = mons.getMonsHealth();
-                              currentMonsHealth -= damageCaused;
-
-                            playerHealth -= damagetaken;
-                            int updatedPlayerHealth = playerHealth;
-                            Player.setPlayerHealth(-damagetaken); // previously would update random wrong numbers -- Raven
-
-
-                        System.out.println("\t> You attacked " + mons.getDescription() + "for "
-                                + damageCaused + " damage.");
-                        System.out.println("\t>Monster Health " + currentMonsHealth);
-                        System.out.println(" ");
-
-                        System.out.println("\t>You recieved " + damagetaken + " point damage in return!");
-                        System.out.println("\t>Your Health " + playerHealth);
-//                        if (playerHealth < 1) {
-//                            System.out.println("\t>Too much damage! The monster took advantage of your state and ate you");
-//                            break;
-//                        }
-
-                            response = input.nextLine();
-                        } else if (response.equalsIgnoreCase("riddle")) {
-                            System.out.println("riddle feature\n");
-                            response = input.nextLine();
-                        } else {
-                            System.out.println("Invalid command. Try again");
-                            response = input.nextLine();
-                        }
-                    }
-                    m = "";
-                    break;
-                }
-                if (m.isEmpty()) {
-                    m = "No monsters in here";
-                }
-
-            }
-
-        return m;
-    }
 
     // Raven: used to keep track of player
     public Player getPlayer() {
@@ -167,7 +72,7 @@ public class Game {
     }
 
     private String exploreMons(String name) {
-        return exploreMons();
+        return monster.exploreMons();
     }
 
     // Raven: used to consume item
@@ -568,7 +473,7 @@ public class Game {
         List<String> wordlist;
         String commands = "Thanks for playing!";
         String lowstr = inputstr.trim().toLowerCase();
-        if (!lowstr.equalsIgnoreCase("Exit")) {
+        if (!lowstr.equalsIgnoreCase("Quit")) {
             if (lowstr.equals("")) {
                 commands = "You must enter a command";
             } else {
