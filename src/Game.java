@@ -26,10 +26,10 @@ public class Game {
     // Raven: used to parse command(s) from user
     List<String> commands = new ArrayList<>(Arrays.asList("help","n","s","e","w", "north",
             "south", "east", "west", "explore", "consume" , "eat" , "info", "try",
-            "observe", "solve","help","check", "pickup","hint","drop", "equipped", "wear",
+            "observe", "solve","help","check", "pickup", "take","hint","drop", "equipped", "wear",
             "unequipped", "put away", "take off")); // try is for the test case -- will be deleted before final deliverable - Raven
     List<String> objects = new ArrayList<>(Arrays.asList(
-            "room","old bread", "blood jar", "dagger", "bone head", "kite shield",
+            "room", "storage","old bread", "blood jar", "dagger", "bone head", "kite shield",
             "crystal ring", "midnight sword", "stone hammer", "metal armor", "berries",
             "diamond key", "puzzle","inventory", "test case for game", "test case" // testing multiple commands in one -- will be deleted - Raven
     ));
@@ -285,7 +285,7 @@ public class Game {
                 case "consume", "eat" -> msg = consumeItem(noun);
                 case "explore" -> exploreItem(noun);
                 case "check" -> checkInventory();
-                case "pickup" -> pickupItem(noun);
+                case "pickup", "take" -> pickupItem(noun);
                 case "drop" -> dropItem(noun);
                 case "equipped", "wear" -> msg = equipItem(noun);
                 case "unequipped" -> msg = unequipItem(noun);
@@ -343,7 +343,7 @@ public class Game {
                         msg = "";
                         break;
                     }
-                    case "pickup" -> {
+                    case "pickup", "take" -> {
                         pickupItem(msg);
                         msg = "";
                         break;
