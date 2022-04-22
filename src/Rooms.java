@@ -6,7 +6,8 @@ public class Rooms {
     /**
      * @author: Raven Gardner
      * Note: I created the attributes, constructor, basic getter/setter methods,
-     * fixed bug for locked door feature, and implemented explore room feature
+     * fixed bug for locked door feature, implemented explore room feature,
+     * and unlock door if key is equipped.
      *
      * @author: Alan Oliver
      * Note: I modified the original room file and created
@@ -125,12 +126,12 @@ public class Rooms {
         this.south = south;
     }
 
-/*
-    public int getLockedDoor() {
-        return lockedDoor;
-    }
+    /*
+        public int getLockedDoor() {
+            return lockedDoor;
+        }
 
- */
+     */
 /*
     public void setLockedDoor(int lockedDoor) {
         this.lockedDoor = lockedDoor;
@@ -216,7 +217,8 @@ public class Rooms {
      * to open the door
      *
      * @author: Raven Gardner
-     * fixed locked door feature; no longer stuck in room 35
+     * fixed locked door feature; no longer stuck in room 35,
+     * implemented unlocking door if key is equipped
      */
     public void moveAround(String verb) {
         ArrayList<Rooms> roomList = new ArrayList<>();
@@ -224,7 +226,7 @@ public class Rooms {
         Rooms room;
         room = getRoomObject(currentRoom, roomList);
         if (count == 0){
-            for (int i = 0; i < roomList.size(); i++){
+            for (int i = 1; i <= roomList.size(); i++){ // changed to initialize as 1 to include room 36 -- Raven
                 beenHere1.put(i,false);
             }
         }// used to populate hashMap for tracking rooms -Joe N
@@ -237,7 +239,7 @@ public class Rooms {
                 if (beenHere1.get(currentRoom)){
                     System.out.println("You have been here before!");
                 }
-                System.out.println("You're in the Room " + room.getRoomID());
+                System.out.println("You're in Room " + room.getRoomID());
                 setRoomID(room.getRoomID()); // added for explore room; Raven
                 Game.setRooms(room); // added to keep track of rooms in Game class; for item features; Raven
                 Player.setLocation(room); // same ^^ also updates player info; Raven
@@ -246,10 +248,27 @@ public class Rooms {
             }
 
             else if (room.getNorth() == -2) { // instead of locked door variable if navigation = -2; the door is locked; -2 also represents the locked door roomID. -- Raven
-                currentRoom = room.getRoomID();
-                room = getRoomObject(currentRoom, roomList);
-                System.out.println("You need a key!");
-                System.out.println("You're in the Room " + room.getRoomID());
+
+                // unlocks door if diamond key is in use -- Raven
+                if(Player.getEquippedItems().containsValue("Diamond key")){
+                    currentRoom = room.getNorth();
+                    room = getRoomObject(currentRoom, roomList);
+                    if (beenHere1.get(36)){ // current roomID is -2 so change it to 36 for room 36 -- Raven
+                        System.out.println("You have been here before!");
+                    }
+                    System.out.println("You're in Room 36");
+                    setRoomID(room.getRoomID()); // added for explore room; Raven
+                    Game.setRooms(room); // added to keep track of rooms in Game class; for item features; Raven
+                    Player.setLocation(room); // same ^^ also updates player info; Raven
+                    beenHere1.replace(36,true);// change to 36 so room 36 is true in hashmap
+                    count++;
+                } else {
+                    currentRoom = room.getRoomID();
+                    room = getRoomObject(currentRoom, roomList);
+                    System.out.println("You need a key!");
+                    System.out.println("You're in Room " + room.getRoomID());
+                }
+
             } else {
                 System.out.println("There’s no exit in this direction");
             }
@@ -264,17 +283,34 @@ public class Rooms {
                 if (beenHere1.get(currentRoom)){
                     System.out.println("You have been here before!");
                 }
-                System.out.println("You're in the Room " + room.getRoomID());
+                System.out.println("You're in Room " + room.getRoomID());
                 setRoomID(room.getRoomID());
                 Game.setRooms(room); // added to keep track of rooms in Game class; for item features; Raven
                 Player.setLocation(room); // same ^^ also updates player info; Raven
                 beenHere1.replace(currentRoom,true);
                 count++;
             } else if (room.getSouth() == -2) {
-                currentRoom = room.getRoomID();
-                room = getRoomObject(currentRoom, roomList);
-                System.out.println("You need a key!");
-                System.out.println("You're in the Room " + room.getRoomID());
+
+                if(Player.getEquippedItems().containsValue("Diamond key")){
+                    currentRoom = room.getSouth();
+                    room = getRoomObject(currentRoom, roomList);
+                    if (beenHere1.get(36)){
+                        System.out.println("You have been here before!");
+                    }
+
+                    System.out.println("You're in Room 36");
+                    setRoomID(room.getRoomID()); // added for explore room; Raven
+                    Game.setRooms(room); // added to keep track of rooms in Game class; for item features; Raven
+                    Player.setLocation(room); // same ^^ also updates player info; Raven
+                    beenHere1.replace(36,true);// change to 36 so room 36 is true in hashmap
+                    count++;
+                } else {
+                    currentRoom = room.getRoomID();
+                    room = getRoomObject(currentRoom, roomList);
+                    System.out.println("You need a key!");
+                    System.out.println("You're in Room " + room.getRoomID());
+                }
+
             } else {
                 System.out.println("There’s no exit in this direction");
             }
@@ -288,17 +324,33 @@ public class Rooms {
                 if (beenHere1.get(currentRoom)){
                     System.out.println("You have been here before!");
                 }
-                System.out.println("You're in the Room " + room.getRoomID());
+                System.out.println("You're in Room " + room.getRoomID());
                 setRoomID(room.getRoomID());
                 Game.setRooms(room); // added to keep track of rooms in Game class; for item features; Raven
                 Player.setLocation(room); // same ^^ also updates player info; Raven
                 beenHere1.replace(currentRoom,true);
                 count++;
             } else if (room.getEast() == -2) {
-                currentRoom = room.getRoomID();
-                room = getRoomObject(currentRoom, roomList);
-                System.out.println("You need a key!");
-                System.out.println("You're in the Room " + room.getRoomID());
+
+                if(Player.getEquippedItems().containsValue("Diamond key")){
+                    currentRoom = room.getEast();
+                    room = getRoomObject(currentRoom, roomList);
+                    if (beenHere1.get(36)){
+                        System.out.println("You have been here before!");
+                    }
+                    System.out.println("You're in Room 36");
+                    setRoomID(room.getRoomID()); // added for explore room; Raven
+                    Game.setRooms(room); // added to keep track of rooms in Game class; for item features; Raven
+                    Player.setLocation(room); // same ^^ also updates player info; Raven
+                    beenHere1.replace(36,true);// change to 36 so room 36 is true in hashmap
+                    count++;
+                } else {
+                    currentRoom = room.getRoomID();
+                    room = getRoomObject(currentRoom, roomList);
+                    System.out.println("You need a key!");
+                    System.out.println("You're in Room " + room.getRoomID());
+                }
+
             } else {
                 System.out.println("There’s no exit in this direction");
             }
@@ -312,17 +364,33 @@ public class Rooms {
                 if (beenHere1.get(currentRoom)){
                     System.out.println("You have been here before!");
                 }
-                System.out.println("You're in the Room " + room.getRoomID());
+                System.out.println("You're in Room " + room.getRoomID());
                 setRoomID(room.getRoomID());
                 Game.setRooms(room); // added to keep track of rooms in Game class; for item features; Raven
                 Player.setLocation(room); // same ^^ also updates player info; Raven
                 beenHere1.replace(currentRoom,true);
                 count++;
             } else if (room.getWest() == -2) {
-                currentRoom = room.getRoomID();
-                room = getRoomObject(currentRoom, roomList);
-                System.out.println("You need a key!");
-                System.out.println("You're in the Room " + room.getRoomID());
+
+                if(Player.getEquippedItems().containsValue("Diamond key")){
+                    currentRoom = room.getWest();
+                    room = getRoomObject(currentRoom, roomList);
+                    if (beenHere1.get(36)){
+                        System.out.println("You have been here before!");
+                    }
+                    System.out.println("You're in Room 36");
+                    setRoomID(room.getRoomID()); // added for explore room; Raven
+                    Game.setRooms(room); // added to keep track of rooms in Game class; for item features; Raven
+                    Player.setLocation(room); // same ^^ also updates player info; Raven
+                    beenHere1.replace(36,true);// change to 36 so room 36 is true in hashmap
+                    count++;
+                } else {
+                    currentRoom = room.getRoomID();
+                    room = getRoomObject(currentRoom, roomList);
+                    System.out.println("You need a key!");
+                    System.out.println("You're in the Room " + room.getRoomID());
+                }
+
             } else {
                 System.out.println("There’s no exit in this direction");
             }
@@ -335,7 +403,7 @@ public class Rooms {
      * @author: Joe Nsengiyumva
      */
     private Rooms getRoomObject(int currentRoom, ArrayList<Rooms> roomList) {
-    //current room of the player
+        //current room of the player
         for (Rooms a : roomList) {
             if (a.getRoomID() == currentRoom) {
                 return a;
