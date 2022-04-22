@@ -120,13 +120,15 @@ public class Puzzle {
         String s = "";
         Scanner input = new Scanner(System.in);
         int attempt = 2;
+        int hintAttempts = 1;
 
         for(Map.Entry<Puzzle, String> allPuzzles : getPuzzleInfo().entrySet()) {
             if (Player.getLocation().getPuzzleID() == allPuzzles.getKey().getPuzzleID()) {
                 s = "";
-                System.out.println("\n\nYou have two attempts...\n\n");
+                System.out.println("\n\nYou have two attempts and...\n\n");
                 String answer = input.next();
                 while(input.hasNextLine()) {
+
                     if (answer.equalsIgnoreCase(allPuzzles.getKey().getPuzzleSolution()) && attempt >= 0) {
                         System.out.println("Correct!\n\n");
                         getPuzzleInfo().remove(allPuzzles.getKey());
@@ -134,8 +136,17 @@ public class Puzzle {
                     }
                     else if (answer.equalsIgnoreCase("hint") && attempt >= 0 && !answer.equalsIgnoreCase(allPuzzles.getKey().getPuzzleSolution())) {
 
-                        System.out.println(allPuzzles.getKey().getPuzzleHint());
-                        answer = input.next();
+                        if(answer.equalsIgnoreCase("hint") && attempt >= 0 && !answer.equalsIgnoreCase(allPuzzles.getKey().getPuzzleSolution())
+                                && hintAttempts == 1) {
+                            System.out.println(allPuzzles.getKey().getPuzzleHint());
+                            answer = input.next();
+                            hintAttempts--;
+                        }
+
+                        else{
+                            System.out.println("This is the only hint you get, there is no other hint to be given!");
+                            answer = input.next();
+                        }
 
                     }
                     else if (!answer.equalsIgnoreCase(allPuzzles.getKey().getPuzzleSolution()) && attempt > 0) {
