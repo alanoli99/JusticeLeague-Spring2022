@@ -152,7 +152,7 @@ public class Puzzle {
                 break;
             }
             if (s.isEmpty()){
-                s = "No puzzle to solve here...";
+                s = "There are no puzzles in this room";
             }
         }
         return s;
