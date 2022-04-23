@@ -154,10 +154,7 @@ public class Monsters {
         for (Monsters mons : monsInfo) {
 
 
-
-
             if (mons.getId() == Player.getLocation().getMonsterID()) {
-
 
 
                 m = "\n" + mons.getDescription() + " is in the room! " +
@@ -238,9 +235,29 @@ public class Monsters {
                         response = input.nextLine();
                     }
                     else if (response.equalsIgnoreCase("riddle")) {
-                        System.out.println("riddle feature\n");
-                        response = input.nextLine();
-                    } else {
+                        int count = 2;
+                        int secondCount = 0;
+
+                        while (count >= 0){
+//
+                            System.out.println("Answer the following riddle: " + mons.getRiddle());
+                            String riddleAnswer = input.nextLine();
+                            if (mons.getAnswer().equalsIgnoreCase(riddleAnswer)){
+                                System.out.println("You have answered right! Congrats!");
+                                return "";
+                            }
+                            count--;
+                            if (count == 0){
+                                System.out.println("you have no more chances left. better luck next time!");
+                                return "";
+                            }
+                            System.out.println("wrong answer you have " + count + " chance left");
+
+                        }
+
+//                        response = input.nextLine();
+                    }
+                    else {
                         System.out.println("Invalid command. Try again");
                         response = input.nextLine();
                     }
