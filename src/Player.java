@@ -248,6 +248,9 @@ public class Player extends Rooms {
                     break;
                 }
 
+                    Player.getLocation().setItemID(inInventory.getArtiID());
+
+
                     getInventory().remove(collected.getKey());
                     getPlayerInventoryMap().remove(inInventory);
                     System.out.println(obname + " has been dropped!");
@@ -296,6 +299,6 @@ public class Player extends Rooms {
     public String toString() {
         return "\nPlayer info\n\n" +
                 "Current Room: " + location.getRoomName() +
-                "\nYour Health: " + playerHealth + "\nInventory: " + inventory;
+                "\nYour Health: " + playerHealth + "\nInventory: " + inventory + Player.getLocation().getItemID();
     }
 }
