@@ -18,8 +18,8 @@ public class Main {
         System.out.println("Type 'start' to start game");
         System.out.println("--------------------------");
 
-        Player.setPlayerHealth(50);
-        Player.setPlayerAttkDamage(1);
+        Player.setPlayerHealth(10);
+      //  Player.setPlayerAttkDamage(1);
 
        input = begin.next();
 

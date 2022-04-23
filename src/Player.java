@@ -220,6 +220,48 @@ public class Player extends Rooms {
         return beenEquipped;
     }
 
+    /**
+     * @author: Alan Oliver
+     * players can drop items
+     */
+    public static String removeFromInventory(String obname) {
+        //String beenEquipped = "";
+        Artifacts inEquipMap;
+        //int healthPoints;
+
+        //for (Artifacts artifacts : getInventory()) {
+        //getPlayerInventoryMap().put(artifacts, artifacts.getArtiName());
+        //}
+
+        obname = obname.trim().replaceAll("\\s{2,}", " "); // gets rid of the space in the beginning of the item name -- Raven
+
+        for (Map.Entry<Artifacts, String> equipped : getEquippedItems().entrySet()) {
+
+            inEquipMap = equipped.getKey();
+
+
+            if (inEquipMap.getArtiName().equalsIgnoreCase(obname)) {
+//                healthPoints = inEquipMap.getEquipHealth();
+//                setPlayerHealth(-healthPoints);
+//                playerInfo.clear();
+//                beenEquipped = "\n" + obname + " has been unequipped!" +
+//                        "\nYou now have " + getPlayerHealth() + " health points.";
+
+                //System.out.println("in equip map: " + getEquippedItems());
+
+                //   playerInfo.put(inEquipMap, getPlayerHealth());
+                getInventory().remove(equipped.getKey());
+                System.out.println(obname + " has been dropped!");
+                break;
+            }
+        }
+//        if (beenEquipped.isEmpty()) {
+//            beenEquipped = "\n" + obname + " has not been equipped yet\n";
+//        }
+        //return beenEquipped;
+        return obname;
+    }
+
         public static void addToInventory(String noun) {
         ArrayList<Artifacts> artifactsList = new ArrayList<>();
         Text.artiList(artifactsList);
@@ -250,29 +292,33 @@ public class Player extends Rooms {
     }// used to test check inventory -Joe N
 
     //@Alan
-    public static void removeFromInventory(String noun) {
-        ArrayList<Artifacts> artifactsList = new ArrayList<>();
-        Text.artiList(artifactsList);
-        Artifacts artifacts;
+//    public static void removeFromInventory(String noun) {
+//        ArrayList<Artifacts> artifactsList = new ArrayList<>();
+//        Text.artiList(artifactsList);
+//        Artifacts artifacts;
+//
+//        noun = noun.trim().replaceAll("\\s{2,}", " ");
+//        artifacts = Artifacts.getItemObject(Player.getLocation().getItemID(), artifactsList);
+//
+//        if (artifacts != null && artifacts.getArtiName().equalsIgnoreCase(noun)){
+//            if (inventory.size() == 0){
+//                System.out.println("Inventory is empty! no item to drop!");
+//                return;
+//            }
+//            inventory.remove(artifacts);
+//            System.out.println(noun + " has been dropped from inventory");
+//            // System.out.println(inventory.size());
+//            getPlayerInventoryMap().remove(artifacts,noun); //Raven -- created to update map for inventory
+//        }
+//        else{
+//            System.out.println("There's no item in your inventory!");
+//        }
+//
+//    }
 
-        noun = noun.trim().replaceAll("\\s{2,}", " ");
-        artifacts = Artifacts.getItemObject(Player.getLocation().getItemID(), artifactsList);
 
-        if (artifacts != null && artifacts.getArtiName().equalsIgnoreCase(noun)){
-            if (inventory.size() == 0){
-                System.out.println("Inventory is empty! no item to drop!");
-                return;
-            }
-            inventory.remove(artifacts);
-            System.out.println(noun + " has been dropped from inventory");
-            // System.out.println(inventory.size());
-            getPlayerInventoryMap().remove(artifacts,noun); //Raven -- created to update map for inventory
-        }
-        else{
-            System.out.println("There's no item in your inventory!");
-        }
 
-    }
+
     @Override
     public String toString() {
         return "\nPlayer info\n\n" +
