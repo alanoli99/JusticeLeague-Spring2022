@@ -222,45 +222,37 @@ public class Player extends Rooms {
 
     /**
      * @author: Alan Oliver
-     * players can drop items
+     * ID: IF7; drop item
      */
     public static String removeFromInventory(String obname) {
-        //String beenEquipped = "";
-        Artifacts inEquipMap;
-        //int healthPoints;
 
-        //for (Artifacts artifacts : getInventory()) {
-        //getPlayerInventoryMap().put(artifacts, artifacts.getArtiName());
-        //}
+        Artifacts inInventory;
 
         obname = obname.trim().replaceAll("\\s{2,}", " "); // gets rid of the space in the beginning of the item name -- Raven
 
-        for (Map.Entry<Artifacts, String> equipped : getEquippedItems().entrySet()) {
+        for (Map.Entry<Artifacts, String> collected : getPlayerInventoryMap().entrySet()) {
 
-            inEquipMap = equipped.getKey();
+            inInventory = collected.getKey();
 
+            if (inInventory.getArtiName().equalsIgnoreCase(obname)) {
 
-            if (inEquipMap.getArtiName().equalsIgnoreCase(obname)) {
-//                healthPoints = inEquipMap.getEquipHealth();
-//                setPlayerHealth(-healthPoints);
-//                playerInfo.clear();
-//                beenEquipped = "\n" + obname + " has been unequipped!" +
-//                        "\nYou now have " + getPlayerHealth() + " health points.";
+                if(getPlayerInventoryMap().size() == 0){
+                    System.out.println("No items to drop!");
+                    break;
+                }
 
-                //System.out.println("in equip map: " + getEquippedItems());
+                    getInventory().remove(collected.getKey());
+                    getPlayerInventoryMap().remove(inInventory);
+                    System.out.println(obname + " has been dropped!");
+                }
 
-                //   playerInfo.put(inEquipMap, getPlayerHealth());
-                getInventory().remove(equipped.getKey());
-                System.out.println(obname + " has been dropped!");
+                playerInfo.put(inInventory, getPlayerHealth());
                 break;
             }
-        }
-//        if (beenEquipped.isEmpty()) {
-//            beenEquipped = "\n" + obname + " has not been equipped yet\n";
-//        }
-        //return beenEquipped;
         return obname;
     }
+
+
 
         public static void addToInventory(String noun) {
         ArrayList<Artifacts> artifactsList = new ArrayList<>();
