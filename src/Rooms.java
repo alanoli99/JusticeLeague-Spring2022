@@ -1,6 +1,7 @@
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Rooms {
     /**
@@ -158,12 +159,7 @@ public class Rooms {
         Text.readRoomFile(roomInfo);
         ArrayList<Artifacts> itemInfo = new ArrayList<>();
         Text.artiList(itemInfo);
-        ArrayList<Puzzle> puzzleInfo = new ArrayList<>();
-        try {
-            Text.readPuzzleFile(puzzleInfo);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+
         String s = "";
         String m = "";
         String i = "";
@@ -185,8 +181,8 @@ public class Rooms {
                         }
                     }
                 } if(rooms.getPuzzleID() > 0){
-                    for(Puzzle puzzle : puzzleInfo){
-                        if(rooms.getPuzzleID() == puzzle.getPuzzleID()){
+                    for(Map.Entry<Puzzle,String> puzzle : Puzzle.getPuzzleInfo().entrySet()){
+                        if(rooms.getPuzzleID() == puzzle.getKey().getPuzzleID()){
                             p = "\nThere is a puzzle here!";
                             break;
                         }
