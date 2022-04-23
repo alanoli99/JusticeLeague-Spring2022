@@ -110,6 +110,12 @@ public class Player extends Rooms {
                 } else {
                     healthPoints = inInventory.getConsumeHealth();
                     setPlayerHealth(healthPoints);
+                    if(getPlayerHealth() < 1){
+                        System.out.println("Your health is now " + getPlayerHealth() + "HP");
+                        System.out.println("You've reached the end of your journey :(");
+                        System.out.println("\nThanks for playing!");
+                        System.exit(0);
+                    }
                     playerInfo.clear();
                     beenConsumed = "\n" + obname + " has been consumed! " + obname + " has changed your health by " + healthPoints + " points!\n" +
                             "You now have " + getPlayerHealth() + " health points.";
