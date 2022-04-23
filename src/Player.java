@@ -9,7 +9,8 @@ import java.util.Map;
  * created attributes, getter/setter, and hashmap info
  * Methods: consume, equip, and unequip
  *
- *
+ * @author: Alan Oliver
+ * playerHealth and Playerattck Damage
  */
 
 public class Player extends Rooms {
@@ -228,7 +229,7 @@ public class Player extends Rooms {
 
     /**
      * @author: Alan Oliver
-     * ID: IF7; drop item
+     *  drop item from inventory
      */
     public static String removeFromInventory(String obname) {
 
@@ -288,32 +289,6 @@ public class Player extends Rooms {
         }
 
     }// used to test check inventory -Joe N
-
-    //@Alan
-//    public static void removeFromInventory(String noun) {
-//        ArrayList<Artifacts> artifactsList = new ArrayList<>();
-//        Text.artiList(artifactsList);
-//        Artifacts artifacts;
-//
-//        noun = noun.trim().replaceAll("\\s{2,}", " ");
-//        artifacts = Artifacts.getItemObject(Player.getLocation().getItemID(), artifactsList);
-//
-//        if (artifacts != null && artifacts.getArtiName().equalsIgnoreCase(noun)){
-//            if (inventory.size() == 0){
-//                System.out.println("Inventory is empty! no item to drop!");
-//                return;
-//            }
-//            inventory.remove(artifacts);
-//            System.out.println(noun + " has been dropped from inventory");
-//            // System.out.println(inventory.size());
-//            getPlayerInventoryMap().remove(artifacts,noun); //Raven -- created to update map for inventory
-//        }
-//        else{
-//            System.out.println("There's no item in your inventory!");
-//        }
-//
-//    }
-
 
 
 

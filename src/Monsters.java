@@ -132,7 +132,6 @@ public class Monsters {
 
         ArrayList<Rooms> roomInfo = new ArrayList<>();
         Text.readRoomFile(roomInfo);
-        String s = "";
 
         ArrayList<Monsters> monsInfo = new ArrayList<>();
         Text.monsReader(monsInfo);
@@ -145,11 +144,6 @@ public class Monsters {
 
 
 
-        //System.out.println("current room id: " + getRoomID());
-
-        // will change to compare room id in file to current room of the player
-
-        // while (playing) {
 
         for (Monsters mons : monsInfo) {
 
@@ -157,8 +151,7 @@ public class Monsters {
             if (mons.getId() == Player.getLocation().getMonsterID()) {
 
 
-                m = "\n" + mons.getDescription() + " is in the room! " +
-                        " Attack Damage: -" + mons.getMonsAttack() + ".";
+                m = "\n" + mons.getDescription() + " is in the room! ";
 
                 m = m + "\n\n" + "What would you like to do?" + "\nType 'run' to run away" +
                         "\nType 'riddle' to answer the riddle" + "\nType 'attack' to attack monster";
@@ -184,13 +177,13 @@ public class Monsters {
                             int playerAttack = obj.nextInt(4);
 
                             int damageCaused = playerAttack;
-                            int damagetaken = mons.getMonsAttack();
+                            int damagetaken = obj.nextInt(2);
 
                             int currentMonsHealth = mons.getMonsHealth();
                             currentMonsHealth -= damageCaused;
 
                             playerHealth -= damagetaken;
-                            int updatedPlayerHealth = playerHealth;
+                            //int updatedPlayerHealth = playerHealth;
                             Player.setPlayerHealth(-damagetaken); // previously would update random wrong numbers -- Raven
 
                             mons.setMonsHealth(currentMonsHealth);
