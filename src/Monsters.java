@@ -158,7 +158,7 @@ public class Monsters {
 
             if (mons.getId() == Player.getLocation().getMonsterID()) {
 
-                int playerAttack = obj.nextInt(0,4);
+
 
                 m = "\n" + mons.getDescription() + " is in the room! " +
                         " Attack Damage: -" + mons.getMonsAttack() + ".";
@@ -182,7 +182,9 @@ public class Monsters {
 
                     else if (response.equalsIgnoreCase("Attack")) {
 
-                        if(mons.monsHealth >= 1) {
+                        if(mons.monsHealth > 0) {
+
+                            int playerAttack = obj.nextInt(4);
 
                             int damageCaused = playerAttack;
                             int damagetaken = mons.getMonsAttack();
@@ -196,6 +198,28 @@ public class Monsters {
 
                             mons.setMonsHealth(currentMonsHealth);
 
+                            if (playerHealth < 1) {
+                                System.out.println("\t>Too much damage! The monster took advantage of your state and ate you");
+                                System.out.println("Thanks for playing!");
+                                System.exit(0);
+                            }
+
+                            else if (mons.monsHealth < 1 && mons.getId() == 8 ){
+
+                                System.out.println(mons.getDescription() + " has been killed! You have rescured the princess!");
+                                System.out.println("Congratulations! You and the Princess leave the castle to live a happy life. ");
+                                System.exit(0);
+                                break;
+                            }
+
+                            else if (mons.monsHealth < 1){
+
+                                System.out.println(mons.getDescription() + " has been killed!");
+                                break;
+                            }
+
+
+
                             System.out.println("\t> You attacked " + mons.getDescription() + "for "
                                     + damageCaused + " damage.");
                             System.out.println("\t>Monster Health " + currentMonsHealth);
@@ -203,16 +227,13 @@ public class Monsters {
 
                             System.out.println("\t>You recieved " + damagetaken + " point damage in return!");
                             System.out.println("\t>Your Health " + playerHealth);
-//                        if (playerHealth < 1) {
-//                            System.out.println("\t>Too much damage! The monster took advantage of your state and ate you");
-//                            break;
-//                        }
-                        }
 
-                       else if (mons.monsHealth == 0){
-                            System.out.println(mons.getDescription() + " has been killed!");
+
+
 
                         }
+
+
 
                         response = input.nextLine();
                     }
