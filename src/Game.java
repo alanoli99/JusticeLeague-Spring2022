@@ -305,10 +305,8 @@ public class Game {
             verb = verb + " " + wordlist.get(i);
             verb = verb.trim().replaceAll("\\s{2,}", " ");
             verbCount += 1;
-            if(commands.contains(verb.toLowerCase())){
-                break;
-            }
         }
+
         for(int n = verbCount; n < wordlist.size(); n++){
             nounCommand = nounCommand + " " + wordlist.get(n);
             msg = nounCommand;
@@ -405,7 +403,7 @@ public class Game {
         String s;
         s = "----------------------------------\n" + "Welcome to Necromancing Dreams!\n" + "----------------------------------\n" +
                 "DIRECTIONS: \n\n" +
-                "You are a knight who must save the princess from the final boss (the necromancer), and leave the castle from where you started!\n" +
+                "You are a knight who must save the princess from the final boss (the necromancer), and leave the castle!\n" +
                 "Throughout the game you will collect items that will help fight different level monsters and use some brain power\n" +
                 "to solve puzzles that are mapped out throughout the game... \n\n\n\n" +
                 "type 'help' to get control details\n\n\n\n" +
@@ -431,10 +429,15 @@ public class Game {
                 verb = verb + " " + wordlist.get(i);
                 verb = verb.trim().replaceAll("\\s{2,}", " ");
                 verbCount += 1;
-                if(commands.contains(verb.toLowerCase())){
+                if (commands.contains(verb.toLowerCase())){
                     break;
                 }
             }
+
+            if(wordlist.get(verbCount).equalsIgnoreCase("off")){
+                verbCount += 1;
+            }
+
             for(int n = verbCount; n < wordlist.size(); n++){
                 noun = noun + " " + wordlist.get(n);
                 noun = noun.trim().replaceAll("\\s{2,}", " ");
