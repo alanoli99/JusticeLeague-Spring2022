@@ -342,8 +342,8 @@ public class Player extends Rooms {
 
             // ADDED FOR DROP ITEM/EXPLORE ROOM FEATURE
             for (Map.Entry<Artifacts, String> pickup : getItemsDropped().entrySet()) {
-                System.out.println("pickup value:"+pickup.getValue());
-                System.out.println("console:"+noun);
+                //System.out.println("pickup value:"+pickup.getValue());
+                //System.out.println("console:"+noun);
                 if (pickup.getValue().equalsIgnoreCase(noun)) {
                     if (inventory.size() >= 5) {
                         System.out.println("Inventory is full! drop item.");
