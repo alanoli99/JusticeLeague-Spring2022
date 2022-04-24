@@ -257,7 +257,7 @@ public class Player extends Rooms {
                     break;
                 }
 
-                Player.getLocation().setItemID(inInventory.getArtiID());
+                //Player.getLocation().setItemID(inInventory.getArtiID());
 
 
                 getInventory().remove(collected.getKey());
@@ -279,7 +279,7 @@ public class Player extends Rooms {
         Artifacts artifacts;
         noun = noun.trim().replaceAll("\\s{2,}", " ");
         artifacts = Artifacts.getItemObject(Game.getRooms().getItemID(), artifactsList);
-        if (artifacts != null && artifacts.getArtiName().equalsIgnoreCase(noun) || !getItemsDropped().isEmpty()) {
+        if (artifacts != null && artifacts.getArtiName().equalsIgnoreCase(noun) /*|| !getItemsDropped().isEmpty()*/) {
             if (inventory.size() >= 5) {
                 System.out.println("Inventory is full! drop item.");
                 return;
