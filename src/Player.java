@@ -279,7 +279,9 @@ public class Player extends Rooms {
         Artifacts artifacts;
         noun = noun.trim().replaceAll("\\s{2,}", " ");
         artifacts = Artifacts.getItemObject(Game.getRooms().getItemID(), artifactsList);
-        if (artifacts != null && artifacts.getArtiName().equalsIgnoreCase(noun) /*|| !getItemsDropped().isEmpty()*/) {
+        //artifacts = artifacts in text file; static to room
+        //if artifacts is not null and the artifacts name equals the command from console
+        if (artifacts != null && artifacts.getArtiName().equalsIgnoreCase(noun)) {
             if (inventory.size() >= 5) {
                 System.out.println("Inventory is full! drop item.");
                 return;
@@ -289,21 +291,33 @@ public class Player extends Rooms {
             //System.out.println(inventory.size());
             getPlayerInventoryMap().put(artifacts, noun); //Raven -- created to update map for inventory
 
-            // ADDED FOR DROP ITEM/EXPLORE ROOM FEATURE
-            for (Map.Entry<Artifacts, String> pickup : getItemsDropped().entrySet()) {
-                System.out.println(pickup.getValue());
-                if (pickup.getValue().equalsIgnoreCase(artifacts.getArtiName())) {
-                    getItemsDropped().remove(pickup.getKey());
-                    System.out.println(getItemsDropped());
-                    break;
-                }
-            }
+            getItemsDropped().remove(artifacts);
 
         } else if (artifacts != null && !artifacts.getArtiName().equalsIgnoreCase(noun)) {
             if (inventory.size() > 5) {
                 System.out.println("Inventory is full! drop item.");
                 return;
             }
+
+            // ADDED FOR DROP ITEM/EXPLORE ROOM FEATURE
+            for (Map.Entry<Artifacts, String> pickup : getItemsDropped().entrySet()) {
+                //System.out.println("pickup value:"+pickup.getValue());
+                //System.out.println("artifacts value:"+artifacts.getArtiName());
+                if (!pickup.getValue().equalsIgnoreCase(artifacts.getArtiName())) {
+                    if (inventory.size() >= 5) {
+                        System.out.println("Inventory is full! drop item.");
+                        return;
+                    }
+                    inventory.add(pickup.getKey());
+                    System.out.println(noun + " has been added to inventory");
+                    //System.out.println(inventory.size());
+                    getPlayerInventoryMap().put(pickup.getKey(), noun); //Raven -- created to update map for inventory
+                    getItemsDropped().remove(pickup.getKey());
+                    //System.out.println(getItemsDropped());
+                    return;
+                }
+            }
+
             System.out.println(noun + " is not in this room");
         } else {
             System.out.println("There's no item in this room");
