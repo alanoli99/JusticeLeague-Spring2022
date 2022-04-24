@@ -164,6 +164,8 @@ public class Rooms {
         String m = "";
         String i = "";
         String p = "";
+        String begin ="";
+
 
         //System.out.println("current room id: " + getRoomID());
         for (Rooms rooms : roomInfo) {
@@ -178,13 +180,13 @@ public class Rooms {
                         //System.out.println(inDrop.getKey().getArtiID() == rooms.getRoomID());
                         if (inDrop.getKey().getArtiID() == rooms.getRoomID()) {
                             if(rooms.getItemID() == 0 ){
-                                i = "Artifacts here! " + "\n";
+                                begin = "Artifacts here! " + "\n";
                             }
-                            i = i + inDrop.getValue();
-                            System.out.println("items in room:" + inDrop.getValue());
+                            i = i + "\n" + inDrop.getValue();
                             //break;
                         }
                     }
+                    i = begin + i;
                 }
                 if(rooms.getItemID() > 0){
                     for(Artifacts item : itemInfo){
