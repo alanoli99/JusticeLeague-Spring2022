@@ -90,6 +90,7 @@ public class Artifacts {
         return getArtiName();
     }
 
+    // @author: Joe Nsengiyumva
     public static Artifacts getItemObject(int artifactId, ArrayList<Artifacts> list) {
 
         for (Artifacts item : list) {
@@ -100,6 +101,7 @@ public class Artifacts {
         return null;
     }
 
+    //@author: Joe Nsengiyumva
     public static void exploreArtifacts(String noun) {
         ArrayList<Artifacts> artifactsList = new ArrayList<>();
         Text.artiList(artifactsList);
