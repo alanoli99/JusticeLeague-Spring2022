@@ -259,16 +259,20 @@ public class Player extends Rooms {
 
                 //Player.getLocation().setItemID(inInventory.getArtiID());
 
-                inInventory.setArtiID(getLocation().getRoomID());
+                // prevents from dropping in all rooms
+                inInventory.setArtiID(getLocation().getRoomID()); // sets the specific item that was dropped room id to the current location of the player
 
                 getInventory().remove(collected.getKey());
                 getPlayerInventoryMap().remove(inInventory);
+
                 getItemsDropped().put(inInventory, inInventory.getArtiName()); // ADDED FOR DROP ITEM/EXPLORE ROOM FEATURE
+
                 System.out.println(obname + " has been dropped!");
+                break;
             }
 
             playerInfo.put(inInventory, getPlayerHealth());
-            break;
+           // break;
         }
         return obname;
     }
