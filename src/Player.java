@@ -8,7 +8,6 @@ import java.util.Map;
  * @author: Raven Gardner
  * created attributes, getter/setter, and hashmap info
  * Methods: consume, equip, and unequip
- *
  * @author: Alan Oliver
  * playerHealth and Playerattck Damage
  */
@@ -21,6 +20,8 @@ public class Player extends Rooms {
     private static HashMap<Artifacts, String> inventoryMap = new HashMap<>();
     private static HashMap<Artifacts, Integer> playerInfo = new HashMap<>(); // key = Artifacts info, value = health -- Raven
     public static ArrayList<Artifacts> inventory = new ArrayList<>();
+    private static HashMap<Artifacts, String> itemsDropped = new HashMap<>();
+
 
     public static ArrayList<Artifacts> getInventory() {
         return inventory;
@@ -81,6 +82,14 @@ public class Player extends Rooms {
         Player.playerInfo = playerInfo;
     }
 
+    public static HashMap<Artifacts, String> getItemsDropped() {
+        return itemsDropped;
+    }
+
+    public static void setItemsDropped(HashMap<Artifacts, String> itemsDropped) {
+        Player.itemsDropped = itemsDropped;
+    }
+
 
     /**
      * @author: Raven Gardner
@@ -111,7 +120,7 @@ public class Player extends Rooms {
                 } else {
                     healthPoints = inInventory.getConsumeHealth();
                     setPlayerHealth(healthPoints);
-                    if(getPlayerHealth() < 1){
+                    if (getPlayerHealth() < 1) {
                         System.out.println("Your health is now " + getPlayerHealth() + "HP");
                         System.out.println("You've reached the end of your journey :(");
                         System.out.println("\nThanks for playing!");
@@ -171,7 +180,7 @@ public class Player extends Rooms {
                     //System.out.println("inventory before: " + getInventory());
                     getInventory().remove(collected.getKey());
                     getPlayerInventoryMap().remove(inInventory);
-                    equippedItems.put(inInventory,inInventory.getArtiName());
+                    equippedItems.put(inInventory, inInventory.getArtiName());
 
                     //System.out.println("inventory after: " + getInventory());
                 }
@@ -229,7 +238,7 @@ public class Player extends Rooms {
 
     /**
      * @author: Alan Oliver
-     *  drop item from inventory
+     * drop item from inventory
      */
     public static String removeFromInventory(String obname) {
 
@@ -243,62 +252,72 @@ public class Player extends Rooms {
 
             if (inInventory.getArtiName().equalsIgnoreCase(obname)) {
 
-                if(getPlayerInventoryMap().size() == 0){
+                if (getPlayerInventoryMap().size() == 0) {
                     System.out.println("No items to drop!");
                     break;
                 }
 
-                    Player.getLocation().setItemID(inInventory.getArtiID());
+                Player.getLocation().setItemID(inInventory.getArtiID());
 
 
-                    getInventory().remove(collected.getKey());
-                    getPlayerInventoryMap().remove(inInventory);
-                    System.out.println(obname + " has been dropped!");
-                }
-
-                playerInfo.put(inInventory, getPlayerHealth());
-                break;
+                getInventory().remove(collected.getKey());
+                getPlayerInventoryMap().remove(inInventory);
+                getItemsDropped().put(inInventory, inInventory.getArtiName()); // ADDED FOR DROP ITEM/EXPLORE ROOM FEATURE
+                System.out.println(obname + " has been dropped!");
             }
+
+            playerInfo.put(inInventory, getPlayerHealth());
+            break;
+        }
         return obname;
     }
 
 
-
-        public static void addToInventory(String noun) {
+    public static void addToInventory(String noun) {
         ArrayList<Artifacts> artifactsList = new ArrayList<>();
         Text.artiList(artifactsList);
         Artifacts artifacts;
         noun = noun.trim().replaceAll("\\s{2,}", " ");
         artifacts = Artifacts.getItemObject(Game.getRooms().getItemID(), artifactsList);
-        if (artifacts != null && artifacts.getArtiName().equalsIgnoreCase(noun)){
-            if (inventory.size() >= 5){
+        if (artifacts != null && artifacts.getArtiName().equalsIgnoreCase(noun) || !getItemsDropped().isEmpty()) {
+            if (inventory.size() >= 5) {
                 System.out.println("Inventory is full! drop item.");
                 return;
             }
             inventory.add(artifacts);
             System.out.println(noun + " has been added to inventory");
             //System.out.println(inventory.size());
-            getPlayerInventoryMap().put(artifacts,noun); //Raven -- created to update map for inventory
-        }
-        else if(artifacts != null && !artifacts.getArtiName().equalsIgnoreCase(noun) ){
-            if (inventory.size() > 5){
+            getPlayerInventoryMap().put(artifacts, noun); //Raven -- created to update map for inventory
+
+            // ADDED FOR DROP ITEM/EXPLORE ROOM FEATURE
+            for (Map.Entry<Artifacts, String> pickup : getItemsDropped().entrySet()) {
+                System.out.println(pickup.getValue());
+                if (pickup.getValue().equalsIgnoreCase(artifacts.getArtiName())) {
+                    getItemsDropped().remove(pickup.getKey());
+                    System.out.println(getItemsDropped());
+                    break;
+                }
+            }
+
+        } else if (artifacts != null && !artifacts.getArtiName().equalsIgnoreCase(noun)) {
+            if (inventory.size() > 5) {
                 System.out.println("Inventory is full! drop item.");
                 return;
             }
             System.out.println(noun + " is not in this room");
-        }
-        else{
+        } else {
             System.out.println("There's no item in this room");
         }
 
     }// used to test check inventory -Joe N
 
 
-
     @Override
     public String toString() {
         return "\nPlayer info\n\n" +
                 "Current Room: " + location.getRoomName() +
-                "\nYour Health: " + playerHealth + "\nInventory: " + inventory + Player.getLocation().getItemID();
+                "\nYour Health: " + playerHealth + "\nInventory: " + inventory +
+                "\nItem in Room: "+ Player.getLocation().getItemID() +
+                "\nItem Dropped: " + Player.getItemsDropped(); // ADDED FOR DROP ITEM/EXPLORE ROOM FEATURE
     }
 }

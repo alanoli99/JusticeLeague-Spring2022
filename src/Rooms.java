@@ -173,9 +173,11 @@ public class Rooms {
                 if(rooms.getMonsterID() > 0){
                     m = "\nThere's a monster nearby...";
                 }
-                if(rooms.getItemID() > 0){
+                if(rooms.getItemID() > 0 || !Player.getItemsDropped().isEmpty()){
                     for(Artifacts item : itemInfo){
-                        if(rooms.getItemID() == item.getArtiID()){
+                        //System.out.println(Player.getItemsDropped());
+                        // ADDED FOR DROP ITEM/EXPLORE ROOM FEATURE -> || Player.getItemsDropped().containsValue(item.getArtiName())
+                        if(rooms.getItemID() == item.getArtiID() || Player.getItemsDropped().containsValue(item.getArtiName())){
                             // Player.getPlayerInventoryMap().containsValue(item.getArtiName().toLowerCase()) -- may need if multi items in room
                             i = "Artifacts here! " + i + "\n" + item.getArtiName();
                         }
