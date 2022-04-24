@@ -272,7 +272,7 @@ public class Player extends Rooms {
         return obname;
     }
 
-
+    // @author: Joe Nsengiyumva
     public static void addToInventory(String noun) {
         ArrayList<Artifacts> artifactsList = new ArrayList<>();
         Text.artiList(artifactsList);
