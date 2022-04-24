@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -81,6 +83,7 @@ public class Text {
         }
         return roomList; // return the arraylist to be accessed later in the main method
     }
+
 
     public static ArrayList<Puzzle> readPuzzleFile(ArrayList<Puzzle> puzzleList) throws FileNotFoundException {
 

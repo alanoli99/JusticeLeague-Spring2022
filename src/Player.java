@@ -252,10 +252,7 @@ public class Player extends Rooms {
 
             if (inInventory.getArtiName().equalsIgnoreCase(obname)) {
 
-                if (getPlayerInventoryMap().size() == 0) {
-                    System.out.println("No items to drop!");
-                    break;
-                }
+
 
                 //Player.getLocation().setItemID(inInventory.getArtiID());
 
@@ -271,8 +268,16 @@ public class Player extends Rooms {
                 break;
             }
 
+
             playerInfo.put(inInventory, getPlayerHealth());
            // break;
+            if (inventory.size() == 0 || inInventory.getArtiName().equalsIgnoreCase(obname) || inventoryMap.size() == 0) {
+                System.out.println("No items to drop!");
+            }
+        }
+
+        if (inventory.size() == 0 || inventoryMap.size() == 0) {
+            System.out.println("No items to drop!");
         }
         return obname;
     }
