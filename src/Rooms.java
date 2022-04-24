@@ -181,7 +181,8 @@ public class Rooms {
                                 i = "Artifacts here! " + "\n";
                             }
                             i = i + inDrop.getValue();
-                            break;
+                            System.out.println("items in room:" + inDrop.getValue());
+                            //break;
                         }
                     }
                 }

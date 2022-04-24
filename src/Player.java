@@ -318,7 +318,7 @@ public class Player extends Rooms {
             for (Map.Entry<Artifacts, String> pickup : getItemsDropped().entrySet()) {
                 //System.out.println("pickup value:"+pickup.getValue());
                 //System.out.println("artifacts value:"+artifacts.getArtiName());
-                if (!pickup.getValue().equalsIgnoreCase(artifacts.getArtiName())) {
+                if (!pickup.getValue().equalsIgnoreCase(artifacts.getArtiName()) && pickup.getKey().getArtiID() == getLocation().getRoomID()) {
                     if (inventory.size() >= 5) {
                         System.out.println("Inventory is full! drop item.");
                         return;
