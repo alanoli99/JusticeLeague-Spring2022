@@ -259,6 +259,8 @@ public class Player extends Rooms {
 
                 //Player.getLocation().setItemID(inInventory.getArtiID());
 
+                inInventory.setArtiID(getLocation().getRoomID());
+
                 getInventory().remove(collected.getKey());
                 getPlayerInventoryMap().remove(inInventory);
                 getItemsDropped().put(inInventory, inInventory.getArtiName()); // ADDED FOR DROP ITEM/EXPLORE ROOM FEATURE
@@ -290,7 +292,7 @@ public class Player extends Rooms {
             //System.out.println(inventory.size());
             getPlayerInventoryMap().put(artifacts, noun); //Raven -- created to update map for inventory
 
-            // ADDED FOR DROP ITEM/EXPLORE ROOM FEATURE -- This Works
+            // ADDED FOR DROP ITEM/EXPLORE ROOM FEATURE
             if(getItemsDropped().containsValue(artifacts.getArtiName())) {
                 Artifacts dropped;
                 String droppedString;
@@ -298,8 +300,8 @@ public class Player extends Rooms {
                     dropped = inDrop.getKey();
                     droppedString = inDrop.getValue();
                     if(droppedString.equalsIgnoreCase(artifacts.getArtiName())){
-                        System.out.println("artifacts object:" + artifacts);
-                        System.out.println("drop hashmap item obj:" + dropped);
+                        //System.out.println("artifacts object:" + artifacts);
+                        //System.out.println("drop hashmap item obj:" + dropped);
                         getItemsDropped().remove(dropped);
                         break;
                     }
@@ -312,7 +314,7 @@ public class Player extends Rooms {
                 return;
             }
 
-            // ADDED FOR DROP ITEM/EXPLORE ROOM FEATURE -- This Works
+            // ADDED FOR DROP ITEM/EXPLORE ROOM FEATURE
             for (Map.Entry<Artifacts, String> pickup : getItemsDropped().entrySet()) {
                 //System.out.println("pickup value:"+pickup.getValue());
                 //System.out.println("artifacts value:"+artifacts.getArtiName());
@@ -332,7 +334,34 @@ public class Player extends Rooms {
             }
 
             System.out.println(noun + " is not in this room");
-        } else {
+        } else if(!getItemsDropped().isEmpty()){
+            if (inventory.size() > 5) {
+                System.out.println("Inventory is full! drop item.");
+                return;
+            }
+
+            // ADDED FOR DROP ITEM/EXPLORE ROOM FEATURE
+            for (Map.Entry<Artifacts, String> pickup : getItemsDropped().entrySet()) {
+                System.out.println("pickup value:"+pickup.getValue());
+                System.out.println("console:"+noun);
+                if (pickup.getValue().equalsIgnoreCase(noun)) {
+                    if (inventory.size() >= 5) {
+                        System.out.println("Inventory is full! drop item.");
+                        return;
+                    }
+                    inventory.add(pickup.getKey());
+                    System.out.println(noun + " has been added to inventory");
+                    //System.out.println(inventory.size());
+                    getPlayerInventoryMap().put(pickup.getKey(), noun); //Raven -- created to update map for inventory
+                    getItemsDropped().remove(pickup.getKey());
+                    //System.out.println(getItemsDropped());
+                    return;
+                }
+            }
+
+            System.out.println(noun + " is not in this room");
+
+        }else {
             System.out.println("There's no item in this room");
         }
 

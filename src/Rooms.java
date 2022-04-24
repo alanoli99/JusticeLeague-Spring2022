@@ -174,13 +174,21 @@ public class Rooms {
                     m = "\nThere's a monster nearby...";
                 }
                 if(rooms.getItemID() > 0 || !Player.getItemsDropped().isEmpty()){
-                    for(Artifacts item : itemInfo){
-                        //System.out.println(Player.getItemsDropped());
-                        // ADDED FOR DROP ITEM/EXPLORE ROOM FEATURE -> || Player.getItemsDropped().containsValue(item.getArtiName())
-                        if(rooms.getItemID() == item.getArtiID() || Player.getItemsDropped().containsValue(item.getArtiName())){
-                            // Player.getPlayerInventoryMap().containsValue(item.getArtiName().toLowerCase()) -- may need if multi items in room
-                            i = "Artifacts here! " + i + "\n" + item.getArtiName();
+                    for(Map.Entry<Artifacts, String> inDrop : Player.getItemsDropped().entrySet()) {
+                        System.out.println(inDrop.getKey().getArtiID() == rooms.getRoomID());
+                        if (inDrop.getKey().getArtiID() == rooms.getRoomID()) {
+                            i = inDrop.getValue();
+                            break;
                         }
+                    }
+                    for(Artifacts item : itemInfo){
+                            //System.out.println(Player.getItemsDropped());
+                            // ADDED FOR DROP ITEM/EXPLORE ROOM FEATURE -> || Player.getItemsDropped().containsValue(item.getArtiName())
+                            if (rooms.getItemID() == item.getArtiID() || Player.getItemsDropped().containsValue(item.getArtiName())) {
+                                // Player.getPlayerInventoryMap().containsValue(item.getArtiName().toLowerCase()) -- may need if multi items in room
+                                i = "Artifacts here! " + i + "\n" + item.getArtiName();
+                            }
+
                     }
                 } if(rooms.getPuzzleID() > 0){
                     for(Map.Entry<Puzzle,String> puzzle : Puzzle.getPuzzleInfo().entrySet()){
