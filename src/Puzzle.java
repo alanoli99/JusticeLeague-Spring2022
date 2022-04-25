@@ -5,6 +5,10 @@ import java.util.Scanner;
 /**
  * @author: Alan Oliver
  * Created constructor, initialized variables, getters and setters and ToString()
+ * Features: Puzzle hint
+ *
+ * @author: Raven Gardner
+ * Features: Observe puzzle, solve puzzle
  */
 public class Puzzle {
 

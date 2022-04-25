@@ -3,16 +3,15 @@ import java.util.*;
 /**
  * Author name: Raven Gardner
  * Worked on: Explore room feature, process/parse commands, consume/eat,
- * observe puzzle, solve puzzle, equip item
+ * observe puzzle, solve puzzle, equip item, and unequip item
  *
  * Author name: Joe F Nsengiyumva
  * Worked on:check inventory, navigate room, explore artifacts, help controls, pickup item
  *
- * Author name:
- * Worked on:
- *
- * Author name:
- * Worked on:
+ * Author name: Alan Oliver Santiesteban
+ * Worked on: Drop item, observe monster (other monster features are in monster class),
+ * runCommand, and quit feature.
+ * (puzzle hint feature is in puzzle class)
  *
  */
 
@@ -71,6 +70,7 @@ public class Game {
         return rooms.exploreRoom();
     }
 
+    // Alan o: method to observe monster, implements monster features
     private String exploreMons(String name) {
         return monster.exploreMons();
     }
