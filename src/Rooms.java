@@ -14,7 +14,12 @@ public class Rooms {
      * Note: I modified the original room file and created
      * the variable "lockedDoor" to implement if a door
      * needs a key
+     *
+     * @author: Joe F Nsengiyumva
+     * Note: I created moveAround method and kept track of rooms visited
+     * beenHere1 hashmap is used to keep to track of rooms
      */
+
     private String roomName;
     private int roomID;
     private String description;

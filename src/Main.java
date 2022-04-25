@@ -11,6 +11,7 @@ public class Main {
         String output;
         //Input could be used for gameStart
         //String gameStart;
+        //reading user input - Joe N
         Scanner begin = new Scanner(System.in);
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         // start game feature; Raven and Alan
@@ -43,7 +44,7 @@ public class Main {
             }
         }
         game.showIntro();
-
+        //author Joe F Nsengiyumva
         do {
 
             System.out.print("> ");

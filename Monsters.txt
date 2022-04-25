@@ -8,6 +8,7 @@ Book
 Answer riddle, Observe, Run
 10
 1
+Unfortunately this monster has nothing for you!
 2
 Freddy the Kraken
 Answers/Next Steps
@@ -18,6 +19,7 @@ Fire
 Run, Answer riddle
 10
 1
+The Diamond key is actually located in room 23!
 3
 Sydney and the Banshees
 Key
@@ -28,6 +30,7 @@ Sand
 Wailing noises can be heard through the castle, Must answer riddle within a certain amount of time, health deteriorates
 10
 2
+Unfortunately this monster has nothing for you!
 4
 Medusa
 Rubies/ Other health items
@@ -38,6 +41,7 @@ Time
 Player must answer riddle before medusa removes her glasses, If glasses are removed player is frozen for a turn and this will display on the console
 10
 1
+The diamond key that opens room 37 is in room 20!
 5
 Basilisks
 Map/Key
@@ -48,6 +52,7 @@ Wound
 Player must search for items through snakes and if bitten must answer riddle to obtain antidote.
 10
 1
+The Necromancer that has the princess is in Room 24!
 6
 Cyclopes
 Collect items for monsters
@@ -58,16 +63,18 @@ Anchor
 Collect items in dungeon to get to next task or next room. If items are not collected princess will remain locked up with Necromancer.
 10
 1
+Unfortunately this monster has nothing for you!
 7
 Hades
 Collect key for extra level
 Hard
 What has four legs in the morning, two legs in the afternoon and three legs in the evening?
 This happens to all of us throughout life.
-Man. When he was a child, he crawled on all four, when he was older, he walked on two legs and when he was old aged, he used a cane.
+Man
 Befriend monster and get information about the princess
 10
 2
+The Necromancer is in room 36!
 8
 Necromancer
 Save Princess
@@ -78,3 +85,4 @@ Piano
 Player must battle the necromancer by answering multiple riddles and completing a word scramble, Each answer that is correct attacks this mighty character
 10
 2
+You have defeated me! you wannabe hero （  ¬___¬ ）

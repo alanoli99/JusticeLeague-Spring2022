@@ -2,6 +2,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+/**
+ * @author: Alan Oliver
+ * Created constructor, initialized variables, getters and setters and ToString()
+ */
 public class Puzzle {
 
     private int puzzleID;

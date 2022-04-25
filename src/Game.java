@@ -5,8 +5,8 @@ import java.util.*;
  * Worked on: Explore room feature, process/parse commands, consume/eat,
  * observe puzzle, solve puzzle, equip item
  *
- * Author name:
- * Worked on:
+ * Author name: Joe F Nsengiyumva
+ * Worked on:check inventory, navigate room, explore artifacts, help controls, pickup item
  *
  * Author name:
  * Worked on:

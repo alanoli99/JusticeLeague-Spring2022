@@ -22,7 +22,7 @@ public class Monsters {
     private String choices;
     private int monsHealth;
     private int monsAttack;
-
+    private String riddleReward;
     // added an empty constructor for the Game class -- Alan
     public Monsters() {
 
@@ -109,8 +109,16 @@ public class Monsters {
         this.monsAttack = monsAttack;
     }
 
+    public String getRiddleReward() {
+        return riddleReward;
+    }
+
+    public void setRiddleReward(String riddleReward) {
+        this.riddleReward = riddleReward;
+    }
+
     public Monsters(int id, String description, String itemsHeld, String difficulty, String riddle, String hint, String answer, String choices,
-                    int monsHealth, int monsAttack) {
+                    int monsHealth, int monsAttack, String riddleReward) {
         this.id = id;
         this.description = description;
         this.itemsHeld = itemsHeld;
@@ -121,10 +129,12 @@ public class Monsters {
         this.choices = choices;
         this.monsHealth = monsHealth;
         this.monsAttack = monsAttack;
+        this.riddleReward = riddleReward;
     }
 
     //@Alan - use to get the monsters name,health, and attack damage
     //@author: Raven; added run feature
+    //@author: Joe N; added riddle feature
     public String exploreMons() {
 
         Scanner input = new Scanner(System.in);
@@ -196,7 +206,7 @@ public class Monsters {
 
                             else if (mons.monsHealth < 1 && mons.getId() == 8 ){
 
-                                System.out.println(mons.getDescription() + " has been killed! You have rescured the princess!");
+                                System.out.println(mons.getDescription() + " has been killed! You have rescued the princess!");
                                 System.out.println("Congratulations! You and the Princess leave the castle to live a happy life. ");
                                 System.exit(0);
                                 break;
@@ -229,14 +239,20 @@ public class Monsters {
                     }
                     else if (response.equalsIgnoreCase("riddle")) {
                         int count = 2;
-                        int secondCount = 0;
 
                         while (count >= 0){
 //
                             System.out.println("Answer the following riddle: " + mons.getRiddle());
                             String riddleAnswer = input.nextLine();
+
                             if (mons.getAnswer().equalsIgnoreCase(riddleAnswer)){
-                                System.out.println("You have answered right! Congrats!");
+                                System.out.println("You have answered right! here's your reward: ");
+                                System.out.println(mons.getRiddleReward());
+                                if (mons.getId() == 8){
+                                    System.out.println(mons.getDescription() + " has been killed! You have rescued the princess!");
+                                    System.out.println("Congratulations! You and the Princess leave the castle to live a happy life. ");
+                                    System.exit(0);
+                                }
                                 return "";
                             }
                             count--;
@@ -244,7 +260,9 @@ public class Monsters {
                                 System.out.println("you have no more chances left. better luck next time!");
                                 return "";
                             }
+
                             System.out.println("wrong answer you have " + count + " chance left");
+                            System.out.println("Here's a hint: " + mons.getHint() + "\n");
 
                         }
 

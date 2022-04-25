@@ -16,6 +16,8 @@ public class Text {
      *  Note: added the conversion from string to int
      *  for the new lockedDoor variable
      *
+     * @author: Joe F Nsengiyumva
+     * Note: created read puzzle file method
      */
     public static ArrayList<Rooms> readRoomFile(ArrayList<Rooms> roomList) {
         String fileName = "Rooms.txt"; // hard coding file name
@@ -213,9 +215,9 @@ public static ArrayList<Monsters> monsReader(ArrayList<Monsters> monsArrayList) 
             String choices = scan.nextLine();
             int monsHealth = Integer.parseInt(scan.nextLine());
             int monsAttack = Integer.parseInt(scan.nextLine());
-
+            String reward =  scan.nextLine();
             Monsters m = new Monsters(aID, aDescription,itemsHeld, aDifficulty,aRiddle,aHint,
-                    aAnswer,choices, monsHealth,monsAttack);
+                    aAnswer,choices, monsHealth,monsAttack,reward);
             monsArrayList.add(m);
         }
     }
