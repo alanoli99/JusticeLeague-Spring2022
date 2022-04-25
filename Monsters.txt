@@ -19,7 +19,7 @@ Fire
 Run, Answer riddle
 10
 1
-The Diamond key is actually located in room 23!
+Unfortunately this monster has nothing for you!
 3
 Sydney and the Banshees
 Key
@@ -30,7 +30,7 @@ Sand
 Wailing noises can be heard through the castle, Must answer riddle within a certain amount of time, health deteriorates
 10
 2
-Unfortunately this monster has nothing for you!
+The Diamond key is actually located in room 23!
 4
 Medusa
 Rubies/ Other health items
