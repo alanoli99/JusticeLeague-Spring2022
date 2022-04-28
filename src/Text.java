@@ -9,8 +9,7 @@ import java.util.Scanner;
 public class Text {
     /**
      * @author: Raven Gardner
-     * Created: April 3, 2022
-     * Note: created the method to read room file
+     * Note: created the method to read room file and hashmap methods
      *
      *  @author: Alan Oliver
      *  Note: added the conversion from string to int

@@ -8,8 +8,13 @@ import java.util.Map;
  * @author: Raven Gardner
  * created attributes, getter/setter, and hashmap info
  * Methods: consume, equip, and unequip
+ *
  * @author: Alan Oliver
  * playerHealth and Playerattck Damage
+ * Methods: removeFromInventoru
+ *
+ * @author: Joe Nsengiyumva
+ * Methods: addToInventory
  */
 
 public class Player extends Rooms {
@@ -257,12 +262,12 @@ public class Player extends Rooms {
                 //Player.getLocation().setItemID(inInventory.getArtiID());
 
                 // prevents from dropping in all rooms
-                inInventory.setArtiID(getLocation().getRoomID()); // sets the specific item that was dropped room id to the current location of the player
+                inInventory.setArtiID(getLocation().getRoomID()); // sets the specific item that was dropped room id to the current location of the player - Raven
 
                 getInventory().remove(collected.getKey());
                 getPlayerInventoryMap().remove(inInventory);
 
-                getItemsDropped().put(inInventory, inInventory.getArtiName()); // ADDED FOR DROP ITEM/EXPLORE ROOM FEATURE
+                getItemsDropped().put(inInventory, inInventory.getArtiName()); // ADDED FOR DROP ITEM/EXPLORE ROOM FEATURE - Raven
 
                 System.out.println(obname + " has been dropped!");
                 break;
@@ -304,7 +309,7 @@ public class Player extends Rooms {
             //System.out.println(inventory.size());
             getPlayerInventoryMap().put(artifacts, noun); //Raven -- created to update map for inventory
 
-            // ADDED FOR DROP ITEM/EXPLORE ROOM FEATURE
+            // ADDED FOR DROP ITEM/EXPLORE ROOM FEATURE - Raven
             if(getItemsDropped().containsValue(artifacts.getArtiName())) {
                 Artifacts dropped;
                 String droppedString;
@@ -326,7 +331,7 @@ public class Player extends Rooms {
                 return;
             }
 
-            // ADDED FOR DROP ITEM/EXPLORE ROOM FEATURE
+            // ADDED FOR DROP ITEM/EXPLORE ROOM FEATURE - Raven
             for (Map.Entry<Artifacts, String> pickup : getItemsDropped().entrySet()) {
                 //System.out.println("pickup value:"+pickup.getValue());
                 //System.out.println("artifacts value:"+artifacts.getArtiName());
@@ -352,7 +357,7 @@ public class Player extends Rooms {
                 return;
             }
 
-            // ADDED FOR DROP ITEM/EXPLORE ROOM FEATURE
+            // ADDED FOR DROP ITEM/EXPLORE ROOM FEATURE - Raven
             for (Map.Entry<Artifacts, String> pickup : getItemsDropped().entrySet()) {
                 //System.out.println("pickup value:"+pickup.getValue());
                 //System.out.println("console:"+noun);

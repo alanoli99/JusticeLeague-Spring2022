@@ -9,6 +9,7 @@ import java.util.Scanner;
  * desc,diff,riddle,hint,answer,choices to string. In the text file i changed it to
  * int instead of doubles. added items held to the class
  * @author: Raven - implemented run feature.
+ * @author: Joe - implemented monster riddle
  */
 
 public class Monsters {

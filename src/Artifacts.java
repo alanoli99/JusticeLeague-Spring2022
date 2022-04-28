@@ -6,6 +6,9 @@ import java.util.ArrayList;
  *
  * @author: Raven Gardner
  * Note: split strength into consumeHealth and equipHealth
+ *
+ * @author: Joe Nsengiyumva
+ * Note: created getItemObject and exploreArtifacts method
  */
 public class Artifacts {
 
